@@ -1,0 +1,39 @@
+{
+  "name": "Diavasma",
+  "short_name": "Diavasma",
+  "description": "Distraction-free offline reading sanctuary with zero tracking, text-to-speech, ambient audio soundscapes, and customized typography.",
+  "start_url": "./Diavasma.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#faf7f0",
+  "theme_color": "#23272f",
+  "categories": [
+    "books",
+    "productivity",
+    "education",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open Library",
+      "short_name": "Library",
+      "description": "Open reading list and books",
+      "url": "./Diavasma.html#library",
+      "icons": [
+        {
+          "src": "./icon.svg",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

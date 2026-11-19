@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#23272f" />
+      <stop offset="100%" stop-color="#14171c" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a373" />
+      <stop offset="100%" stop-color="#bc8a5f" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+  <!-- Background Rounded Rect -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <!-- Inner Ring / Glow -->
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="url(#accentGrad)" stroke-width="4" stroke-opacity="0.25" />
+  <!-- Book / Page Silhouette (Subtle) -->
+  <path d="M128 368 C180 348, 230 354, 256 368 C282 354, 332 348, 384 368 L384 168 C332 148, 282 154, 256 168 C230 154, 180 148, 128 168 Z" fill="url(#accentGrad)" fill-opacity="0.08" />
+  <!-- Calligraphic Greek Delta Typography -->
+  <g filter="url(#shadow)">
+    <text x="256" y="335" font-family="'Literata', 'Cinzel', Georgia, 'Times New Roman', serif" font-size="240" font-weight="700" fill="url(#accentGrad)" text-anchor="middle">Δ</text>
+  </g>
+  <!-- Small dot accent -->
+  <circle cx="396" cy="305" r="14" fill="url(#accentGrad)" />
+</svg>
+
