@@ -1,5 +1,5 @@
-/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v9) */
-const CACHE_NAME = "diavasma-shell-v9";
+/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v14) */
+const CACHE_NAME = "diavasma-shell-v15";
 const FONT_CACHE = "reading-room-fonts-v1";
 
 const PRECACHE_URLS = [
@@ -67,13 +67,17 @@ self.addEventListener("fetch", (event) => {
   // Ignore non-http/https protocols (e.g. chrome-extension://, blob:, data:)
   if (url.protocol !== "http:" && url.protocol !== "https:") return;
 
-  // Bypass cache for external scraping proxies & dynamic APIs
+  // Bypass cache for external scraping proxies, icon aggregators & dynamic APIs
   if (
     url.hostname.includes("jina.ai") ||
     url.hostname.includes("allorigins") ||
     url.hostname.includes("corsproxy") ||
     url.hostname.includes("codetabs") ||
-    url.hostname.includes("cors.lol")
+    url.hostname.includes("cors.lol") ||
+    url.hostname.includes("favicone.com") ||
+    url.hostname.includes("icon.horse") ||
+    url.hostname.includes("duckduckgo.com") ||
+    url.hostname.includes("google.com")
   ) {
     return;
   }
@@ -130,7 +134,7 @@ self.addEventListener("fetch", (event) => {
               const cache = await caches.open(CACHE_NAME);
               await cache.put(req, netRes.clone());
             }
-          }).catch(() => {});
+          }).catch(() => { });
         }
         return cached;
       }
