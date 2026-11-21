@@ -94,12 +94,15 @@
     let searchMatches = [];
     let activeMatchIdx = -1;
 
-    // TTS State with Live Sentence Highlight Range
+    // TTS State with Live Sentence Highlight Range & Background Pre-queue Buffer
     let ttsActive = false;
     let ttsQueue = [];
     let ttsQueueIdx = 0;
     let activeTtsRange = null;
     let currentTtsUtterance = null;
+    let ttsSessionId = 0;
+    let activeTtsUtterances = [];
+    const TTS_PREQUEUE_SIZE = 3;
 
     // Persistent Audio Playlist (IndexedDB)
     let audioTracks = [];
@@ -245,6 +248,26 @@
       updateNotesBadge();
     }
 
+    let lastLightweightSaveTime = 0;
+    function saveReadingProgressLightweight(force = false) {
+      const now = Date.now();
+      if (!force && now - lastLightweightSaveTime < 3000) return;
+      lastLightweightSaveTime = now;
+      if (!currentBookId) return;
+      const b = library.find((item) => item.id === currentBookId);
+      if (!b) return;
+      b.charOffset = charOffset;
+      if (bookText && bookText.length) {
+        b.progress = Math.min(100, Math.round((charOffset / bookText.length) * 100));
+      }
+      b.updatedAt = now;
+      b.lastOpenedAt = now;
+      try {
+        const lightweightLib = library.map((item) => (item.text ? { ...item, text: "", isChunked: true } : item));
+        localStorage.setItem(LIB_KEY, JSON.stringify(lightweightLib));
+      } catch (_) {}
+    }
+
 
     /* --- Continue Reading Card Logic --- */
     function renderContinueReadingCard() {
@@ -387,22 +410,74 @@
 
     /* --- Background Audio Manager (Silent Keep-Alive + Media Session API) --- */
     const BackgroundAudioManager = (() => {
-      // Minimal inline silent PCM WAV audio anchor (0.1s mono silence, loop = true, volume = 0.01)
-      const SILENT_WAV_BASE64 = "data:audio/wav;base64,UklGRkQDAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YSADAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==";
-
       let keepAliveAudio = null;
+      let keepAliveUrl = null;
       let ttsWatchdogTimer = 0;
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      function createKeepAliveWavBlobUrl() {
+        if (keepAliveUrl) return keepAliveUrl;
+        try {
+          const sampleRate = 8000;
+          const numChannels = 1;
+          const bitsPerSample = 16;
+          const durationSeconds = 5;
+          const numSamples = sampleRate * durationSeconds;
+          const byteRate = sampleRate * numChannels * (bitsPerSample / 8);
+          const blockAlign = numChannels * (bitsPerSample / 8);
+          const dataSize = numSamples * blockAlign;
+          const buffer = new ArrayBuffer(44 + dataSize);
+          const view = new DataView(buffer);
+
+          view.setUint32(0, 0x52494646, false); // "RIFF"
+          view.setUint32(4, 36 + dataSize, true);
+          view.setUint32(8, 0x57415645, false); // "WAVE"
+          view.setUint32(12, 0x666d7420, false); // "fmt "
+          view.setUint32(16, 16, true);
+          view.setUint16(20, 1, true);
+          view.setUint16(22, numChannels, true);
+          view.setUint32(24, sampleRate, true);
+          view.setUint32(28, byteRate, true);
+          view.setUint16(32, blockAlign, true);
+          view.setUint16(34, bitsPerSample, true);
+          view.setUint32(36, 0x64617461, false); // "data"
+          view.setUint32(40, dataSize, true);
+
+          let offset = 44;
+          for (let i = 0; i < numSamples; i++) {
+            const sample = (i % 2 === 0) ? 1 : -1;
+            view.setInt16(offset, sample, true);
+            offset += 2;
+          }
+
+          const blob = new Blob([buffer], { type: "audio/wav" });
+          keepAliveUrl = URL.createObjectURL(blob);
+          return keepAliveUrl;
+        } catch (_) {
+          return "";
+        }
+      }
 
       function getOrCreateKeepAliveAudio() {
         if (!keepAliveAudio) {
           keepAliveAudio = new Audio();
-          keepAliveAudio.src = SILENT_WAV_BASE64;
+          const srcUrl = createKeepAliveWavBlobUrl();
+          if (srcUrl) keepAliveAudio.src = srcUrl;
           keepAliveAudio.loop = true;
-          keepAliveAudio.volume = 0.01;
+          keepAliveAudio.volume = 0.05;
           keepAliveAudio.preload = "auto";
           keepAliveAudio.setAttribute("playsinline", "true");
         }
         return keepAliveAudio;
+      }
+
+      function playKeepAliveSync() {
+        const isBgEnabled = prefs.backgroundPlayback !== false;
+        if (!isBgEnabled || isMp3Playing()) return;
+        const audio = getOrCreateKeepAliveAudio();
+        if (audio.paused) {
+          audio.play().catch(() => {});
+        }
       }
 
       function isMp3Playing() {
@@ -485,6 +560,7 @@
           if (p && p.paused && p.src && audioTracks.length > 0) {
             p.play().catch(() => {});
           } else if (!ttsActive && bookText) {
+            playKeepAliveSync();
             speakCurrentSpread();
           } else if (!ambientActive) {
             startNoise(true);
@@ -525,6 +601,9 @@
             playTrack(trackIdx - 1, true);
           } else if (ttsActive) {
             movePage(-1);
+            if (ttsActive && pages.length && pages[pageIndex]) {
+              speakCurrentSpread(pages[pageIndex].start);
+            }
           }
           sync();
         });
@@ -534,12 +613,16 @@
             playTrack(trackIdx + 1, true);
           } else if (ttsActive) {
             movePage(1);
+            if (ttsActive && pages.length && pages[pageIndex]) {
+              speakCurrentSpread(pages[pageIndex].start);
+            }
           }
           sync();
         });
       }
 
       function startTtsWatchdog() {
+        if (isMobile) return; // Desktop only: resume() during ongoing speech triggers audio glitches on Android
         if (ttsWatchdogTimer) clearInterval(ttsWatchdogTimer);
         ttsWatchdogTimer = setInterval(() => {
           if (ttsActive && "speechSynthesis" in window && !window.speechSynthesis.paused) {
@@ -579,6 +662,9 @@
             } else {
               // Background playback enabled
               syncKeepAlive();
+              if (ttsActive) {
+                saveReadingProgressLightweight(true);
+              }
               if (ambientActive && typeof audioCtx !== "undefined" && audioCtx && audioCtx.state === "suspended") {
                 audioCtx.resume().catch(() => {});
               }
@@ -588,8 +674,12 @@
             if (ambientActive && typeof audioCtx !== "undefined" && audioCtx && audioCtx.state === "suspended") {
               audioCtx.resume().catch(() => {});
             }
-            if (ttsActive && "speechSynthesis" in window && window.speechSynthesis.paused) {
-              try { window.speechSynthesis.resume(); } catch (_) {}
+            if (ttsActive) {
+              if ("speechSynthesis" in window && window.speechSynthesis.paused) {
+                try { window.speechSynthesis.resume(); } catch (_) {}
+              }
+              renderPages(false, false, false);
+              sync();
             }
           }
         });
@@ -599,6 +689,7 @@
         init,
         sync,
         syncKeepAlive,
+        playKeepAliveSync,
         updateMediaSession,
         startTtsWatchdog,
         stopTtsWatchdog
@@ -4231,6 +4322,9 @@
           playGrpBtn.addEventListener("click", () => {
             const first = items[0];
             if (!first) return;
+            if (typeof BackgroundAudioManager !== "undefined") {
+              BackgroundAudioManager.playKeepAliveSync();
+            }
             openBook(first.title, first.text, first.charOffset || 0, first.bookmarkOffset || 0, first.id, first.highlights || [], first.audio || null, first.noise || null, first.groupId, first.kind, false, first.toc || []);
             setTimeout(() => speakCurrentSpread(first.charOffset || 0), 320);
           });
@@ -5517,7 +5611,7 @@
       return Math.max(0, pages.length - 1);
     }
 
-    function renderPages(animate = false, forceRecalc = false) {
+    function renderPages(animate = false, forceRecalc = false, persistFull = true) {
       if (!bookText) return;
       const isScroll = prefs.mode === "scroll";
       $("#bookStage").hidden = isScroll;
@@ -5532,6 +5626,11 @@
           if (activeEl) activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
         }
         syncTocSelection();
+        if (persistFull) {
+          saveLibraryState();
+        } else {
+          saveReadingProgressLightweight(false);
+        }
         return;
       }
 
@@ -5576,7 +5675,11 @@
       $("#progressFill").style.width = `${progressPct}%`;
 
       syncTocSelection();
-      saveLibraryState();
+      if (persistFull) {
+        saveLibraryState();
+      } else {
+        saveReadingProgressLightweight(false);
+      }
     }
 
     /* --- Open Book / Switch Views --- */
@@ -6240,20 +6343,26 @@
     }
 
     function stopTts() {
+      ttsSessionId++;
       ttsActive = false;
       ttsQueue = [];
+      activeTtsUtterances = [];
       const hadHighlight = Boolean(activeTtsRange);
       activeTtsRange = null;
       currentTtsUtterance = null;
-      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+      if ("speechSynthesis" in window) {
+        try { window.speechSynthesis.cancel(); } catch (_) {}
+      }
       if (typeof BackgroundAudioManager !== "undefined") {
         BackgroundAudioManager.stopTtsWatchdog();
         BackgroundAudioManager.sync();
       }
-      $("#ttsToggleBtn").classList.remove("speaking");
-      $("#ttsBtnLabel").textContent = t("tts_btn_label") || "Εκφώνηση";
-      if (hadHighlight && bookText && !$("#readingView").hidden) {
-        renderPages(false, false);
+      $("#ttsToggleBtn")?.classList.remove("speaking");
+      const lbl = $("#ttsBtnLabel");
+      if (lbl) lbl.textContent = t("tts_btn_label") || "Εκφώνηση";
+      saveReadingProgressLightweight(true);
+      if (hadHighlight && bookText && !$("#readingView").hidden && !document.hidden) {
+        renderPages(false, false, false);
       }
     }
 
@@ -6307,11 +6416,87 @@
           nextItem.toc || []
         );
         showToast((t("toast_next_in_group") || "Επόμενο στην ομάδα: {title}").replace("{title}", nextItem.title));
-        setTimeout(() => speakCurrentSpread(0), 280);
+        if (document.hidden) {
+          speakCurrentSpread(0);
+        } else {
+          setTimeout(() => speakCurrentSpread(0), 180);
+        }
       } else {
         if (typeof closeImportModal === "function") closeImportModal();
         stopTts();
         showToast(t("toast_group_finished") || "Ολοκληρώθηκαν όλα τα άρθρα της ομάδας!");
+      }
+    }
+
+    function pumpTtsQueue(currentSession) {
+      if (!ttsActive || currentSession !== ttsSessionId) return;
+
+      while (
+        ttsActive &&
+        currentSession === ttsSessionId &&
+        activeTtsUtterances.length < TTS_PREQUEUE_SIZE &&
+        ttsQueueIdx < ttsQueue.length
+      ) {
+        const item = ttsQueue[ttsQueueIdx++];
+        const utter = new SpeechSynthesisUtterance(item.text);
+        utter.__item = item;
+        utter.__session = currentSession;
+        const voice = pickBestVoice(item.text);
+        if (voice) {
+          utter.voice = voice;
+          utter.lang = voice.lang;
+        }
+        utter.rate = Number(prefs.ttsRate) || 1.0;
+
+        utter.onstart = () => {
+          if (!ttsActive || utter.__session !== ttsSessionId) return;
+          currentTtsUtterance = utter;
+          activeTtsRange = { start: item.start, end: item.end };
+          charOffset = item.start;
+
+          if (!document.hidden) {
+            renderPages(false, false, false);
+          } else {
+            saveReadingProgressLightweight(false);
+          }
+        };
+
+        utter.onend = () => {
+          const idx = activeTtsUtterances.indexOf(utter);
+          if (idx >= 0) activeTtsUtterances.splice(idx, 1);
+          if (!ttsActive || utter.__session !== ttsSessionId) return;
+          if (currentTtsUtterance === utter) currentTtsUtterance = null;
+
+          if (activeTtsUtterances.length === 0 && ttsQueueIdx >= ttsQueue.length) {
+            activeTtsRange = null;
+            advanceToNextItemInSameGroup();
+          } else {
+            pumpTtsQueue(currentSession);
+          }
+        };
+
+        utter.onerror = (e) => {
+          const idx = activeTtsUtterances.indexOf(utter);
+          if (idx >= 0) activeTtsUtterances.splice(idx, 1);
+          if (!ttsActive || utter.__session !== ttsSessionId) return;
+          if (currentTtsUtterance === utter) currentTtsUtterance = null;
+
+          if (e.error === "interrupted" || e.error === "canceled") return;
+
+          console.warn("[TTS] Utterance error:", e.error);
+          if (document.hidden && activeTtsUtterances.length === 0 && ttsQueueIdx < ttsQueue.length) {
+            setTimeout(() => {
+              if (ttsActive && utter.__session === ttsSessionId) {
+                pumpTtsQueue(currentSession);
+              }
+            }, 300);
+          } else if (activeTtsUtterances.length === 0 && ttsQueueIdx >= ttsQueue.length) {
+            stopTts();
+          }
+        };
+
+        activeTtsUtterances.push(utter);
+        window.speechSynthesis.speak(utter);
       }
     }
 
@@ -6320,76 +6505,52 @@
         showToast(t("toast_tts_unsupported") || "Ο browser δεν υποστηρίζει φωνητική ανάγνωση.");
         return;
       }
-      window.speechSynthesis.cancel();
+      if (!bookText) return;
 
-      const targetPages = prefs.mode === "scroll"
-        ? [{ text: bookText, start: 0, end: bookText.length }]
-        : [pages[pageIndex], pagesPerView() === 2 ? pages[pageIndex + 1] : null].filter(Boolean);
+      ttsSessionId++;
+      const currentSession = ttsSessionId;
+      ttsActive = false;
+      activeTtsUtterances = [];
+      try { window.speechSynthesis.cancel(); } catch (_) {}
 
-      ttsQueue = buildTtsSentenceQueue(targetPages);
+      // Build continuous sentence queue for the entire book
+      ttsQueue = buildTtsSentenceQueue([{ text: bookText, start: 0, end: bookText.length }]);
       if (!ttsQueue.length) {
         if (typeof closeImportModal === "function") closeImportModal();
         stopTts();
         return;
       }
 
-      ttsQueueIdx = 0;
+      let anchor = 0;
       if (startAtOffset !== null) {
-        const found = ttsQueue.findIndex((item) => item.end > startAtOffset);
-        if (found >= 0) ttsQueueIdx = found;
+        anchor = startAtOffset;
+      } else if (typeof charOffset === "number" && charOffset > 0) {
+        anchor = charOffset;
+      } else if (pages.length > 0 && pages[pageIndex]) {
+        anchor = pages[pageIndex].start;
       }
 
+      const foundIdx = ttsQueue.findIndex((item) => item.end > anchor);
+      ttsQueueIdx = foundIdx >= 0 ? foundIdx : 0;
+
       ttsActive = true;
-      $("#ttsToggleBtn").classList.add("speaking");
-      $("#ttsBtnLabel").textContent = t("pomo_pause") || "Παύση";
+      $("#ttsToggleBtn")?.classList.add("speaking");
+      const lbl = $("#ttsBtnLabel");
+      if (lbl) lbl.textContent = t("pomo_pause") || "Παύση";
+
       if (typeof BackgroundAudioManager !== "undefined") {
+        BackgroundAudioManager.playKeepAliveSync();
         BackgroundAudioManager.startTtsWatchdog();
         BackgroundAudioManager.sync();
       }
 
-      const speakNextSentence = () => {
-        if (!ttsActive) return;
-        if (ttsQueueIdx >= ttsQueue.length) {
-          const step = pagesPerView();
-          if (prefs.mode === "paged" && pageIndex + step < pages.length) {
-            charOffset = pages[pageIndex + step].start;
-            activeTtsRange = null;
-            renderPages(true, false);
-            setTimeout(() => speakCurrentSpread(), 220);
-          } else {
-            advanceToNextItemInSameGroup();
-          }
-          return;
-        }
-
-        const item = ttsQueue[ttsQueueIdx++];
-        activeTtsRange = { start: item.start, end: item.end };
-        charOffset = item.start;
-        renderPages(false, false);
-
-        const utter = new SpeechSynthesisUtterance(item.text);
-        currentTtsUtterance = utter;
-        const voice = pickBestVoice(item.text);
-        if (voice) {
-          utter.voice = voice;
-          utter.lang = voice.lang;
-        }
-        utter.rate = Number(prefs.ttsRate) || 1.0;
-        utter.onend = () => {
-          currentTtsUtterance = null;
-          speakNextSentence();
-        };
-        utter.onerror = (e) => {
-          currentTtsUtterance = null;
-          if (e.error !== "interrupted" && e.error !== "canceled") stopTts();
-        };
-        window.speechSynthesis.speak(utter);
-      };
-
-      speakNextSentence();
+      pumpTtsQueue(currentSession);
     }
 
     function toggleTts() {
+      if (typeof BackgroundAudioManager !== "undefined" && !ttsActive) {
+        BackgroundAudioManager.playKeepAliveSync();
+      }
       if (ttsActive) stopTts();
       else speakCurrentSpread();
     }

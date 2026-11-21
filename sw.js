@@ -1,5 +1,5 @@
-/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v31) */
-const CACHE_NAME = "diavasma-shell-v31";
+/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v32) */
+const CACHE_NAME = "diavasma-shell-v32";
 const FONT_CACHE = "reading-room-fonts-v1";
 
 const PRECACHE_URLS = [
