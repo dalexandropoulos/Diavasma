@@ -1191,19 +1191,22 @@
     }
 
     .toc-select {
+      flex: 1 1 auto;
+      min-width: 60px;
       max-width: 165px;
       height: 34px;
       border: none;
       border-radius: 999px;
       background: transparent;
       color: var(--ink);
-      padding: 0 8px;
+      padding: 0 6px;
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
       outline: none;
       text-overflow: ellipsis;
-      flex-shrink: 0;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .toc-select:hover {
@@ -1522,37 +1525,49 @@
       transform: translateY(-1px);
     }
 
-    .theme-chip[data-val="paper"] {
+    .theme-chip[data-val="paper"],
+    .theme-chip[data-qtheme="paper"],
+    .theme-chip[data-stheme="paper"] {
       background: #faf7f0 !important;
       color: #24201b !important;
       border-color: #dfd7c8 !important;
     }
 
-    .theme-chip[data-val="warm"] {
+    .theme-chip[data-val="warm"],
+    .theme-chip[data-qtheme="warm"],
+    .theme-chip[data-stheme="warm"] {
       background: #f5ead8 !important;
       color: #36291e !important;
       border-color: #d8c3a8 !important;
     }
 
-    .theme-chip[data-val="sage"] {
+    .theme-chip[data-val="sage"],
+    .theme-chip[data-qtheme="sage"],
+    .theme-chip[data-stheme="sage"] {
       background: #ebf0e9 !important;
       color: #1f2b22 !important;
       border-color: #c4d3c2 !important;
     }
 
-    .theme-chip[data-val="slate"] {
+    .theme-chip[data-val="slate"],
+    .theme-chip[data-qtheme="slate"],
+    .theme-chip[data-stheme="slate"] {
       background: #23272f !important;
       color: #e2e6ed !important;
       border-color: #3e4654 !important;
     }
 
-    .theme-chip[data-val="night"] {
+    .theme-chip[data-val="night"],
+    .theme-chip[data-qtheme="night"],
+    .theme-chip[data-stheme="night"] {
       background: #1b1c1a !important;
       color: #e8e3d9 !important;
       border-color: #363733 !important;
     }
 
-    .theme-chip[data-val="amoled"] {
+    .theme-chip[data-val="amoled"],
+    .theme-chip[data-qtheme="amoled"],
+    .theme-chip[data-stheme="amoled"] {
       background: #000000 !important;
       color: #dcd8d0 !important;
       border-color: #2e2e30 !important;
@@ -2486,6 +2501,24 @@
         padding: 0 10px;
       }
 
+      .floating-dock {
+        gap: 2px;
+        padding: 4px 8px;
+        max-width: calc(100vw - 12px);
+      }
+
+      .dock-btn {
+        min-width: 32px;
+        height: 34px;
+        padding: 0 5px;
+      }
+
+      .toc-select {
+        min-width: 55px;
+        max-width: 115px;
+        padding: 0 4px;
+      }
+
       .brand-label {
         display: none;
       }
@@ -3204,9 +3237,18 @@
       gap: 10px;
     }
     .quote-theme-chips {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .quote-theme-chips .theme-chip {
+      width: 100%;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
     }
     .quote-actions-row {
       display: flex;
@@ -3373,7 +3415,7 @@
       cursor: pointer;
       max-width: 440px;
       width: 100%;
-      padding: 38px 36px 32px 36px;
+      padding: 30px 32px;
       border-radius: 26px;
       box-sizing: border-box;
       backdrop-filter: blur(16px);
@@ -3403,28 +3445,6 @@
       color: #f2ede4;
     }
 
-    .welcome-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-    }
-
-    .welcome-brand-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: var(--accent, #8c5a32);
-      color: #fff;
-      font-family: "Cinzel", "Literata", serif;
-      font-size: 22px;
-      font-weight: 700;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-    }
-
     .welcome-title {
       font-family: "Literata", "Merriweather", "Georgia", serif;
       font-size: 27px;
@@ -3438,37 +3458,9 @@
     .welcome-subtitle {
       font-size: 14.5px;
       line-height: 1.55;
-      margin: 0 0 24px 0;
+      margin: 0;
       opacity: 0.85;
       color: inherit;
-    }
-
-    .welcome-action-wrap {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .welcome-hint {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid var(--line);
-      font-size: 13px;
-      font-weight: 500;
-      color: inherit;
-      opacity: 0.85;
-      letter-spacing: 0.02em;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .welcome-overlay:hover .welcome-hint {
-      opacity: 1;
-      transform: translateY(-1px);
     }
 
     @keyframes welcomeFadeUp {
@@ -3506,7 +3498,7 @@
 
       .welcome-card {
         max-width: 100%;
-        padding: 24px 20px 20px 20px;
+        padding: 22px 20px;
         border-radius: 22px;
         align-items: center;
         text-align: center;

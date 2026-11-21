@@ -1,5 +1,5 @@
 /* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v14) */
-const CACHE_NAME = "diavasma-shell-v15";
+const CACHE_NAME = "diavasma-shell-v17";
 const FONT_CACHE = "reading-room-fonts-v1";
 
 const PRECACHE_URLS = [
@@ -84,6 +84,11 @@ self.addEventListener("fetch", (event) => {
 
   // HTML Navigation: Network-First with strict 3-second Timeout and Cache Fallback
   if (req.mode === "navigate" || req.headers.get("accept")?.includes("text/html")) {
+    const isShareTarget =
+      url.searchParams.has("share_url") ||
+      url.searchParams.has("share_text") ||
+      url.searchParams.has("share_title");
+
     event.respondWith(
       (async () => {
         try {
@@ -94,9 +99,12 @@ self.addEventListener("fetch", (event) => {
           clearTimeout(timeoutId);
 
           if (netRes && netRes.ok) {
-            const clone = netRes.clone();
-            const cache = await caches.open(CACHE_NAME);
-            await cache.put(req, clone);
+            // Do not cache responses for share_target queries to prevent duplicate entries
+            if (!isShareTarget) {
+              const clone = netRes.clone();
+              const cache = await caches.open(CACHE_NAME);
+              await cache.put(req, clone);
+            }
             return netRes;
           }
         } catch (err) {

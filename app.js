@@ -2939,35 +2939,44 @@
     window.grabSiteFavicon = grabSiteFavicon;
 
     /* --- Import Article from URL (Open Immediately or Save to Group) --- */
-    async function importArticleFromUrl(saveOnlyToGroup = false) {
-      let rawUrl = $("#urlImportInput").value.trim();
-      const manualHtml = ($("#rawHtmlUrlInput") && !$("#rawHtmlUrlBox").hidden) ? $("#rawHtmlUrlInput").value.trim() : "";
+    async function importArticleFromUrl(saveOnlyToGroup = false, opts = null) {
+      const isFromShare = Boolean(opts && opts.fromShare);
+      let rawUrl = (opts && opts.url) ? String(opts.url).trim() : $("#urlImportInput").value.trim();
+      const manualHtml = (!isFromShare && $("#rawHtmlUrlInput") && !$("#rawHtmlUrlBox").hidden) ? $("#rawHtmlUrlInput").value.trim() : "";
 
-      if (!rawUrl && !manualHtml) return showToast(t("toast_paste_url_first") || "Επικόλλησε πρώτα ένα URL.");
+      if (!rawUrl && !manualHtml) {
+        if (!isFromShare) showToast(t("toast_paste_url_first") || "Επικόλλησε πρώτα ένα URL.");
+        return false;
+      }
       if (rawUrl && !/^https?:\/\//i.test(rawUrl)) rawUrl = "https://" + rawUrl;
 
       let parsedUrl;
       try {
         parsedUrl = new URL(rawUrl || "https://local-import.article/");
       } catch (_) {
-        return showToast(t("toast_invalid_url") || "Μη έγκυρη διεύθυνση URL.");
+        if (!isFromShare) showToast(t("toast_invalid_url") || "Μη έγκυρη διεύθυνση URL.");
+        return false;
       }
 
       const openBtn = $("#importUrlBtn");
       const saveBtn = $("#saveUrlToGroupBtn");
-      openBtn.disabled = true;
-      saveBtn.disabled = true;
-      if (saveOnlyToGroup) saveBtn.textContent = t("status_fetching") || "Λήψη...";
-      else openBtn.textContent = t("status_fetching") || "Λήψη...";
+      if (openBtn) openBtn.disabled = true;
+      if (saveBtn) saveBtn.disabled = true;
+      if (!isFromShare) {
+        if (saveOnlyToGroup && saveBtn) saveBtn.textContent = t("status_fetching") || "Λήψη...";
+        else if (openBtn) openBtn.textContent = t("status_fetching") || "Λήψη...";
+      }
 
       const matchedRule = findMatchingScraperRule(parsedUrl);
-      showToast(
-        manualHtml
-          ? (t("toast_processing_html") || "Επεξεργασία επικολλημένου HTML...")
-          : (matchedRule
-            ? (t("toast_rule_applying") || "Εφαρμογή κανόνα ({domain})...").replace("{domain}", matchedRule.domain)
-            : (t("toast_fetching_article") || "Λήψη άρθρου από URL..."))
-      );
+      if (!isFromShare) {
+        showToast(
+          manualHtml
+            ? (t("toast_processing_html") || "Επεξεργασία επικολλημένου HTML...")
+            : (matchedRule
+              ? (t("toast_rule_applying") || "Εφαρμογή κανόνα ({domain})...").replace("{domain}", matchedRule.domain)
+              : (t("toast_fetching_article") || "Λήψη άρθρου από URL..."))
+        );
+      }
 
       let rawHtmlForFavicon = manualHtml || "";
 
@@ -3060,12 +3069,15 @@
           throw new Error(t("toast_extract_failed") || "Δεν κατέστη δυνατή η εξαγωγή κειμένου από αυτό το URL.");
         }
 
-        const finalTitle = extractedTitle || parsedUrl.hostname.replace(/^www\./, "");
-        const selectedGrp = $("#targetGroupSelect").value || (groups.some((g) => g.id === "grp-articles") ? "grp-articles" : groups[0].id);
+        const fallbackTitle = (opts && opts.fallbackTitle) ? String(opts.fallbackTitle).trim() : "";
+        const finalTitle = extractedTitle || fallbackTitle || parsedUrl.hostname.replace(/^www\./, "");
+        const selectedGrp = (opts && opts.groupId) || $("#targetGroupSelect")?.value || (groups.some((g) => g.id === "grp-articles") ? "grp-articles" : groups[0].id);
 
-        $("#urlImportInput").value = "";
-        if ($("#rawHtmlUrlInput")) $("#rawHtmlUrlInput").value = "";
-        $("#urlRuleMatchHint").hidden = true;
+        if (!isFromShare) {
+          $("#urlImportInput").value = "";
+          if ($("#rawHtmlUrlInput")) $("#rawHtmlUrlInput").value = "";
+          $("#urlRuleMatchHint").hidden = true;
+        }
 
         const siteDomain = parsedUrl.hostname.replace(/^www\./i, "");
         let siteFavicon = "";
@@ -3101,9 +3113,12 @@
           };
           library.push(newEntry);
           saveLibraryState();
-          const grp = groups.find((g) => g.id === selectedGrp);
-          showToast((t("toast_saved_to_group") || "Αποθηκεύτηκε στην ομάδα «{name}»!").replace("{name}", grp ? grp.name : ""));
-          closeImportModal();
+          if (!isFromShare) {
+            const grp = groups.find((g) => g.id === selectedGrp);
+            showToast((t("toast_saved_to_group") || "Αποθηκεύτηκε στην ομάδα «{name}»!").replace("{name}", grp ? grp.name : ""));
+            closeImportModal();
+          }
+          return true;
         } else {
           openBook(
             finalTitle,
@@ -3132,15 +3147,23 @@
           } else {
             showToast(matchedRule ? (t("toast_rule_extracted") || "Εξήχθη καθαρά με κανόνα {domain}!").replace("{domain}", matchedRule.domain) : (t("toast_article_loaded") || "Το άρθρο φορτώθηκε επιτυχώς!"));
           }
+          return true;
         }
       } catch (err) {
-        const msg = (err && err.errors && err.errors[0] && err.errors[0].message) || (err && err.message) || (t("toast_url_fetch_error") || "Σφάλμα λήψης URL.");
-        showToast(msg);
+        if (!isFromShare) {
+          const msg = (err && err.errors && err.errors[0] && err.errors[0].message) || (err && err.message) || (t("toast_url_fetch_error") || "Σφάλμα λήψης URL.");
+          showToast(msg);
+        }
+        return false;
       } finally {
-        openBtn.disabled = false;
-        saveBtn.disabled = false;
-        openBtn.textContent = t("btn_fetch_and_open") || "Λήψη & Άνοιγμα";
-        saveBtn.textContent = t("btn_fetch_to_group") || "Λήψη στην ομάδα";
+        if (openBtn) {
+          openBtn.disabled = false;
+          openBtn.textContent = t("btn_fetch_and_open") || "Λήψη & Άνοιγμα";
+        }
+        if (saveBtn) {
+          saveBtn.disabled = false;
+          saveBtn.textContent = t("btn_fetch_to_group") || "Λήψη στην ομάδα";
+        }
       }
     }
 
@@ -4650,8 +4673,6 @@
       const isScroll = prefs.mode === "scroll";
       $("#bookStage").hidden = isScroll;
       $("#scrollStage").hidden = !isScroll;
-      $("#prevPageBtn").hidden = isScroll;
-      $("#nextPageBtn").hidden = isScroll;
 
       if (isScroll) {
         $("#scrollContent").innerHTML = renderPageSliceHtml({ text: bookText, start: 0, end: bookText.length });
@@ -4700,9 +4721,7 @@
 
       const endPage = perView === 2 && pB ? pageIndex + 2 : pageIndex + 1;
       const rangeLabel = (perView === 2 && pB) ? `${pageIndex + 1}–${endPage}` : `${pageIndex + 1}`;
-      const remainingChars = bookText.length - charOffset;
-      const minsLeft = Math.max(1, Math.round((remainingChars / 5.5) / 210));
-      $("#pageCounter").textContent = `${rangeLabel} / ${pages.length} · ~${minsLeft}${t("mins_abbr") || "m"}`;
+      $("#pageCounter").textContent = `${rangeLabel} / ${pages.length}`;
 
       const progressPct = Math.min(100, Math.round((endPage / pages.length) * 100));
       $("#progressFill").style.width = `${progressPct}%`;
@@ -5756,7 +5775,6 @@
     $("#musicBtn")?.addEventListener("click", () => toggleMusicDrawer(true));
     $("#closeMusicDrawerBtn")?.addEventListener("click", closeAllDrawers);
     $("#statsBtn")?.addEventListener("click", () => toggleStatsDrawer(true));
-    $("#moreStatsBtn")?.addEventListener("click", () => toggleStatsDrawer(true));
     $("#closeStatsDrawerBtn")?.addEventListener("click", closeAllDrawers);
     $("#resetStatsBtn")?.addEventListener("click", () => {
       if (typeof ReadingStatsEngine !== "undefined") ReadingStatsEngine.reset();
@@ -6346,8 +6364,7 @@
     }
     window.movePage = movePage;
 
-    $("#prevPageBtn")?.addEventListener("click", () => movePage(-1));
-    $("#nextPageBtn")?.addEventListener("click", () => movePage(1));
+
 
     $("#bookStage")?.addEventListener("wheel", (e) => {
       if (prefs.mode !== "paged") return;
@@ -8110,6 +8127,111 @@
       }, 340);
     }
 
+        /* --- Web Share Target API Handler --- */
+    async function handleIncomingShareTarget() {
+      const params = new URLSearchParams(window.location.search);
+      const shareUrl = (params.get("share_url") || "").trim();
+      const shareText = (params.get("share_text") || "").trim();
+      const shareTitle = (params.get("share_title") || "").trim();
+
+      if (!shareUrl && !shareText && !shareTitle) return;
+
+      window._launchedViaShare = true;
+      try {
+        window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+      } catch (_) {}
+
+      // Android-safe URL extraction
+      let extractedUrl = "";
+      if (/^https?:\/\//i.test(shareUrl)) {
+        extractedUrl = shareUrl;
+      } else {
+        const textMatch = shareText.match(/https?:\/\/[^\s"'<>]+/i);
+        const titleMatch = shareTitle.match(/https?:\/\/[^\s"'<>]+/i);
+        if (textMatch) extractedUrl = textMatch[0];
+        else if (titleMatch) extractedUrl = titleMatch[0];
+      }
+      if (extractedUrl) {
+        extractedUrl = extractedUrl.replace(/[.,;)\]>]+$/, "");
+      }
+
+      const articlesGrpId = groups.some((g) => g.id === "grp-articles")
+        ? "grp-articles"
+        : (groups[0]?.id || "grp-articles");
+
+      if (extractedUrl) {
+        if (typeof LoadingOverlay !== "undefined") {
+          LoadingOverlay.show(t("share_importing_title") || "Προσθήκη κοινοποιημένου άρθρου...", extractedUrl, null);
+        }
+        let ok = false;
+        try {
+          ok = await importArticleFromUrl(true, {
+            url: extractedUrl,
+            groupId: articlesGrpId,
+            fallbackTitle: shareTitle,
+            fromShare: true
+          });
+        } catch (err) {
+          console.warn("[Share Target Import Error]", err);
+          ok = false;
+        } finally {
+          if (typeof LoadingOverlay !== "undefined") {
+            LoadingOverlay.hide();
+          }
+        }
+
+        if (ok === true) {
+          activeGroupFilter = articlesGrpId;
+          renderLibraryHub();
+          showToast(t("toast_share_imported") || "Το άρθρο προστέθηκε στα Άρθρα!");
+        } else {
+          openImportModal(articlesGrpId);
+          const tabBtn = document.querySelector('#importModal .mode-tab[data-pane="paneUrl"]');
+          if (tabBtn) tabBtn.click();
+          const urlInput = $("#urlImportInput");
+          if (urlInput) {
+            urlInput.value = extractedUrl;
+            urlInput.dispatchEvent(new Event("input", { bubbles: true }));
+          }
+          showToast(t("toast_share_import_fallback") || "Αδυναμία αυτόματης λήψης — το URL συμπληρώθηκε για χειροκίνητη εισαγωγή.");
+        }
+      } else if (shareText.length >= 20) {
+        const words = shareText.trim().split(/\s+/).filter(Boolean).length;
+        const readMinutes = Math.max(1, Math.round(words / 200));
+        const title = shareTitle || shareText.trim().split("\n")[0].slice(0, 80) || "Κοινοποιημένο κείμενο";
+        const parsed = (typeof parseMarkdownAndToc === "function") ? parseMarkdownAndToc(shareText) : { text: shareText, toc: [] };
+        const newEntry = {
+          id: "book-" + Date.now(),
+          groupId: articlesGrpId,
+          order: getGroupItems(articlesGrpId).length,
+          kind: "Άρθρο",
+          title: title,
+          wordCount: words,
+          readMinutes: readMinutes,
+          text: parsed.text || shareText,
+          toc: parsed.toc || [],
+          charOffset: 0,
+          bookmarkOffset: 0,
+          highlights: [],
+          audio: null,
+          noise: null,
+          progress: 0,
+          updatedAt: Date.now(),
+          url: "",
+          domain: "",
+          favicon: "",
+          datetime: new Date().toISOString(),
+          category: null,
+          author: null
+        };
+        library.push(newEntry);
+        saveLibraryState();
+        activeGroupFilter = articlesGrpId;
+        renderLibraryHub();
+        showToast(t("toast_share_imported") || "Το άρθρο προστέθηκε στα Άρθρα!");
+      }
+    }
+
     function initWelcomeOverlay() {
       const ov = $("#welcomeOverlay");
       if (!ov) return;
@@ -8130,7 +8252,9 @@
 
       updateWelcomeImage(prefs.theme);
 
-      if (prefs.showWelcome !== false) {
+      if (window._launchedViaShare === true) {
+        ov.hidden = true;
+      } else if (prefs.showWelcome !== false) {
         window._welcomeShownInSession = true;
         document.body.style.overflow = "hidden";
         ov.focus();
@@ -8161,6 +8285,7 @@
     playlistReadyPromise = refreshPersistentPlaylist();
     refreshUploadedFonts();
     migrateLibraryToChunks();
+    handleIncomingShareTarget();
     initWelcomeOverlay();
   } catch (err) {
     window.__INIT_ERR = { msg: err.message, stack: err.stack };

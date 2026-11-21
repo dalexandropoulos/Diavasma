@@ -3,6 +3,10 @@
    ========================================================================= */
 window.DIAVASMA_I18N = {
   "el": {
+    "share_importing_title": "Προσθήκη κοινοποιημένου άρθρου...",
+    "toast_share_imported": "Το άρθρο προστέθηκε στα Άρθρα!",
+    "toast_share_import_fallback": "Αδυναμία αυτόματης λήψης — το URL συμπληρώθηκε για χειροκίνητη εισαγωγή.",
+
     "app_title_suffix": "Χώρος Ανάγνωσης",
     "loading_title": "Φόρτωση...",
     "toast_processing_html": "Επεξεργασία επικολλημένου HTML...",
@@ -446,6 +450,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "Αφαίρεση"
   },
   "en": {
+    "share_importing_title": "Adding shared article...",
+    "toast_share_imported": "Article added to Articles!",
+    "toast_share_import_fallback": "Automatic fetch failed — URL prefilled for manual import.",
+
     "app_title_suffix": "Reading Sanctuary",
     "loading_title": "Loading...",
     "toast_processing_html": "Processing pasted HTML...",
@@ -889,6 +897,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "Remove"
   },
   "es": {
+    "share_importing_title": "Añadiendo artículo compartido...",
+    "toast_share_imported": "¡Artículo añadido a Artículos!",
+    "toast_share_import_fallback": "Error en la descarga automática — URL rellenada para importación manual.",
+
     "app_title_suffix": "Santuario de lectura",
     "loading_title": "Cargando...",
     "toast_processing_html": "Procesando HTML pegado...",
@@ -1332,6 +1344,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "Eliminar"
   },
   "fr": {
+    "share_importing_title": "Ajout de l'article partagé...",
+    "toast_share_imported": "Article ajouté aux Articles !",
+    "toast_share_import_fallback": "Échec de la récupération automatique — URL préremplie pour importation manuelle.",
+
     "app_title_suffix": "Sanctuaire de lecture",
     "loading_title": "Chargement...",
     "toast_processing_html": "Traitement du HTML collé...",
@@ -1775,6 +1791,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "Supprimer"
   },
   "de": {
+    "share_importing_title": "Geteilter Artikel wird hinzugefügt...",
+    "toast_share_imported": "Artikel zu Artikeln hinzugefügt!",
+    "toast_share_import_fallback": "Automatischer Abruf fehlgeschlagen — URL für manuellen Import vorausgefüllt.",
+
     "app_title_suffix": "Lese-Refugium",
     "loading_title": "Laden...",
     "toast_processing_html": "Eingefügtes HTML wird verarbeitet...",
@@ -2218,6 +2238,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "Entfernen"
   },
   "ru": {
+    "share_importing_title": "Добавление опубликованной статьи...",
+    "toast_share_imported": "Статья добавлена в Статьи!",
+    "toast_share_import_fallback": "Не удалось загрузить автоматически — URL заполнен для ручного импорта.",
+
     "app_title_suffix": "Пространство для чтения",
     "loading_title": "Загрузка...",
     "toast_processing_html": "Обработка вставленного HTML...",
@@ -2661,6 +2685,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "Удалить"
   },
   "zh": {
+    "share_importing_title": "正在添加分享的文章...",
+    "toast_share_imported": "文章已添加到文章列表！",
+    "toast_share_import_fallback": "自动获取失败 — 已填入 URL 以便手动导入。",
+
     "app_title_suffix": "阅读静室",
     "loading_title": "加载中...",
     "toast_processing_html": "正在处理粘贴的 HTML...",
@@ -3104,6 +3132,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "移除"
   },
   "ja": {
+    "share_importing_title": "共有された記事を追加中...",
+    "toast_share_imported": "記事を「記事」に追加しました！",
+    "toast_share_import_fallback": "自動取得に失敗しました — 手動インポート用に URL が入力されました。",
+
     "app_title_suffix": "読書の聖域",
     "loading_title": "読み込み中...",
     "toast_processing_html": "貼り付けられたHTMLを処理中...",
@@ -3547,6 +3579,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "削除"
   },
   "hi": {
+    "share_importing_title": "साझा किया गया लेख जोड़ा जा रहा है...",
+    "toast_share_imported": "लेख को लेखों में जोड़ दिया गया!",
+    "toast_share_import_fallback": "स्वचालित पुनर्प्राप्ति विफल — मैन्युअल आयात के लिए URL पहले से भरा गया।",
+
     "app_title_suffix": "वाचन अभयारण्य",
     "loading_title": "लोड हो रहा है...",
     "toast_processing_html": "पेस्ट किए गए HTML को संसाधित किया जा रहा है...",
@@ -3990,6 +4026,10 @@ window.DIAVASMA_I18N = {
     "aria_remove": "हटाएं"
   },
   "pt": {
+    "share_importing_title": "Adicionando artigo compartilhado...",
+    "toast_share_imported": "Artigo adicionado aos Artigos!",
+    "toast_share_import_fallback": "Falha na obtenção automática — URL preenchido para importação manual.",
+
     "app_title_suffix": "Santuário de leitura",
     "loading_title": "Carregando...",
     "toast_processing_html": "Processando HTML colado...",
