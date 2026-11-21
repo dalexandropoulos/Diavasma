@@ -32,6 +32,8 @@
 - **🎧 Music & Ambient Soundscapes:** Built-in Winamp-style mini audio player (persistent IndexedDB playlist, shuffle, 3-state loop, seek bar, and mobile volume control) alongside 6 procedural Web Audio soundscapes (Rain, Fireplace, Ocean Waves, Forest & Wind, Library & Vinyl, Deep Noise) with lock-screen background playback support.
 - **🗣️ Text-to-Speech (TTS) & Notes:** Voice narration with sentence-level highlight synchronization and background audio playback. Highlight text in 3 distinct colors, take notes, export to Markdown, translate selected words instantly, and create adaptive Quote Share Cards that inherit reader typography.
 - **⏱️ Pomodoro & Reading Habit Stats:** Focus timer with an animated hourglass screensaver during breaks, local reading habit tracker with a GitHub-style activity heatmap, and exportable Stats Share Cards.
+- **🔄 Full Local Backup & Restore (JSON):** Complete export and restoration of all library books (with full text from IndexedDB), notes, highlights, reading stats, custom scraper rules, and reader preferences in a single portable `.json` file.
+- **✨ Sanctuary Reading Upgrades:** Interactive Highlight Popover (`#highlightPopover`) for instant note editing, color switching, and Quote Cards without accidental page turns; "Continue Reading" card (`#continueReadingCard`) with 1-tap resume; clean 3-dots item action menu (`⋯`); and Web Share Target API integration to auto-import shared links directly into Articles.
 - **🌍 10 Languages:** Comprehensive, native UI localization in English, Greek, Chinese (Simplified), French, German, Hindi, Japanese, Portuguese, Russian, and Spanish.
 
 ## 🚀 Installation as an App (PWA)
@@ -44,15 +46,14 @@
 
 To host your own private or public instance on GitHub Pages, upload all the repository files:
 
-- `index.html` & `Diavasma.html` (application shell & reader interface)
-- `styles.css` (complete responsive stylesheet)
-- `i18n.js` (complete 10-language localization dictionary)
-- `app.js` (core application logic, storage, audio & paginator)
-- `sw.js` (Service Worker for offline precaching & caching strategy)
+- `index.html` (main application shell & reader interface)
 - `manifest.json` (PWA configuration & metadata)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (app icons)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (welcome screen artwork)
-- `pdf.min.js` & `pdf.worker.min.js` (self-hosted offline PDF engine)
+- `sw.js` (Service Worker for offline precaching & caching strategy)
+- `css/` (`styles.css` - complete responsive stylesheet)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - bootstrap, 10-language localization & core logic)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - self-hosted offline PDF engine)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - app icons)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - welcome screen artwork)
 - `fonts/` (self-hosted WOFF2 web fonts & `fonts.css`)
 - `README.md` (project documentation)
 
@@ -64,7 +65,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 ## 🔒 Privacy First
 
-- **100% Local Data:** Diavasma does not collect, store, or transmit any personal information, browsing history, or book content to external servers. All library items, annotations, notes, and reading statistics remain strictly on your device inside `localStorage` and `IndexedDB`.
+- **100% Local Data & Strict Offline Mode:** Diavasma does not collect, store, or transmit any personal information, browsing history, or book content to external servers. All library items, annotations, notes, and reading statistics remain strictly on your device inside `localStorage` and `IndexedDB`. Features an optional **Strict Offline Mode** that disables all external network requests (translation, scraping proxies), plus a complete "Clear All Local Data" option for shared devices.
 - **Self-Hosted Fonts & Assets:** All typography, sound generators, and reader engines (including PDF.js) are self-hosted within the app. Zero network requests are made to third-party CDNs like Google Fonts, preserving your IP address and client identity.
 - **Notice on URL Fetching:** The "Fetch from URL" feature relies on public CORS proxies to bypass browser cross-origin boundaries when fetching remote web pages. For 100% guaranteed offline privacy without transmitting URL queries across the network, use **"Paste HTML (Ctrl+U)"** or import local files (`.epub`, `.pdf`, `.txt`, `.md`).
 
@@ -86,6 +87,8 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **🎧 Μουσική & Ηχοτοπία:** Ενσωματωμένος Winamp-style mini audio player (μόνιμη λίστα κομματιών στην IndexedDB, shuffle, 3-state loop, μπάρα πλοήγησης και έλεγχος έντασης στα κινητά) μαζί με 6 procedural Web Audio ηχοτοπία (Βροχή, Τζάκι, Κύματα θάλασσας, Δάσος & άνεμος, Βιβλιοθήκη & βινύλιο, Βαθύς θόρυβος) με δυνατότητα αναπαραγωγής στο παρασκήνιο με κλειστή οθόνη.
 - **🗣️ Εκφώνηση (TTS) & Σημειώσεις:** Φωνητική ανάγνωση με ζωντανή επισήμανση πρότασης και background playback. Υπογραμμίσεις σε 3 χρώματα, σημειώσεις, εξαγωγή σε Markdown, άμεση μετάφραση επιλεγμένου κειμένου και δημιουργία Quote Share Cards που κληρονομούν την τυπογραφία του αναγνωστηρίου.
 - **⏱️ Pomodoro & Στατιστικά Ανάγνωσης:** Χρονόμετρο εστίασης με δυναμικό screensaver κλεψύδρας κατά τα διαλείμματα, τοπικό habit tracker με activity heatmap τύπου GitHub και εξαγώγιμες Stats Share Cards.
+- **🔄 Πλήρες Τοπικό Backup & Restore (JSON):** Πλήρης εξαγωγή και επαναφορά ολόκληρου του αναγνωστηρίου (βιβλία με το πλήρες κείμενό τους από το IndexedDB, σημειώσεις, επισημάνσεις, στατιστικά ανάγνωσης, κανόνες scraper και ρυθμίσεις) σε ένα ενιαίο αρχείο `.json`.
+- **✨ Αναβαθμίσεις Sanctuary Reading:** Διαδραστικό Highlight Popover (`#highlightPopover`) για άμεση επεξεργασία σημείωσης, αλλαγή χρώματος και Quote Cards χωρίς άσκοπο γύρισμα σελίδας, κάρτα «Συνέχιση Ανάγνωσης» (`#continueReadingCard`) με άμεσο 1-tap άνοιγμα, καθαρό μενού επιλογών 3 τελειών (`⋯`) στη Βιβλιοθήκη και ενσωμάτωση Web Share Target API για αυτόματη προσθήκη κοινοποιημένων συνδέσμων στα Άρθρα.
 - **🌍 10 Γλώσσες:** Πλήρες περιβάλλον χρήσης μεταφρασμένο σε Αγγλικά, Ελληνικά, Κινεζικά (Απλοποιημένα), Γαλλικά, Γερμανικά, Χίντι, Ιαπωνικά, Πορτογαλικά, Ρωσικά και Ισπανικά.
 
 ## 🚀 Εγκατάσταση ως Εφαρμογή (PWA)
@@ -98,15 +101,14 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 Για να φιλοξενήσετε τη δική σας προσωπική ή δημόσια εγκατάσταση στο GitHub Pages, ανεβάστε όλα τα αρχεία του φακέλου:
 
-- `index.html` & `Diavasma.html` (κέλυφος εφαρμογής & διεπαφή ανάγνωσης)
-- `styles.css` (πλήρες responsive stylesheet)
-- `i18n.js` (πλήρες λεξικό μετάφρασης 10 γλωσσών)
-- `app.js` (βασική λογική εφαρμογής, αποθήκευση, ήχος & σελιδοποίηση)
-- `sw.js` (Service Worker για ανθεκτική offline λειτουργία & precaching)
+- `index.html` (κύριο κέλυφος εφαρμογής & διεπαφή ανάγνωσης)
 - `manifest.json` (ρυθμίσεις & μεταδεδομένα PWA)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (εικονίδια εφαρμογής)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (εικόνες οθόνης καλωσορίσματος)
-- `pdf.min.js` & `pdf.worker.min.js` (τοπική μηχανή απόδοσης PDF)
+- `sw.js` (Service Worker για ανθεκτική offline λειτουργία & precaching)
+- `css/` (`styles.css` - πλήρες responsive stylesheet)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - εκκίνηση, λεξικό 10 γλωσσών & βασική λογική)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - τοπική μηχανή απόδοσης PDF)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - εικονίδια εφαρμογής)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - εικαστικά οθόνης καλωσορίσματος)
 - `fonts/` (τοπικές γραμματοσειρές WOFF2 & `fonts.css`)
 - `README.md` (τεκμηρίωση του έργου)
 
@@ -118,7 +120,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 ## 🔒 Ιδιωτικότητα (Privacy First)
 
-- **100% Τοπικά Δεδομένα:** Το Diavasma δεν συλλέγει, δεν αποθηκεύει και δεν διαβιβάζει κανένα προσωπικό δεδομένο, ιστορικό ανάγνωσης ή περιεχόμενο αρχείων σε εξωτερικούς διακομιστές. Όλα τα βιβλία, τα κείμενα, οι σημειώσεις και τα στατιστικά παραμένουν αποκλειστικά στη συσκευή σας (`localStorage` & `IndexedDB`).
+- **100% Τοπικά Δεδομένα & Strict Offline Mode:** Το Diavasma δεν συλλέγει, δεν αποθηκεύει και δεν διαβιβάζει κανένα προσωπικό δεδομένο, ιστορικό ανάγνωσης ή περιεχόμενο αρχείων σε εξωτερικούς διακομιστές. Όλα τα βιβλία, τα κείμενα, οι σημειώσεις και τα στατιστικά παραμένουν αποκλειστικά στη συσκευή σας (`localStorage` & `IndexedDB`). Περιλαμβάνει επιλογή **Strict Offline Mode** για πλήρη αποκλεισμό εξωτερικών δικτυακών αιτημάτων, καθώς και επιλογή «Εκκαθάριση Όλων των Δεδομένων» για κοινόχρηστες συσκευές.
 - **Τοπικές Γραμματοσειρές & Βιβλιοθήκες:** Όλη η τυπογραφία, οι γεννήτριες ήχου και οι μηχανές ανάγνωσης (συμπεριλαμβανομένου του PDF engine) είναι self-hosted. Δεν πραγματοποιείται καμία δικτυακή κλήση σε εξωτερικά CDN όπως το Google Fonts, προστατεύοντας πλήρως την IP διεύθυνση και το απόρρητό σας.
 - **Σημείωση για Εξωτερικά URLs:** Η λειτουργία «Λήψη από URL» επικοινωνεί αναγκαστικά με δημόσια CORS proxies για την παράκαμψη των περιορισμών cross-origin των browsers κατά τη λήψη απομακρυσμένων σελίδων. Για απόλυτη, 100% ιδιωτικότητα χωρίς καμία δικτυακή κίνηση, συνιστάται η απευθείας **«Επικόλληση HTML (Ctrl+U)»** ή η εισαγωγή τοπικών αρχείων (`.epub`, `.pdf`, `.txt`, `.md`).
 
@@ -140,6 +142,8 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **🎧 音乐播放与环境音效：** 内置 Winamp 风格的迷你音频播放器（基于 IndexedDB 的持久播放列表、随机播放、三态循环、进度控制与移动端音量调节），以及 6 种 Web Audio 程序化白噪音（雨声、壁炉、海浪、森林微风、图书馆黑胶唱片、深层底噪），支持息屏后台播放。
 - **🗣️ 文本朗读 (TTS) 与读书笔记：** 语音朗读伴随实时句子高亮与锁屏后台播放。提供 3 种颜色的高亮划线、笔记记录、Markdown 格式导出、即时选词翻译，以及自动继承阅读器字体的名句分享卡片生成。
 - **⏱️ 番茄钟专注计时与阅读统计：** 专注计时器配备休息时随主题变换的沙漏动态屏保，内置 GitHub 风格热力图的本地阅读打卡器，以及可导出的阅读统计分享卡片。
+- **🔄 完整本地备份与恢复 (JSON)：** 一键导出与还原整个书房（含 IndexedDB 完整文本的书籍、笔记、划线、阅读统计、自定义规则与设置）到单个便携式 `.json` 文件。
+- **✨ 宁静阅读体验升级：** 交互式划线浮窗 (`#highlightPopover`) 支持免误翻页编辑笔记/换色/生成名言卡；顶部“继续阅读”卡片 (`#continueReadingCard`) 一键续读；精简的三点操作菜单 (`⋯`)；支持 Web Share Target API 将网页链接直接分享至书房。
 - **🌍 10 种语言：** 提供英语、希腊语、简体中文、法语、德语、印地语、日语、葡萄牙语、俄语和西班牙语的完整原生界面汉化。
 
 ## 🚀 安装为应用程序 (PWA)
@@ -152,15 +156,14 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 要在 GitHub Pages 上托管您自己的个人或公开实例，只需上传仓库中的所有文件：
 
-- `index.html` 与 `Diavasma.html` (应用程序外壳与阅读器界面)
-- `styles.css` (完整的自适应排版样式表)
-- `i18n.js` (完整的 10 语言本地化词典)
-- `app.js` (核心业务逻辑、存储、音频与分页引擎)
-- `sw.js` (用于离线强力预缓存与离线策略的 Service Worker)
+- `index.html` (主应用程序外壳与阅读器界面)
 - `manifest.json` (PWA 配置文件与元数据)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (应用图标)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (欢迎界面艺术插图)
-- `pdf.min.js` 与 `pdf.worker.min.js` (自托管离线 PDF 渲染引擎)
+- `sw.js` (用于离线强力预缓存与离线策略的 Service Worker)
+- `css/` (`styles.css` - 完整的自适应排版样式表)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - 安全引导、10 语言词典与核心逻辑)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - 自托管离线 PDF 渲染引擎)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - 应用图标)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - 欢迎画面插图)
 - `fonts/` (本地 WOFF2 网络字体与 `fonts.css`)
 - `README.md` (项目文档说明)
 
@@ -172,7 +175,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 ## 🔒 隐私保护 (Privacy First)
 
-- **100% 本地数据：** Diavasma 不会收集、存储或向任何外部服务器发送您的个人隐私、阅读历史或书籍文件。所有的书籍、文本、划线笔记与阅读习惯数据均严格保存在您设备的 `localStorage` 与 `IndexedDB` 本地数据库中。
+- **100% 本地数据与严格离线模式：** Diavasma 不会收集、存储或向任何外部服务器发送您的个人隐私、阅读历史或书籍文件。所有的书籍、文本、划线笔记与阅读习惯数据均严格保存在您设备的 `localStorage` 与 `IndexedDB` 本地数据库中。支持可选的**严格离线模式 (Strict Offline Mode)** 与一键“清除所有本地数据”。
 - **自托管字体与组件：** 所有字体、音频生成器和阅读引擎（包括 PDF.js）全部本地内置。应用运行时完全不向 Google Fonts 等第三方 CDN 发起网络请求，全面保护您的 IP 地址和设备指纹。
 - **关于外部 URL 抓取的说明：** “从 URL 抓取” 功能必须依赖公共 CORS 代理来突破浏览器的跨域安全策略。若您追求绝对 100% 无网络流量的极客隐私环境，建议优先使用 **“粘贴 HTML (Ctrl+U)”** 或直接导入本地文件 (`.epub`, `.pdf`, `.txt`, `.md`)。
 
@@ -194,6 +197,8 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **🎧 Musique & Paysages sonores ambiants :** Mini-lecteur audio intégré de style Winamp (liste de lecture persistante dans IndexedDB, lecture aléatoire, boucle à 3 états, curseur de progression et contrôle du volume mobile) accompagné de 6 paysages sonores procéduraux Web Audio (Pluie, Cheminée, Vagues, Forêt & vent, Bibliothèque & vinyle, Bruit profond) avec lecture en arrière-plan écran verrouillé.
 - **🗣️ Synthèse vocale (TTS) & Prise de notes :** Lecture vocale avec surlignage en direct de la phrase lue et poursuite en arrière-plan. Surlignages en 3 couleurs, notes d'étude, exportation Markdown, traduction instantanée de la sélection et génération de cartes de citation partagées héritant de la typographie du lecteur.
 - **⏱️ Pomodoro & Suivi des habitudes de lecture :** Minuteur de concentration avec économiseur d'écran sablier animé pendant les pauses, suivi des habitudes de lecture local avec carte thermique d'activité style GitHub et cartes de statistiques exportables.
+- **🔄 Sauvegarde & Restauration locale complète (JSON) :** Exportation et restauration intégrale de votre sanctuaire (livres avec texte complet depuis IndexedDB, surlignages, notes, statistiques, règles et réglages) dans un fichier `.json`.
+- **✨ Améliorations de lecture Sanctuary :** Popover interactif (`#highlightPopover`) pour éditer vos notes, changer de couleur et partager sans tourner la page par inadvertance ; carte « Continuer la lecture » (`#continueReadingCard`) ; menu à 3 points épuré (`⋯`) ; et cible de partage Web Share Target.
 - **🌍 10 Langues :** Interface utilisateur traduite nativement et intégralement en anglais, grec, chinois simplifié, français, allemand, hindi, japonais, portugais, russe et espagnol.
 
 ## 🚀 Installation en tant qu'application (PWA)
@@ -206,15 +211,14 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 Pour héberger votre propre instance privée ou publique sur GitHub Pages, déposez l'ensemble des fichiers du projet :
 
-- `index.html` & `Diavasma.html` (coquille de l'application & interface du lecteur)
-- `styles.css` (feuille de style responsive complète)
-- `i18n.js` (dictionnaire complet de localisation en 10 langues)
-- `app.js` (logique applicative, stockage local, audio & moteur de pagination)
-- `sw.js` (Service Worker pour la mise en cache hors ligne et le precaching)
+- `index.html` (coquille principale & interface du lecteur)
 - `manifest.json` (configuration & métadonnées de la PWA)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (icônes de l'application)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (illustrations de l'écran d'accueil)
-- `pdf.min.js` & `pdf.worker.min.js` (moteur PDF hors ligne auto-hébergé)
+- `sw.js` (Service Worker pour la mise en cache hors ligne et la stratégie de cache)
+- `css/` (`styles.css` - feuille de style responsive complète)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - amorçage, dictionnaire 10 langues & logique applicative)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - moteur PDF hors ligne auto-hébergé)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - icônes d'application)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - visuels d'accueil)
 - `fonts/` (polices web locales WOFF2 & `fonts.css`)
 - `README.md` (documentation du projet)
 
@@ -226,7 +230,7 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 
 ## 🔒 Confidentialité garantie (Privacy First)
 
-- **Données 100 % locales :** Diavasma ne collecte, ne stocke et ne transmet aucune donnée personnelle, aucun historique et aucun texte vers des serveurs distants. Vos livres, notes et statistiques résident exclusivement sur votre appareil (`localStorage` & `IndexedDB`).
+- **Données 100 % locales & Mode Hors Ligne Strict :** Diavasma ne collecte, ne stocke et ne transmet aucune donnée personnelle, aucun historique et aucun texte vers des serveurs distants. Vos livres, notes et statistiques résident exclusivement sur votre appareil (`localStorage` & `IndexedDB`). Inclut un **Mode Hors Ligne Strict** coupant toute requête réseau externe et une option « Effacer toutes les données locales ».
 - **Polices et bibliothèques auto-hébergées :** L'ensemble des polices, générateurs de son et moteurs de lecture (dont PDF.js) sont hébergés localement. Aucune requête n'est adressée à des services tiers comme Google Fonts, préservant ainsi votre adresse IP et votre vie privée.
 - **Précision sur la récupération d'URL :** La fonction « Importer depuis une URL » fait appel à des proxys CORS publics pour contourner les restrictions des navigateurs lors de la récupération de pages distantes. Pour une confidentialité 100 % hors ligne sans trafic réseau, privilégiez **« Coller le HTML (Ctrl+U) »** ou l'import de fichiers locaux (`.epub`, `.pdf`, `.txt`, `.md`).
 
@@ -248,6 +252,8 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 - **🎧 Musik & Ambient-Klangwelten:** Integrierter Mini-Audioplayer im Winamp-Stil (persistente IndexedDB-Wiedergabeliste, Zufallswiedergabe, 3-Stufen-Wiederholung, Fortschrittsleiste und mobile Lautstärkeregelung) sowie 6 prozedurale Web Audio Klangwelten (Regen, Kaminfeuer, Meereswellen, Wald & Wind, Bibliothek & Vinyl, Tiefes Rauschen) mit Hintergrundwiedergabe bei gesperrtem Bildschirm.
 - **🗣️ Sprachausgabe (TTS) & Notizen:** Vorlesefunktion mit satzweiser Live-Hervorhebung und Hintergrundwiedergabe. Markierungen in 3 Farben, Notizen, Markdown-Export, sofortige Übersetzung ausgewählter Textstellen und Zitatkarten (Quote Share Cards), die das typografische Design des Lesers übernehmen.
 - **⏱️ Pomodoro-Timer & Lese-Statistiken:** Fokus-Timer mit animiertem Sanduhr-Bildschirmschoner während der Pausen, lokaler Lese-Gewohnheitstracker mit GitHub-artigem Aktivitäts-Heatmap und exportierbare Statistik-Karten.
+- **🔄 Vollständiges lokales Backup & Wiederherstellung (JSON):** Export und Import aller Bücher (inklusive Volltext aus IndexedDB), Notizen, Markierungen, Lesestatistiken, Scraper-Regeln und Einstellungen in einer portablen `.json`-Datei.
+- **✨ Sanctuary Lese-Upgrades:** Interaktives Highlight-Popover (`#highlightPopover`) zum Bearbeiten von Notizen, Ändern von Farben und Erstellen von Zitatkarten ohne unbeabsichtigtes Umblättern; „Weiterlesen“-Karte (`#continueReadingCard`); klares 3-Punkte-Aktionsmenü (`⋯`); und Web Share Target Integration.
 - **🌍 10 Sprachen:** Vollständig lokalisierte Benutzeroberfläche in Englisch, Griechisch, Chinesisch (Vereinfacht), Französisch, Deutsch, Hindi, Japanisch, Portugiesisch, Russisch und Spanisch.
 
 ## 🚀 Installation als App (PWA)
@@ -260,15 +266,14 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 
 Um Ihre eigene private oder öffentliche Instanz auf GitHub Pages zu betreiben, laden Sie alle Repository-Dateien hoch:
 
-- `index.html` & `Diavasma.html` (App-Shell & Benutzeroberfläche)
-- `styles.css` (vollständiges responsives Stylesheet)
-- `i18n.js` (vollständiges Lokalisierungs-Wörterbuch für 10 Sprachen)
-- `app.js` (zentrale Anwendungslogik, Speicher, Audio & Paginierung)
-- `sw.js` (Service Worker für Offline-Betrieb & Precaching)
+- `index.html` (Haupt-App-Shell & Leseoberfläche)
 - `manifest.json` (PWA-Konfiguration & Metadaten)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (App-Symbole)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (Grafiken des Willkommensbildschirms)
-- `pdf.min.js` & `pdf.worker.min.js` (selbst gehostete Offline-PDF-Engine)
+- `sw.js` (Service Worker für Offline-Betrieb & Precaching)
+- `css/` (`styles.css` - vollständiges responsives Stylesheet)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - Bootstrap, 10-Sprachen-Wörterbuch & Kernlogik)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - selbst gehostete Offline-PDF-Engine)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - App-Icons)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - Begrüßungsbilder)
 - `fonts/` (lokale WOFF2-Webschriften & `fonts.css`)
 - `README.md` (Projektdokumentation)
 
@@ -280,7 +285,7 @@ Um Ihre eigene private oder öffentliche Instanz auf GitHub Pages zu betreiben, 
 
 ## 🔒 Datenschutz an erster Stelle (Privacy First)
 
-- **100 % lokale Daten:** Diavasma erfasst, speichert oder überträgt keinerlei personenbezogene Daten, Leseverläufe oder Buchinhalte an externe Server. Sämtliche Dokumente, Notizen und Statistiken verbleiben ausschließlich lokal auf Ihrem Gerät (`localStorage` & `IndexedDB`).
+- **100 % lokale Daten & Strenger Offline-Modus:** Diavasma erfasst, speichert oder überträgt keinerlei personenbezogene Daten, Leseverläufe oder Buchinhalte an externe Server. Sämtliche Dokumente, Notizen und Statistiken verbleiben ausschließlich lokal auf Ihrem Gerät (`localStorage` & `IndexedDB`). Mit optionalem **Strengen Offline-Modus** und Funktion zum vollständigen Löschen aller lokalen Daten.
 - **Selbst gehostete Schriften & Komponenten:** Alle Schriftarten, Tongeneratoren und Lesemotoren (inklusive PDF.js) werden lokal bereitgestellt. Es erfolgen keine Verbindungen zu Drittanbietern wie Google Fonts, wodurch Ihre IP-Adresse und Privatsphäre geschützt bleiben.
 - **Hinweis zum Abrufen von URLs:** Die Funktion „Von URL abrufen“ nutzt öffentliche CORS-Proxys, um browserseitige Cross-Origin-Beschränkungen beim Laden entfernter Seiten zu überwinden. Für absolute Offline-Privatsphäre ohne Netzwerkverkehr empfehlen wir **„HTML einfügen (Ctrl+U)“** oder den direkten Import lokaler Dateien (`.epub`, `.pdf`, `.txt`, `.md`).
 
@@ -302,6 +307,8 @@ Um Ihre eigene private oder öffentliche Instanz auf GitHub Pages zu betreiben, 
 - **🎧 संगीत और परिवेशी ध्वनियाँ:** अंतर्निहित Winamp-शैली मिनी ऑडियो प्लेयर (स्थायी IndexedDB प्लेलिस्ट, शफ़ल, 3-स्थिति लूप, सीक बार और मोबाइल वॉल्यूम नियंत्रण) तथा 6 प्रक्रियात्मक Web Audio परिवेशी ध्वनियाँ (बारिश, चिमनी, समुद्र की लहरें, वन और हवा, पुस्तकालय और विनाइल, गहरा शोर) जो लॉक स्क्रीन पर भी पृष्ठभूमि में बजती हैं।
 - **🗣️ टेक्स्ट-टू-स्पीच (TTS) और अध्ययन नोट्स:** वाक्य-स्तरीय लाइव हाइलाइट और बैकग्राउंड प्लेबैक के साथ आवाज़ वाचन। 3 रंगों में हाइलाइट, नोट्स, Markdown निर्यात, त्वरित चयन अनुवाद, और पाठक टाइपोग्राफी को अपनाने वाले उद्धरण साझाकरण कार्ड (Quote Share Cards)।
 - **⏱️ पोमोडोरो और वाचन आदत सांख्यिकी:** अंतराल के दौरान एनिमेटेड ऑवरग्लास स्क्रीनसेवर के साथ फ़ोकस टाइमर, GitHub-शैली गतिविधि हीटमैप के साथ स्थानीय आदत ट्रैकर, और निर्यात योग्य आँकड़े कार्ड।
+- **🔄 पूर्ण स्थानीय बैकअप और पुनर्स्थापना (JSON):** सभी पुस्तकों (IndexedDB से पूर्ण पाठ सहित), नोट्स, हाइलाइट्स, आँकड़ों, नियमों और सेटिंग्स का एक ही `.json` फ़ाइल में निर्यात और पुनर्स्थापना।
+- **✨ अभयारण्य वाचन संवर्द्धन:** पृष्ठ पलटने से बचाते हुए त्वरित नोट संपादन हेतु इंटरएक्टिव हाइलाइट पॉपओवर (`#highlightPopover`), 1-टैप "पढ़ना जारी रखें" कार्ड (`#continueReadingCard`), स्वच्छ 3-डॉट्स मेनू (`⋯`), और वेब शेयर लक्ष्य API।
 - **🌍 10 भाषाएँ:** अंग्रेजी, ग्रीक, चीनी (सरलीकृत), फ्रेंच, जर्मन, हिन्दी, जापानी, पुर्तगाली, रूसी और स्पैनिश में पूर्ण मूल यूआई स्थानीयकरण।
 
 ## 🚀 एप्लिकेशन के रूप में स्थापना (PWA)
@@ -314,15 +321,14 @@ Um Ihre eigene private oder öffentliche Instanz auf GitHub Pages zu betreiben, 
 
 GitHub Pages पर अपना स्वयं का निजी या सार्वजनिक इंस्टेंस होस्ट करने के लिए, सभी फ़ाइलों को अपलोड करें:
 
-- `index.html` और `Diavasma.html` (एप्लिकेशन शैल और वाचन इंटरफ़ेस)
-- `styles.css` (संपूर्ण उत्तरदायी स्टाइलशीट)
-- `i18n.js` (संपूर्ण 10-भाषा स्थानीयकरण शब्दकोश)
-- `app.js` (मुख्य अनुप्रयोग तर्क, भंडारण, ऑडियो और पेजिनेटर)
-- `sw.js` (ऑफ़लाइन प्रीकैशिंग के लिए Service Worker)
+- `index.html` (मुख्य एप्लिकेशन शैल और वाचन इंटरफ़ेस)
 - `manifest.json` (PWA कॉन्फ़िगरेशन और मेटाडेटा)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (ऐप आइकन)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (स्वागत स्क्रीन कलाकृति)
-- `pdf.min.js` और `pdf.worker.min.js` (स्व-होस्टेड ऑफ़लाइन PDF इंजन)
+- `sw.js` (ऑफ़लाइन प्रीकैशिंग के लिए Service Worker)
+- `css/` (`styles.css` - संपूर्ण उत्तरदायी स्टाइलशीट)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - बूटस्ट्रैप, 10-भाषा शब्दकोश और मुख्य तर्क)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - स्व-होस्टेड ऑफ़लाइन PDF इंजन)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ऐप आइकन)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - स्वागत स्क्रीन कलाकृतियां)
 - `fonts/` (स्थानीय WOFF2 फ़ॉन्ट और `fonts.css`)
 - `README.md` (परियोजना दस्तावेज़ीकरण)
 
@@ -334,7 +340,7 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 
 ## 🔒 गोपनीयता सर्वोपरि (Privacy First)
 
-- **100% स्थानीय डेटा:** Diavasma किसी भी व्यक्तिगत जानकारी, वाचन इतिहास या दस्तावेज़ को बाहरी सर्वर पर संग्रहीत या प्रेषित नहीं करता है। सभी पुस्तकें, नोट्स और आँकड़े पूरी तरह से आपके डिवाइस के `localStorage` और `IndexedDB` में सुरक्षित रहते हैं।
+- **100% स्थानीय डेटा और सख्त ऑफ़लाइन मोड:** Diavasma किसी भी व्यक्तिगत जानकारी, वाचन इतिहास या दस्तावेज़ को बाहरी सर्वर पर संग्रहीत या प्रेषित नहीं करता है। सभी पुस्तकें, नोट्स और आँकड़े पूरी तरह से आपके डिवाइस के `localStorage` और `IndexedDB` में सुरक्षित रहते हैं। बाहरी अनुरोधों को पूरी तरह अवरुद्ध करने वाला **सख्त ऑफ़लाइन मोड** और "सभी स्थानीय डेटा साफ़ करें" विकल्प शामिल है।
 - **स्व-होस्टेड फ़ॉन्ट और घटक:** सभी फ़ॉन्ट, ध्वनि जनरेटर और रेंडरिंग इंजन (PDF.js सहित) स्थानीय रूप से होस्ट किए जाते हैं। Google Fonts जैसे तृतीय-पक्ष सर्वर पर कोई नेटवर्क अनुरोध नहीं भेजा जाता, जिससे आपका आईपी पता और गोपनीयता सुरक्षित रहती है।
 - **URL निष्कर्षण संबंधी सूचना:** "URL से प्राप्त करें" सुविधा बाहरी वेब पेजों को लोड करते समय ब्राउज़र प्रतिबंधों को बायपास करने के लिए सार्वजनिक CORS प्रॉक्सी का उपयोग करती है। शून्य नेटवर्क ट्रैफ़िक के साथ पूर्ण ऑफ़लाइन गोपनीयता के लिए, **"HTML पेस्ट करें (Ctrl+U)"** या स्थानीय फ़ाइलों (`.epub`, `.pdf`, `.txt`, `.md`) का उपयोग करें।
 
@@ -356,6 +362,8 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 - **🎧 音楽と環境アンビエント音：** Winampスタイルのミニ音楽プレーヤー（IndexedDB永続プレイリスト、シャッフル、3状態ループ、シークバー、モバイル音量調整）と、画面ロック時も再生が続く6つのプロシージャルWeb Audio環境音（雨、暖炉、波、森と風、図書館とレコード、ディープノイズ）を搭載。
 - **🗣️ 音声読み上げ（TTS）と読書ノート：** 文単位のリアルタイムハイライトとバックグラウンド再生に対応した音声読み上げ。3色の蛍光ペンハイライト、ノート記録、Markdown書き出し、選択箇所の即時翻訳、リーダーのタイポグラフィを継承する引用共有カード（Quote Share Cards）生成。
 - **⏱️ ポモドーロと読書習慣トラッカー：** 休憩時にテーマ連動の砂時計スクリーンセーバーが表示される集中タイマー、GitHubスタイルのアクティビティヒートマップを備えたローカル習慣トラッカー、統計共有カード。
+- **🔄 完全ローカルバックアップ＆復元 (JSON)：** すべての蔵書（IndexedDBの全文テキスト含む）、メモ、ハイライト、読書統計、カスタム抽出ルール、設定を1つの `.json` ファイルに完全書き出し・復元。
+- **✨ サンクチュアリ読書機能の向上：** 誤ってページをめくることなくメモ編集や色変更ができるインタラクティブ・ハイライトポップオーバー (`#highlightPopover`)、トップの「続きを読む」カード (`#continueReadingCard`)、すっきりとした3点ドットメニュー (`⋯`)、Web Share Target 対応。
 - **🌍 10言語対応：** 英語、ギリシャ語、簡体字中国語、フランス語、ドイツ語、ヒンディー語、日本語、ポルトガル語、ロシア語、スペイン語の完全なネイティブUI翻訳。
 
 ## 🚀 アプリとしてインストール（PWA）
@@ -368,15 +376,14 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 
 GitHub Pages上で自分専用または公開インスタンスをホストするには、すべてのプロジェクトファイルをアップロードします：
 
-- `index.html` および `Diavasma.html` (アプリシェルとリーダーUI)
-- `styles.css` (完全レスポンシブスタイルシート)
-- `i18n.js` (10言語の完全ローカライズ辞書)
-- `app.js` (コアロジック、ストレージ、オーディオ、ページネーター)
-- `sw.js` (オフライン動作とプリキャッシュ用Service Worker)
+- `index.html` (メインアプリシェルとリーダーUI)
 - `manifest.json` (PWA設定とメタデータ)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (アプリアイコン)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (ウェルカム画面アートワーク)
-- `pdf.min.js` および `pdf.worker.min.js` (セルフホストオフラインPDFエンジン)
+- `sw.js` (オフライン動作とプリキャッシュ用Service Worker)
+- `css/` (`styles.css` - 完全レスポンシブスタイルシート)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - 起動ブートストラップ、10言語辞書、コアロジック)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - セルフホストオフラインPDFエンジン)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - アプリアイコン)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - ウェルカム画面イラスト)
 - `fonts/` (ローカルWOFF2フォントと `fonts.css`)
 - `README.md` (プロジェクト解説ドキュメント)
 
@@ -388,7 +395,7 @@ GitHub Pages上で自分専用または公開インスタンスをホストす�
 
 ## 🔒 プライバシー最優先（Privacy First）
 
-- **100% ローカルデータ：** Diavasmaはいかなる個人情報、読書履歴、ファイル内容も外部サーバーへ収集・送信しません。すべての書籍、ノート、統計データは端末内の `localStorage` および `IndexedDB` にのみ安全に保持されます。
+- **100% ローカルデータ＆完全オフラインモード：** Diavasmaはいかなる個人情報、読書履歴、ファイル内容も外部サーバーへ収集・送信しません。すべての書籍、ノート、統計データは端末内の `localStorage` および `IndexedDB` にのみ安全に保持されます。外部通信を完全に遮断する**完全オフラインモード (Strict Offline Mode)** やデータ一括消去機能を備えています。
 - **セルフホストフォントとコンポーネント：** すべてのフォント、音源生成エンジン、リーダーエンジン（PDF.jsを含む）はローカルから提供されます。Google Fontsなどのサードパーティへの通信は一切行われないため、IPアドレスやプライバシーが完全に保護されます。
 - **外部URL取得に関する注意：** 「URLから取得」機能は、ブラウザのクロスオリジン制約を回避するためパブリックCORSプロキシを経由します。外部通信を一切行わない完全なオフラインプライバシー環境には、**「HTML貼り付け (Ctrl+U)」** またはローカルファイル（`.epub`, `.pdf`, `.txt`, `.md`）のご利用をお勧めします。
 
@@ -410,6 +417,8 @@ GitHub Pages上で自分専用または公開インスタンスをホストす�
 - **🎧 Música & Paisagens Sonoras:** Mini player de áudio integrado no estilo Winamp (lista de reprodução persistente no IndexedDB, modo aleatório, repetição de 3 estados, barra de busca e controle de volume no celular) com 6 paisagens sonoras Web Audio procedurais (Chuva, Lareira, Ondas do mar, Floresta & vento, Biblioteca & vinil, Ruído profundo) e reprodução contínua em segundo plano com a tela desligada.
 - **🗣️ Leitura em Voz Alta (TTS) & Anotações:** Narração de voz com destaque em tempo real da frase em leitura e reprodução em segundo plano. Destaques em 3 cores, anotações, exportação em Markdown, tradução instantânea do trecho selecionado e cartões de citação compartilháveis (Quote Share Cards) com a mesma tipografia do leitor.
 - **⏱️ Pomodoro & Estatísticas de Leitura:** Temporizador de foco com descanso de tela animado em ampulheta durante os intervalos, rastreador de hábitos local com mapa de calor no estilo GitHub e cartões de estatísticas exportáveis.
+- **🔄 Backup & Restauração Local Completa (JSON):** Exportação e restauração de toda a biblioteca (com texto completo do IndexedDB), notas, destaques, estatísticas, regras de scraping e preferências em um único arquivo `.json`.
+- **✨ Melhorias de Leitura Sanctuary:** Popover interativo de destaque (`#highlightPopover`) para edição rápida de notas e cores sem virar a página; cartão "Continuar Lendo" (`#continueReadingCard`); menu compacto de 3 pontos (`⋯`); e suporte ao Web Share Target.
 - **🌍 10 Idiomas:** Interface de usuário completa e traduzida nativamente em inglês, grego, chinês simplificado, francês, alemão, híndi, japonês, português, russo e espanhol.
 
 ## 🚀 Instalação como Aplicativo (PWA)
@@ -422,15 +431,14 @@ GitHub Pages上で自分専用または公開インスタンスをホストす�
 
 Para hospedar sua própria instância privada ou pública no GitHub Pages, envie todos os arquivos do repositório:
 
-- `index.html` & `Diavasma.html` (estrutura da aplicação e interface do leitor)
-- `styles.css` (folha de estilos responsiva completa)
-- `i18n.js` (dicionário completo de localização em 10 idiomas)
-- `app.js` (lógica principal, armazenamento, áudio e paginação)
-- `sw.js` (Service Worker para operação offline e pré-carregamento)
+- `index.html` (estrutura principal da aplicação e interface do leitor)
 - `manifest.json` (configurações e metadados da PWA)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (ícones do app)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (artes da tela de boas-vindas)
-- `pdf.min.js` & `pdf.worker.min.js` (motor PDF offline auto-hospedado)
+- `sw.js` (Service Worker para operação offline e pré-carregamento)
+- `css/` (`styles.css` - folha de estilos responsiva completa)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - inicialização, dicionário de 10 idiomas e lógica central)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - motor PDF offline auto-hospedado)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ícones do app)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - ilustrações da tela de boas-vindas)
 - `fonts/` (fontes web WOFF2 locais & `fonts.css`)
 - `README.md` (documentação do projeto)
 
@@ -442,7 +450,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 
 ## 🔒 Privacidade em Primeiro Lugar (Privacy First)
 
-- **Dados 100% Locais:** O Diavasma não coleta, não armazena e não envia dados pessoais, histórico de leitura ou conteúdo de arquivos para servidores externos. Todos os livros, notas e estatísticas permanecem salvos no seu dispositivo em `localStorage` e `IndexedDB`.
+- **Dados 100% Locais & Modo Offline Estrito:** O Diavasma não coleta, não armazena e não envia dados pessoais, histórico de leitura ou conteúdo de arquivos para servidores externos. Todos os livros, notas e estatísticas permanecem salvos no seu dispositivo em `localStorage` e `IndexedDB`. Inclui **Modo Offline Estrito** (bloqueio total de requisições externas) e botão para limpar todos os dados locais.
 - **Fontes e Componentes Locais:** Todas as fontes, geradores de áudio e motores de leitura (incluindo o PDF.js) são auto-hospedados. Nenhuma requisição é feita a servidores de terceiros como o Google Fonts, preservando seu IP e sua privacidade.
 - **Aviso sobre Links Web:** A opção "Obter de URL" utiliza proxies CORS públicos para contornar restrições dos navegadores ao buscar páginas remotas. Para total privacidade offline sem tráfego de rede, utilize **"Colar HTML (Ctrl+U)"** ou importe arquivos locais (`.epub`, `.pdf`, `.txt`, `.md`).
 
@@ -464,6 +472,8 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - **🎧 Музыка и окружающие звуковые ландшафты:** Встроенный мини-плеер в стиле Winamp (постоянный плейлист в IndexedDB, случайный порядок, 3 режима зацикливания, полоса перемотки и мобильный регулятор громкости) и 6 процедурных звуковых ландшафтов Web Audio (дождь, камин, морские волны, лес и ветер, библиотека и винил, глубокий шум) с фоновым воспроизведением при заблокированном экране.
 - **🗣️ Озвучивание текста (TTS) и заметки:** Голосовое чтение с синхронным выделением текущего предложения и фоновым воспроизведением. Выделение текста 3 цветами, ведение заметок, экспорт в Markdown, мгновенный перевод выделенного фрагмента и создание карточек с цитатами (Quote Share Cards), наследующих оформление читалки.
 - **⏱️ Помодоро и трекер привычки чтения:** Таймер концентрации с анимированной заставкой-песочными часами во время перерывов, локальный трекер привычек с тепловой картой активности в стиле GitHub и экспорт карточек со статистикой.
+- **🔄 Полный локальный бэкап и восстановление (JSON):** Экспорт и восстановление всей библиотеки (включая полный текст из IndexedDB), заметок, выделений, статистики, правил и настроек в один переносимый файл `.json`.
+- **✨ Улучшения спокойного чтения (Sanctuary):** Интерактивный поповер выделения (`#highlightPopover`) для редактирования заметок, смены цвета и создания карточек без случайного перелистывания страниц; карточка «Продолжить чтение» (`#continueReadingCard`); аккуратное меню из 3 точек (`⋯`); и поддержка Web Share Target.
 - **🌍 10 языков:** Полный перевод интерфейса на английский, греческий, китайский (упрощенный), французский, немецкий, хинди, японский, португальский, русский и испанский языки.
 
 ## 🚀 Установка в качестве приложения (PWA)
@@ -476,15 +486,14 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 
 Чтобы опубликовать собственный приватный или публичный экземпляр на GitHub Pages, загрузите все файлы проекта:
 
-- `index.html` и `Diavasma.html` (оболочка приложения и интерфейс читалки)
-- `styles.css` (полная адаптивная таблица стилей)
-- `i18n.js` (полный словарь локализации для 10 языков)
-- `app.js` (основная логика, хранилище, звук и движок пагинации)
-- `sw.js` (Service Worker для автономной работы и кэширования)
+- `index.html` (основная оболочка приложения и интерфейс читалки)
 - `manifest.json` (конфигурация и метаданные PWA)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (иконки приложения)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (иллюстрации экрана приветствия)
-- `pdf.min.js` и `pdf.worker.min.js` (автономный движок рендеринга PDF)
+- `sw.js` (Service Worker для автономной работы и кэширования)
+- `css/` (`styles.css` - полная адаптивная таблица стилей)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - загрузка, словарь для 10 языков и основная логика)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - автономный движок рендеринга PDF)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - иконки приложения)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - графика экрана приветствия)
 - `fonts/` (локальные веб-шрифты WOFF2 и `fonts.css`)
 - `README.md` (документация проекта)
 
@@ -496,7 +505,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 
 ## 🔒 Конфиденциальность превыше всего (Privacy First)
 
-- **100% локальные данные:** Diavasma не собирает, не сохраняет и не передает персональные данные, историю чтения или файлы на внешние серверы. Все книги, тексты, заметки и статистика хранятся исключительно на вашем устройстве в `localStorage` и `IndexedDB`.
+- **100% локальные данные и Строгий офлайн-режим:** Diavasma не собирает, не сохраняет и не передает персональные данные, историю чтения или файлы на внешние серверы. Все книги, тексты, заметки и статистика хранятся исключительно на вашем устройстве в `localStorage` и `IndexedDB`. Включает **Строгий офлайн-режим (Strict Offline Mode)** и функцию полной очистки всех локальных данных.
 - **Локальные шрифты и компоненты:** Все шрифты, генераторы звука и движки чтения (включая PDF.js) размещены локально. Приложение не выполняет запросов к сторонним сервисам вроде Google Fonts, сохраняя в тайне ваш IP-адрес и системные параметры.
 - **Примечание по загрузке статей по URL:** Функция «Загрузка по URL» задействует публичные CORS-прокси для обхода ограничений браузера при чтении сторонних сайтов. Для абсолютной автономной приватности без сетевого трафика используйте функцию **«Вставить HTML (Ctrl+U)»** или локальные файлы (`.epub`, `.pdf`, `.txt`, `.md`).
 
@@ -518,6 +527,8 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - **🎧 Música y Paisajes Sonoros:** Mini reproductor de audio integrado estilo Winamp (lista de reproducción persistente en IndexedDB, reproducción aleatoria, bucle de 3 estados, barra de búsqueda y control de volumen para móviles) junto con 6 paisajes sonoros procedimentales de Web Audio (Lluvia, Chimenea, Olas del mar, Bosque y viento, Biblioteca y vinilo, Ruido profundo) con reproducción en segundo plano y pantalla bloqueada.
 - **🗣️ Lectura por Voz (TTS) y Notas:** Lectura en voz alta con resaltado en vivo de la frase y reproducción en segundo plano. Subrayados en 3 colores, notas de estudio, exportación a Markdown, traducción instantánea del texto seleccionado y generación de tarjetas de citas compartibles (Quote Share Cards) que adoptan la tipografía del lector.
 - **⏱️ Pomodoro y Estadísticas de Lectura:** Temporizador de enfoque con protector de pantalla animado de reloj de arena durante los descansos, seguimiento de hábitos local con mapa de calor de actividad estilo GitHub y tarjetas de estadísticas exportables.
+- **🔄 Copia de seguridad y Restauración local completa (JSON):** Exportación y restauración de toda la biblioteca (con texto completo de IndexedDB), notas, resaltados, estadísticas, reglas y ajustes en un único archivo `.json`.
+- **✨ Mejoras de lectura Sanctuary:** Popover interactivo de resaltado (`#highlightPopover`) para editar notas y colores sin pasar de página por error; tarjeta "Continuar Leyendo" (`#continueReadingCard`); menú limpio de 3 puntos (`⋯`); y soporte para Web Share Target.
 - **🌍 10 Idiomas:** Interfaz de usuario traducida de forma nativa e íntegra en inglés, griego, chino simplificado, francés, alemán, hindi, japonés, portugués, ruso y español.
 
 ## 🚀 Instalación como Aplicación (PWA)
@@ -530,15 +541,14 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 
 Para alojar su propia instancia privada o pública en GitHub Pages, suba todos los archivos del repositorio:
 
-- `index.html` y `Diavasma.html` (estructura de la aplicación e interfaz de lectura)
-- `styles.css` (hoja de estilos responsive completa)
-- `i18n.js` (diccionario completo de localización en 10 idiomas)
-- `app.js` (lógica principal, almacenamiento, audio y paginación)
-- `sw.js` (Service Worker para funcionamiento offline y precaching)
+- `index.html` (estructura principal de la aplicación e interfaz de lectura)
 - `manifest.json` (configuración y metadatos de la PWA)
-- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (iconos de la aplicación)
-- `DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` (imágenes de la pantalla de bienvenida)
-- `pdf.min.js` y `pdf.worker.min.js` (motor PDF offline autoalojado)
+- `sw.js` (Service Worker para funcionamiento offline y precaching)
+- `css/` (`styles.css` - hoja de estilos responsive completa)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - arranque seguro, diccionario de 10 idiomas y lógica central)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - motor PDF offline autoalojado)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - iconos de la aplicación)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - imágenes de la pantalla de bienvenida)
 - `fonts/` (fuentes web WOFF2 locales y `fonts.css`)
 - `README.md` (documentación del proyecto)
 
@@ -550,7 +560,7 @@ Para alojar su propia instancia privada o pública en GitHub Pages, suba todos l
 
 ## 🔒 Privacidad Ante Todo (Privacy First)
 
-- **Datos 100% Locales:** Diavasma no recopila, no almacena ni transmite ningún dato personal, historial de lectura o contenido de archivos a servidores externos. Todos los libros, notas y estadísticas permanecen exclusivamente en su dispositivo (`localStorage` e `IndexedDB`).
+- **Datos 100% Locales y Modo Offline Estricto:** Diavasma no recopila, no almacena ni transmite ningún dato personal, historial de lectura o contenido de archivos a servidores externos. Todos los libros, notas y estadísticas permanecen exclusivamente en su dispositivo (`localStorage` e `IndexedDB`). Incluye **Modo Offline Estricto** (cero peticiones externas) y opción para borrar todos los datos locales.
 - **Fuentes y Recursos Locales:** Todas las tipografías, generadores de audio y motores de lectura (incluido PDF.js) se ejecutan de manera local. No se realiza ninguna solicitud a servidores de terceros como Google Fonts, protegiendo su dirección IP y su privacidad.
 - **Aviso sobre Enlaces Web:** La función «Obtener desde URL» utiliza proxies CORS públicos para sortear las restricciones del navegador al cargar páginas remotas. Para una privacidad 100% offline sin tráfico de red, utilice **«Pegar HTML (Ctrl+U)»** o importe archivos locales (`.epub`, `.pdf`, `.txt`, `.md`).
 

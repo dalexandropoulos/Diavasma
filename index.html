@@ -3,19 +3,19 @@
 
 <head>
   <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' blob:; font-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https: data: blob:; frame-src 'self' blob: data:;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' blob:; font-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https: data: blob:; frame-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Diavasma — Χώρος Ανάγνωσης</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/svg+xml" href="icon.svg" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/icon.svg" />
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#23272f" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Diavasma" />
   <!-- Self-hosted 100% Offline Fonts -->
   <link rel="stylesheet" href="./fonts/fonts.css" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
 <body>
@@ -179,6 +179,30 @@
 
         </div>
 
+        <!-- Continue Reading Card -->
+        <section class="continue-card" id="continueReadingCard" hidden aria-label="Συνέχιση Ανάγνωσης">
+          <div class="continue-card-inner">
+            <div class="continue-card-head">
+              <span class="continue-card-badge" data-i18n="continue_reading_lbl">Συνέχιση Ανάγνωσης</span>
+              <span class="continue-card-meta" id="continueCardMeta"></span>
+            </div>
+            <div class="continue-card-body">
+              <h2 class="continue-card-title" id="continueCardTitle"></h2>
+              <div class="continue-card-progress">
+                <div class="continue-progress-bar">
+                  <div class="continue-progress-fill" id="continueProgressFill" style="width:0%"></div>
+                </div>
+                <span class="continue-progress-text" id="continueProgressText">0%</span>
+              </div>
+            </div>
+            <div class="continue-card-action">
+              <button type="button" class="btn primary sm continue-card-btn" id="continueCardBtn">
+                <span data-i18n="continue_reading_btn">Συνέχεια →</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
         <!-- Group Filter Pills & Groups Container (Library View Section) -->
         <div id="libraryListSection">
           <div class="hub-toolbar">
@@ -204,11 +228,11 @@
           </div>
 
           <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <label class="btn file-btn" id="importScrapersLabel" title="Εισαγωγή κανόνων από JSON"
+              data-i18n-title="title_import_rules"><span data-i18n="btn_import_json">Εισαγωγή JSON</span><input type="file" id="importScrapersInput"
+                accept=".json,application/json" hidden /></label>
             <button class="btn" id="exportScrapersBtn" title="Εξαγωγή κανόνων σε JSON"
               data-i18n="btn_export_json" data-i18n-title="title_export_rules">Εξαγωγή JSON</button>
-            <label class="btn file-btn" id="importScrapersLabel" title="Εισαγωγή κανόνων από JSON"
-              data-i18n="btn_import_json" data-i18n-title="title_import_rules">Εισαγωγή JSON<input type="file" id="importScrapersInput"
-                accept=".json,application/json" hidden /></label>
             <button type="button" class="btn primary" id="backFromScrapersBtn" data-i18n="back_to_library">← Βιβλιοθήκη</button>
           </div>
 
@@ -369,8 +393,44 @@
           </div>
 
           <div id="translateOutput" data-i18n="lbl_translating">Μετάφραση...</div>
+          <div class="translate-privacy-note" style="font-size:10px;color:var(--muted);margin-top:6px;text-align:right" data-i18n="lbl_translate_privacy_note">Εξωτερικό αίτημα · Google Translate</div>
         </div>
 
+      </div>
+
+      <!-- Interactive Highlight Popover -->
+      <div class="selection-menu highlight-popover" id="highlightPopover" role="dialog" aria-label="Highlight" hidden>
+        <div class="hl-pop-top">
+          <div class="color-dots-group" id="hlPopColorDots">
+            <button type="button" class="color-dot yellow active" data-color="yellow" title="Κίτρινο" aria-label="Κίτρινο" data-i18n-title="title_hl_yellow" data-i18n-aria="hl_yellow"></button>
+            <button type="button" class="color-dot green" data-color="green" title="Πράσινο" aria-label="Πράσινο" data-i18n-title="title_hl_green" data-i18n-aria="hl_green"></button>
+            <button type="button" class="color-dot blue" data-color="blue" title="Μπλε" aria-label="Μπλε" data-i18n-title="title_hl_blue" data-i18n-aria="hl_blue"></button>
+          </div>
+          <div class="hl-pop-actions">
+            <button class="dock-btn sm" id="hlPopShareBtn" title="Κάρτα Share" data-i18n-title="title_share_card" aria-label="Κάρτα Share">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                <circle cx="12" cy="13" r="4" />
+              </svg>
+            </button>
+            <button class="dock-btn sm" id="hlPopDeleteBtn" style="color:#e05252" title="Διαγραφή" data-i18n-title="title_delete" aria-label="Διαγραφή">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+              </svg>
+            </button>
+            <button class="dock-btn sm" id="hlPopCloseBtn" title="Κλείσιμο" aria-label="Κλείσιμο">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="hl-pop-note-row">
+          <input type="text" id="hlPopNoteInput" placeholder="Προσθήκη ή επεξεργασία σημείωσης..." data-i18n-ph="hl_pop_note_ph" />
+          <button class="btn primary sm" id="hlPopSaveBtn"><span data-i18n="hl_pop_save">Αποθήκευση</span></button>
+        </div>
       </div>
 
       <!-- Search Popover -->
@@ -424,22 +484,7 @@
         </button>
       </nav>
 
-      <!-- Desktop Floating Donation Pill (Bottom Left) -->
-      <aside class="desktop-donation-pill" id="desktopDonationPill" aria-label="Υποστήριξη" data-i18n-aria="aria_support">
-        <button type="button" class="pill-trigger" id="donationPillTrigger">
-          <span>☕</span>
-          <span data-i18n="donate_pill_label">Υποστήριξη</span>
-        </button>
-        <div class="pill-tiers">
-          <a class="bmc-pill-link" href="https://buymeacoffee.com/alexandropoulos" target="_blank" rel="noopener noreferrer" title="Buy me a coffee">
-            <span>☕</span>
-            <span>Buy me a coffee</span>
-          </a>
-          <button type="button" class="pill-close-btn" id="closeDonationPillBtn" title="Απόκρυψη" aria-label="Απόκρυψη υποστήριξης" data-i18n-aria="aria_hide_support">×</button>
-        </div>
-
-      </aside>
-    </section>
+          </section>
 
     <!-- Backdrop for Drawers -->
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
@@ -638,7 +683,7 @@
         <input type="checkbox" id="keepAwakeChk" checked />
       </label>
 
-      <label class="toggle-row" style="align-items:flex-start">
+      <label class="toggle-row">
         <div style="display:flex;flex-direction:column;gap:2px">
           <span data-i18n="bg_playback_lbl">Αναπαραγωγή με κλειστή οθόνη</span>
           <small class="field-sub" data-i18n="bg_playback_desc" style="font-size:11px;color:var(--muted)">Συνέχιση μουσικής, ήχων περιβάλλοντος και εκφώνησης (TTS) στο παρασκήνιο.</small>
@@ -646,7 +691,7 @@
         <input type="checkbox" id="bgPlaybackChk" checked />
       </label>
 
-      <label class="toggle-row" style="margin-bottom:12px">
+      <label class="toggle-row">
         <div>
           <span style="font-weight:600" data-i18n="lbl_show_welcome">Οθόνη Καλωσορίσματος</span>
           <div style="font-size:12px;color:var(--muted)" data-i18n="desc_show_welcome">
@@ -654,6 +699,16 @@
           </div>
         </div>
         <input type="checkbox" id="showWelcomeToggle" checked />
+      </label>
+
+      <label class="toggle-row" style="margin-bottom:14px">
+        <div>
+          <span style="font-weight:600" data-i18n="lbl_strict_offline">Αυστηρή λειτουργία Offline</span>
+          <div style="font-size:12px;color:var(--muted)" data-i18n="desc_strict_offline">
+            Μπλοκάρει κάθε εξωτερικό αίτημα (URL proxies, favicons, online μετάφραση).
+          </div>
+        </div>
+        <input type="checkbox" id="strictOfflineChk" />
       </label>
 
       <!-- Power Features Section in Settings -->
@@ -668,13 +723,13 @@
       </div>
 
       <div class="section-tag" data-i18n="settings_backup_heading">Διαχείριση &amp; Πληροφορίες</div>
-      <div class="row-2" style="margin-bottom:8px">
-        <button class="btn sm" id="exportSettingsBtn" title="Εξαγωγή ρυθμίσεων σε JSON"
-          data-i18n="btn_export_json" data-i18n-title="title_export_settings">Εξαγωγή JSON</button>
-        <label class="btn sm file-btn" id="importSettingsLabel" title="Εισαγωγή ρυθμίσεων από JSON"
-          data-i18n="btn_import_json" data-i18n-title="title_import_settings">Εισαγωγή JSON<input type="file" id="importSettingsInput"
-            accept=".json,application/json" hidden /></label>
+      <div class="row-2" style="margin-bottom:4px">
+        <button type="button" class="btn sm accent-btn" id="exportFullBackupBtn" data-i18n="btn_export_backup" data-i18n-title="title_export_backup" title="Εξαγωγή όλων των βιβλίων, σημειώσεων, στατιστικών και ρυθμίσεων">Πλήρες Backup</button>
+        <label class="btn sm file-btn accent-btn" id="importFullBackupLabel" data-i18n-title="title_import_backup" title="Επαναφορά πλήρους αντιγράφου ασφαλείας JSON"><span data-i18n="btn_import_backup">Επαναφορά Backup</span><input type="file" id="importFullBackupInput" accept=".json,application/json" hidden /></label>
       </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;line-height:1.4" data-i18n="backup_scope_hint">Περιλαμβάνει βιβλία, σημειώσεις, στατιστικά, κανόνες &amp; ρυθμίσεις (χωρίς MP3/fonts).</div>
+
+      <button type="button" class="btn sm danger-btn" id="clearAllDataBtn" style="width:100%;margin-top:6px" data-i18n="btn_clear_all_data">Εκκαθάριση όλων των δεδομένων</button>
 
       <button class="btn sm" id="settingsAboutBtn" style="width:100%;margin-top:4px;gap:6px" data-i18n="settings_about_btn">
         <span>ℹ️</span> <span data-i18n="about_title">Σχετικά με το Diavasma</span>
@@ -975,21 +1030,21 @@
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
               </svg>
-              <span data-i18n="tab_file">1. Αρχείο / Βιβλίο</span>
+              <span data-i18n="tab_file">Αρχείο / Βιβλίο</span>
             </button>
             <button type="button" class="mode-tab" data-pane="paneUrl" role="tab" aria-selected="false">
               <svg viewBox="0 0 24 24">
                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
               </svg>
-              <span data-i18n="tab_url">2. Άρθρο από URL</span>
+              <span data-i18n="tab_url">Άρθρο από URL</span>
             </button>
             <button type="button" class="mode-tab" data-pane="panePaste" role="tab" aria-selected="false">
               <svg viewBox="0 0 24 24">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
               </svg>
-              <span data-i18n="tab_paste">3. Επικόλληση Κειμένου</span>
+              <span data-i18n="tab_paste">Επικόλληση Κειμένου</span>
             </button>
           </div>
 
@@ -1028,10 +1083,7 @@
         <!-- Compartment 2: Import Article from URL -->
         <div class="import-compartment" id="paneUrl" hidden>
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
-            <span style="font-size:12.5px;color:var(--muted)" data-i18n="lbl_url_hint">
-              Επικόλλησε το URL του άρθρου. Αν υπάρχει κανόνας στα <strong>Κανόνες URL</strong>, θα εφαρμοστεί
-              αυτόματα.
-            </span>
+            <span style="font-size:12.5px;color:var(--muted)" data-i18n="lbl_url_hint">Επικόλλησε το URL του άρθρου. Αν υπάρχει κανόνας στα Κανόνες URL, θα εφαρμοστεί αυτόματα.</span>
             <button type="button" class="btn sm" id="toggleRawHtmlUrlBtn"
               title="Χρήσιμο αν το site μπλοκάρει τα CORS proxies" data-i18n="btn_paste_html">Επικόλληση HTML
               (Ctrl+U)</button>
@@ -1078,39 +1130,15 @@
 
     <!-- About & Support Modal (Mobile & Desktop) -->
     <div class="about-modal-backdrop" id="aboutModal" hidden>
-      <div class="about-modal-card" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
-        <div class="about-modal-head">
-          <div class="about-brand">
-            <div class="brand-icon">Δ</div>
-            <div>
-              <strong id="aboutModalTitle" style="font-size:16px;color:var(--ink)" data-i18n="about_title">Diavasma</strong>
-              <div style="font-size:12px;color:var(--muted)" data-i18n="about_version">Έκδοση 8.6 (PWA)</div>
-            </div>
-
-          </div>
-
-          <button class="btn icon-only" id="closeAboutModalBtn" aria-label="Κλείσιμο παραθύρου" data-i18n-aria="aria_close">×</button>
+      <div class="about-modal-card about-minimal-card" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+        <button type="button" class="btn icon-only about-close-btn" id="closeAboutModalBtn" aria-label="Κλείσιμο παραθύρου" data-i18n-aria="aria_close">×</button>
+        <img src="./assets/icons/icon.svg" alt="Diavasma" class="about-site-icon" width="56" height="56" />
+        <strong id="aboutModalTitle" class="about-minimal-title" data-i18n="app_name">Diavasma</strong>
+        <p class="about-minimal-desc" data-i18n="about_desc">Ο ήσυχος, 100% offline χώρος σου για απερίσπαστη ανάγνωση — χωρίς διαφημίσεις, χωρίς tracking.</p>
+        <div class="about-bmc-wrap">
+          <a class="bmc-fallback-btn" id="bmcFallbackBtn" href="https://buymeacoffee.com/alexandropoulos" target="_blank" rel="noopener noreferrer">☕ Buy me a coffee</a>
         </div>
-
-        <div class="about-modal-body">
-          <p data-i18n="about_desc">Χώρος απόλυτης ηρεμίας, συγκέντρωσης και ιδιωτικότητας για διάβασμα. 100% offline — χωρίς internet, χωρίς διαφημίσεις, χωρίς αλγορίθμους. Τα βιβλία, τα άρθρα και οι σημειώσεις σας παραμένουν αποκλειστικά στη δική σας συσκευή.</p>
-          <div class="about-features-pill" data-i18n="about_features">100% Offline (No Internet) · Μηδενική Παρακολούθηση · Τοπική Αποθήκευση · Απόλυτη Ηρεμία</div>
-
-          <!-- Donation Section in About Modal -->
-          <div class="about-donation-box">
-            <strong data-i18n="donate_title">☕ Υποστήριξη του Diavasma</strong>
-            <p data-i18n="donate_desc">Το Diavasma είναι δωρεάν, ιδιωτικό και χωρίς διαφημίσεις. Αν σας προσφέρει αξία, υποστηρίξτε την εξέλιξή του κερνώντας έναν καφέ!</p>
-            <div class="about-donation-actions">
-              
-              <a class="bmc-fallback-btn" id="bmcFallbackBtn" href="https://buymeacoffee.com/alexandropoulos" target="_blank" rel="noopener noreferrer">☕ Buy me a coffee</a>
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
-
     </div>
 
     <!-- Quote & Note Card Share Studio Modal -->
@@ -1303,6 +1331,19 @@
 
     </div>
 
+    <!-- Themed App Dialog Modal (Confirmation / Prompt) -->
+    <div class="about-modal-backdrop app-dialog-backdrop" id="appDialogModal" hidden>
+      <div class="about-modal-card app-dialog-card" role="dialog" aria-modal="true" aria-labelledby="appDialogTitle" aria-describedby="appDialogMessage">
+        <h3 id="appDialogTitle" class="app-dialog-title"></h3>
+        <p id="appDialogMessage" class="app-dialog-message"></p>
+        <input type="text" class="composer-input" id="appDialogInput" hidden />
+        <div class="app-dialog-actions">
+          <button type="button" class="btn" id="appDialogCancelBtn" data-i18n="btn_cancel">Ακύρωση</button>
+          <button type="button" class="btn primary" id="appDialogConfirmBtn" data-i18n="btn_confirm">Επιβεβαίωση</button>
+        </div>
+      </div>
+    </div>
+
     <!-- PDF & Heavy Task Processing Overlay -->
     <div class="loading-overlay" id="loadingOverlay" role="dialog" aria-modal="true" aria-labelledby="loadingTitle" hidden>
       <div class="loading-card">
@@ -1319,8 +1360,8 @@
     <div class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" tabindex="0">
       <div class="welcome-backdrop-layer" aria-hidden="true">
         <picture id="welcomePicture">
-          <source id="welcomeSourceMobile" media="(max-width: 768px), (orientation: portrait) and (max-width: 900px)" srcset="./MobileL.jpg" />
-          <img id="welcomeImgDesktop" src="./DesktopL.png" alt="" />
+          <source id="welcomeSourceMobile" media="(max-width: 768px), (orientation: portrait) and (max-width: 900px)" srcset="./assets/images/MobileL.jpg" />
+          <img id="welcomeImgDesktop" src="./assets/images/DesktopL.png" alt="" />
         </picture>
         <div class="welcome-scrim"></div>
       </div>
@@ -1331,35 +1372,14 @@
         </div>
       </div>
     </div>
-    <script>
-      (function() {
-        try {
-          var pRaw = localStorage.getItem("reading-room-prefs-v14") || localStorage.getItem("reading-room-prefs-v13") || localStorage.getItem("reading-room-prefs-v12");
-          var p = pRaw ? JSON.parse(pRaw) : null;
-          var appEl = document.getElementById("app");
-          var ov = document.getElementById("welcomeOverlay");
-          var theme = (p && p.theme) ? p.theme : "paper";
-          if (appEl) appEl.dataset.theme = theme;
-          var hasShare = /[?&](share_url|share_text|share_title)=/i.test(window.location.search);
-          if (hasShare || (p && p.showWelcome === false)) {
-            if (ov) ov.hidden = true;
-          } else if (ov) {
-            var isDark = (theme === "night" || theme === "slate" || theme === "amoled");
-            var mob = document.getElementById("welcomeSourceMobile");
-            var dsk = document.getElementById("welcomeImgDesktop");
-            if (mob) mob.srcset = isDark ? "./MobileD.jpg" : "./MobileL.jpg";
-            if (dsk) dsk.src = isDark ? "./DesktopD.png" : "./DesktopL.png";
-          }
-        } catch (_) {}
-      })();
-    </script>
+    <script src="./js/boot.js"></script>
 
     <!-- scrape fallback iframe removed for sandbox safety -->
 
   </div>
 
-  <script src="./i18n.js"></script>
-  <script src="./app.js"></script>
+  <script src="./js/i18n.js"></script>
+  <script src="./js/app.js"></script>
 </body>
 
 </html>

@@ -1,26 +1,26 @@
-/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v14) */
-const CACHE_NAME = "diavasma-shell-v17";
+/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v31) */
+const CACHE_NAME = "diavasma-shell-v31";
 const FONT_CACHE = "reading-room-fonts-v1";
 
 const PRECACHE_URLS = [
   "./",
   "./index.html",
-  "./Diavasma.html",
   "./manifest.json",
-  "./icon.svg",
-  "./icon-192.png",
-  "./icon-512.png",
-  "./apple-touch-icon.png",
-  "./pdf.min.js",
-  "./pdf.worker.min.js",
+  "./css/styles.css",
+  "./js/boot.js",
+  "./js/i18n.js",
+  "./js/app.js",
+  "./libs/pdf.min.js",
+  "./libs/pdf.worker.min.js",
   "./fonts/fonts.css",
-  "./styles.css",
-  "./i18n.js",
-  "./app.js",
-  "./DesktopD.png",
-  "./DesktopL.png",
-  "./MobileD.jpg",
-  "./MobileL.jpg"
+  "./assets/icons/icon.svg",
+  "./assets/icons/icon-192.png",
+  "./assets/icons/icon-512.png",
+  "./assets/icons/apple-touch-icon.png",
+  "./assets/images/DesktopD.png",
+  "./assets/images/DesktopL.png",
+  "./assets/images/MobileD.jpg",
+  "./assets/images/MobileL.jpg"
 ];
 
 // Install: precache app shell using Promise.allSettled for fault tolerance
@@ -111,12 +111,11 @@ self.addEventListener("fetch", (event) => {
           // Network timed out or failed; safely fall back to cache
         }
 
-        // Cache fallback: try requested URL, then fallback to Diavasma.html or index.html
+        // Cache fallback: try requested URL, then fallback to index.html
         const cached = await caches.match(req);
         if (cached) return cached;
 
         const fallback =
-          (await caches.match("./Diavasma.html")) ||
           (await caches.match("./index.html")) ||
           (await caches.match("./"));
         if (fallback) return fallback;
