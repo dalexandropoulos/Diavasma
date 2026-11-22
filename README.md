@@ -17,6 +17,15 @@
 
 ---
 
+<p align="center">
+  <img src="./assets/demo.gif" alt="Diavasma — 100% Offline Reading Sanctuary Demo" width="850" />
+</p>
+<p align="center">
+  <em>Switching to Dark Mode, importing an article from URL, and reading distraction-free in Fullscreen — 100% offline, zero tracking.</em>
+</p>
+
+---
+
 
 <a id="lang-en"></a>
 # Diavasma 📖 (English)
