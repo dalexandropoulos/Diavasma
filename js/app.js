@@ -6,6 +6,15 @@
   try {
     const I18N = window.DIAVASMA_I18N || {};
 
+    function detectBrowserLang() {
+      const raw = (navigator.language || "").toLowerCase();
+      if ((raw.startsWith("zh-tw") || raw.startsWith("zh-hk") || raw.startsWith("zh-mo") || raw.includes("hant")) && I18N["zh-TW"]) {
+        return "zh-TW";
+      }
+      const short = raw.slice(0, 2);
+      return I18N[short] ? short : "el";
+    }
+
     /* --- Persistent Storage Keys & Full Settings State --- */
     const PREFS_KEY = "reading-room-prefs-v14";
     const LIB_KEY = "reading-room-library-v14";
@@ -131,9 +140,8 @@
     try {
       const savedPrefs = JSON.parse(localStorage.getItem(PREFS_KEY) || localStorage.getItem("reading-room-prefs-v13") || localStorage.getItem("reading-room-prefs-v12") || "null");
       if (savedPrefs && typeof savedPrefs === "object") prefs = Object.assign(prefs, savedPrefs);
-      if (!prefs.lang) {
-        const navLang = (navigator.language || "").slice(0, 2).toLowerCase();
-        prefs.lang = (typeof I18N !== "undefined" && I18N[navLang]) ? navLang : "el";
+      if (!prefs.lang || !I18N[prefs.lang]) {
+        prefs.lang = detectBrowserLang();
       }
       if (typeof prefs.showWelcome === "undefined") prefs.showWelcome = true;
 
@@ -931,7 +939,7 @@
       document.title = `${t("app_name") || "Diavasma"} — ${t("app_title_suffix") || "Χώρος Ανάγνωσης"}`;
 
       const badge = $("#currentLangBadge");
-      if (badge) badge.textContent = lang.toUpperCase();
+      if (badge) badge.textContent = lang === "zh-TW" ? "TW" : lang.toUpperCase();
 
       document.querySelectorAll(".lang-opt").forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.lang === lang);
@@ -1002,7 +1010,8 @@
           "El hábito de la lectura diaria", "L'habitude de la lecture quotidienne",
           "Die Gewohnheit des täglichen Lesens", "Привычка ежедневного чтения",
           "每日阅读的好习惯", "毎日の読书习惯", "毎日の読書習慣", "दैनिक पढ़ने की आदत", "O hábito da leitura diária",
-          "L'abitudine della lettura quotidiana", "매일 독서하는 습관", "Nawyk codziennego czytania", "Günlük okuma alışkanlığı", "Kebiasaan membaca setiap hari"
+          "L'abitudine della lettura quotidiana", "매일 독서하는 습관", "Nawyk codziennego czytania", "Günlük okuma alışkanlığı", "Kebiasaan membaca setiap hari",
+          "每日閱讀的好習慣", "Звичка щоденного читання", "De gewoonte van dagelijks lezen", "Thói quen đọc sách mỗi ngày"
         ];
         if (!statsMsgInput.value || prevDefaults.includes(statsMsgInput.value.trim())) {
           statsMsgInput.value = t("stats_default_custom_msg") || "Η συνήθεια της καθημερινής ανάγνωσης";
@@ -8268,7 +8277,12 @@
           const cell = document.createElement("div");
           cell.className = `heatmap-cell lvl-${lvl}` + (dateKey === this.getTodayKey() ? " today" : "");
 
-          const localeMap = { el: "el-GR", en: "en-US", es: "es-ES", fr: "fr-FR", de: "de-DE", ru: "ru-RU", zh: "zh-CN", ja: "ja-JP", hi: "hi-IN", pt: "pt-PT", it: "it-IT", ko: "ko-KR", pl: "pl-PL", tr: "tr-TR", id: "id-ID" };
+          const localeMap = {
+            el: "el-GR", en: "en-US", es: "es-ES", fr: "fr-FR", de: "de-DE",
+            ru: "ru-RU", zh: "zh-CN", ja: "ja-JP", hi: "hi-IN", pt: "pt-PT",
+            it: "it-IT", ko: "ko-KR", pl: "pl-PL", tr: "tr-TR", id: "id-ID",
+            "zh-TW": "zh-TW", uk: "uk-UA", nl: "nl-NL", vi: "vi-VN"
+          };
           const dateFormatted = cur.toLocaleDateString(localeMap[prefs.lang] || "en-US", {
             month: "short",
             day: "numeric",
@@ -9517,8 +9531,7 @@
     /* --- Init --- */
     initWelcomeOverlay();
     if (!prefs.lang || !I18N[prefs.lang]) {
-      const navLang = (navigator.language || "").slice(0, 2).toLowerCase();
-      prefs.lang = I18N[navLang] ? navLang : "el";
+      prefs.lang = detectBrowserLang();
       savePrefs();
     }
     applyPrefs(false);

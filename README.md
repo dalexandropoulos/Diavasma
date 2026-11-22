@@ -11,9 +11,9 @@
 
 ---
 
-### 🌍 Languages / Γλώσσες / 语言 / Langues / Sprachen / भाषाएँ / 言語 / Idiomas / Языки / Lingue / 언어 / Języki / Diller / Bahasa
+### 🌍 Languages / Γλώσσες / 语言 / Langues / Sprachen / भाषाएँ / 言語 / Idiomas / Языки / Lingue / 언어 / Języki / Diller / Bahasa / 繁體中文 / Мови / Talen / Ngôn ngữ
 
-[🇬🇧 English](#lang-en) · [🇬🇷 Ελληνικά](#lang-el) · [🇨🇳 简体中文](#lang-zh) · [🇫🇷 Français](#lang-fr) · [🇩🇪 Deutsch](#lang-de) · [🇮🇳 हिन्दी](#lang-hi) · [🇮🇩 Bahasa Indonesia](#lang-id) · [🇮🇹 Italiano](#lang-it) · [🇯🇵 日本語](#lang-ja) · [🇰🇷 한국어](#lang-ko) · [🇵🇱 Polski](#lang-pl) · [🇵🇹 Português](#lang-pt) · [🇷🇺 Русский](#lang-ru) · [🇪🇸 Español](#lang-es) · [🇹🇷 Türkçe](#lang-tr)
+[🇬🇧 English](#lang-en) · [🇬🇷 Ελληνικά](#lang-el) · [🇨🇳 简体中文](#lang-zh) · [🇹🇼 繁體中文](#lang-zh-tw) · [🇳🇱 Nederlands](#lang-nl) · [🇫🇷 Français](#lang-fr) · [🇩🇪 Deutsch](#lang-de) · [🇮🇳 हिन्दी](#lang-hi) · [🇮🇩 Bahasa Indonesia](#lang-id) · [🇮🇹 Italiano](#lang-it) · [🇯🇵 日本語](#lang-ja) · [🇰🇷 한국어](#lang-ko) · [🇵🇱 Polski](#lang-pl) · [🇵🇹 Português](#lang-pt) · [🇷🇺 Русский](#lang-ru) · [🇪🇸 Español](#lang-es) · [🇹🇷 Türkçe](#lang-tr) · [🇺🇦 Українська](#lang-uk) · [🇻🇳 Tiếng Việt](#lang-vi)
 
 ---
 
@@ -34,7 +34,7 @@
 - **⏱️ Pomodoro & Reading Habit Stats:** Focus timer with an animated hourglass screensaver during breaks, local reading habit tracker with a GitHub-style activity heatmap, and exportable Stats Share Cards.
 - **🔄 Full Local Backup & Restore (JSON):** Complete export and restoration of all library books (with full text from IndexedDB), notes, highlights, reading stats, custom scraper rules, and reader preferences in a single portable `.json` file.
 - **✨ Sanctuary Reading Upgrades:** Interactive Highlight Popover (`#highlightPopover`) for instant note editing, color switching, and Quote Cards without accidental page turns; "Continue Reading" card (`#continueReadingCard`) with 1-tap resume; clean 3-dots item action menu (`⋯`); and Web Share Target API integration to auto-import shared links directly into Articles.
-- **🌍 15 Languages:** Comprehensive, native UI localization in 15 languages: English, Greek, Chinese (Simplified), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, and Turkish.
+- **🌍 19 Languages:** Comprehensive, native UI localization in 19 languages: English, Greek, Chinese (Simplified), Traditional Chinese, Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Ukrainian, and Vietnamese.
 
 ## 🚀 Installation as an App (PWA)
 
@@ -89,7 +89,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **⏱️ Pomodoro & Στατιστικά Ανάγνωσης:** Χρονόμετρο εστίασης με δυναμικό screensaver κλεψύδρας κατά τα διαλείμματα, τοπικό habit tracker με activity heatmap τύπου GitHub και εξαγώγιμες Stats Share Cards.
 - **🔄 Πλήρες Τοπικό Backup & Restore (JSON):** Πλήρης εξαγωγή και επαναφορά ολόκληρου του αναγνωστηρίου (βιβλία με το πλήρες κείμενό τους από το IndexedDB, σημειώσεις, επισημάνσεις, στατιστικά ανάγνωσης, κανόνες scraper και ρυθμίσεις) σε ένα ενιαίο αρχείο `.json`.
 - **✨ Αναβαθμίσεις Sanctuary Reading:** Διαδραστικό Highlight Popover (`#highlightPopover`) για άμεση επεξεργασία σημείωσης, αλλαγή χρώματος και Quote Cards χωρίς άσκοπο γύρισμα σελίδας, κάρτα «Συνέχιση Ανάγνωσης» (`#continueReadingCard`) με άμεσο 1-tap άνοιγμα, καθαρό μενού επιλογών 3 τελειών (`⋯`) στη Βιβλιοθήκη και ενσωμάτωση Web Share Target API για αυτόματη προσθήκη κοινοποιημένων συνδέσμων στα Άρθρα.
-- **🌍 15 Γλώσσες:** Πλήρες περιβάλλον χρήσης μεταφρασμένο σε 15 γλώσσες: Αγγλικά, Ελληνικά, Κινεζικά (Απλοποιημένα), Γαλλικά, Γερμανικά, Χίντι, Ινδονησιακά, Ιταλικά, Ιαπωνικά, Κορεατικά, Πολωνικά, Πορτογαλικά, Ρωσικά, Ισπανικά και Τουρκικά.
+- **🌍 19 Γλώσσες:** Πλήρες περιβάλλον χρήσης μεταφρασμένο σε 19 γλώσσες: Αγγλικά, Ελληνικά, Κινεζικά (Απλοποιημένα & Παραδοσιακά), Ολλανδικά, Γαλλικά, Γερμανικά, Χίντι, Ινδονησιακά, Ιταλικά, Ιαπωνικά, Κορεατικά, Πολωνικά, Πορτογαλικά, Ρωσικά, Ισπανικά, Τουρκικά, Ουκρανικά και Βιετναμέζικα.
 
 ## 🚀 Εγκατάσταση ως Εφαρμογή (PWA)
 
@@ -105,7 +105,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - `manifest.json` (ρυθμίσεις & μεταδεδομένα PWA)
 - `sw.js` (Service Worker για ανθεκτική offline λειτουργία & precaching)
 - `css/` (`styles.css` - πλήρες responsive stylesheet)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - εκκίνηση, λεξικό 15 γλωσσών & βασική λογική)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - εκκίνηση, λεξικό 19 γλωσσών & βασική λογική)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - τοπική μηχανή απόδοσης PDF)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - εικονίδια εφαρμογής)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - εικαστικά οθόνης καλωσορίσματος)
@@ -144,7 +144,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **⏱️ 番茄钟专注计时与阅读统计：** 专注计时器配备休息时随主题变换的沙漏动态屏保，内置 GitHub 风格热力图的本地阅读打卡器，以及可导出的阅读统计分享卡片。
 - **🔄 完整本地备份与恢复 (JSON)：** 一键导出与还原整个书房（含 IndexedDB 完整文本的书籍、笔记、划线、阅读统计、自定义规则与设置）到单个便携式 `.json` 文件。
 - **✨ 宁静阅读体验升级：** 交互式划线浮窗 (`#highlightPopover`) 支持免误翻页编辑笔记/换色/生成名言卡；顶部“继续阅读”卡片 (`#continueReadingCard`) 一键续读；精简的三点操作菜单 (`⋯`)；支持 Web Share Target API 将网页链接直接分享至书房。
-- **🌍 15 种语言：** 提供英语、希腊语、简体中文、法语、德语、印地语、印度尼西亚语、意大利语、日语、韩语、波兰语、葡萄牙语、俄语、西班牙语和土耳其语 15 种语言的完整原生界面。
+- **🌍 19 种语言：** 提供英语、希腊语、简体中文、繁体中文、荷兰语、法语、德语、印地语、印度尼西亚语、意大利语、日语、韩语、波兰语、葡萄牙语、俄语、西班牙语、土耳其语、乌克兰语和越南语 19 种语言的完整原生界面。
 
 ## 🚀 安装为应用程序 (PWA)
 
@@ -160,7 +160,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - `manifest.json` (PWA 配置文件与元数据)
 - `sw.js` (用于离线强力预缓存与离线策略的 Service Worker)
 - `css/` (`styles.css` - 完整的自适应排版样式表)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - 安全引导、15 语言词典与核心逻辑)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - 安全引导、19 语言词典与核心逻辑)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - 自托管离线 PDF 渲染引擎)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - 应用图标)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - 欢迎画面插图)
@@ -199,7 +199,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **⏱️ Pomodoro & Suivi des habitudes de lecture :** Minuteur de concentration avec économiseur d'écran sablier animé pendant les pauses, suivi des habitudes de lecture local avec carte thermique d'activité style GitHub et cartes de statistiques exportables.
 - **🔄 Sauvegarde & Restauration locale complète (JSON) :** Exportation et restauration intégrale de votre sanctuaire (livres avec texte complet depuis IndexedDB, surlignages, notes, statistiques, règles et réglages) dans un fichier `.json`.
 - **✨ Améliorations de lecture Sanctuary :** Popover interactif (`#highlightPopover`) pour éditer vos notes, changer de couleur et partager sans tourner la page par inadvertance ; carte « Continuer la lecture » (`#continueReadingCard`) ; menu à 3 points épuré (`⋯`) ; et cible de partage Web Share Target.
-- **🌍 15 Langues :** Interface utilisateur traduite nativement et intégralement en 15 langues : anglais, grec, chinois simplifié, français, allemand, hindi, indonésien, italien, japonais, coréen, polonais, portugais, russe, espagnol et turc.
+- **🌍 19 Langues :** Interface utilisateur traduite nativement et intégralement en 19 langues : anglais, grec, chinois simplifié, chinois traditionnel, néerlandais, français, allemand, hindi, indonésien, italien, japonais, coréen, polonais, portugais, russe, espagnol, turc, ukrainien et vietnamien.
 
 ## 🚀 Installation en tant qu'application (PWA)
 
@@ -215,7 +215,7 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 - `manifest.json` (configuration & métadonnées de la PWA)
 - `sw.js` (Service Worker pour la mise en cache hors ligne et la stratégie de cache)
 - `css/` (`styles.css` - feuille de style responsive complète)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - amorçage, dictionnaire 15 langues & logique applicative)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - amorçage, dictionnaire 19 langues & logique applicative)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - moteur PDF hors ligne auto-hébergé)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - icônes d'application)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - visuels d'accueil)
@@ -254,7 +254,7 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 - **⏱️ Pomodoro-Timer & Lese-Statistiken:** Fokus-Timer mit animiertem Sanduhr-Bildschirmschoner während der Pausen, lokaler Lese-Gewohnheitstracker mit GitHub-artigem Aktivitäts-Heatmap und exportierbare Statistik-Karten.
 - **🔄 Vollständiges lokales Backup & Wiederherstellung (JSON):** Export und Import aller Bücher (inklusive Volltext aus IndexedDB), Notizen, Markierungen, Lesestatistiken, Scraper-Regeln und Einstellungen in einer portablen `.json`-Datei.
 - **✨ Sanctuary Lese-Upgrades:** Interaktives Highlight-Popover (`#highlightPopover`) zum Bearbeiten von Notizen, Ändern von Farben und Erstellen von Zitatkarten ohne unbeabsichtigtes Umblättern; „Weiterlesen“-Karte (`#continueReadingCard`); klares 3-Punkte-Aktionsmenü (`⋯`); und Web Share Target Integration.
-- **🌍 15 Sprachen:** Vollständig lokalisierte Benutzeroberfläche in 15 Sprachen: Englisch, Griechisch, Chinesisch (Vereinfacht), Französisch, Deutsch, Hindi, Indonesisch, Italienisch, Japanisch, Koreanisch, Polnisch, Portugiesisch, Russisch, Spanisch und Türkisch.
+- **🌍 19 Sprachen:** Vollständig lokalisierte Benutzeroberfläche in 19 Sprachen: Englisch, Griechisch, Chinesisch (Vereinfacht & Traditionell), Niederländisch, Französisch, Deutsch, Hindi, Indonesisch, Italienisch, Japanisch, Koreanisch, Polnisch, Portugiesisch, Russisch, Spanisch, Türkisch, Ukrainisch und Vietnamesisch.
 
 ## 🚀 Installation als App (PWA)
 
@@ -309,7 +309,7 @@ Um Ihre eigene private oder öffentliche Instanz auf GitHub Pages zu betreiben, 
 - **⏱️ पोमोडोरो और वाचन आदत सांख्यिकी:** अंतराल के दौरान एनिमेटेड ऑवरग्लास स्क्रीनसेवर के साथ फ़ोकस टाइमर, GitHub-शैली गतिविधि हीटमैप के साथ स्थानीय आदत ट्रैकर, और निर्यात योग्य आँकड़े कार्ड।
 - **🔄 पूर्ण स्थानीय बैकअप और पुनर्स्थापना (JSON):** सभी पुस्तकों (IndexedDB से पूर्ण पाठ सहित), नोट्स, हाइलाइट्स, आँकड़ों, नियमों और सेटिंग्स का एक ही `.json` फ़ाइल में निर्यात और पुनर्स्थापना।
 - **✨ अभयारण्य वाचन संवर्द्धन:** पृष्ठ पलटने से बचाते हुए त्वरित नोट संपादन हेतु इंटरएक्टिव हाइलाइट पॉपओवर (`#highlightPopover`), 1-टैप "पढ़ना जारी रखें" कार्ड (`#continueReadingCard`), स्वच्छ 3-डॉट्स मेनू (`⋯`), और वेब शेयर लक्ष्य API।
-- **🌍 15 भाषाएँ:** 15 भाषाओं में पूर्ण मूल यूआई स्थानीयकरण: अंग्रेजी, ग्रीक, चीनी (सरलीकृत), फ्रेंच, जर्मन, हिन्दी, इंडोनेशियाई, इतालवी, जापानी, कोरियाई, पोलिश, पुर्तगाली, रूसी, स्पैनिश और तुर्की।
+- **🌍 19 भाषाएँ:** 19 भाषाओं में पूर्ण मूल यूआई स्थानीयकरण: अंग्रेजी, ग्रीक, चीनी (सरलीकृत व पारंपरिक), डच, फ्रेंच, जर्मन, हिन्दी, इंडोनेशियाई, इतालवी, जापानी, कोरियाई, पोलिश, पुर्तगाली, रूसी, स्पैनिश, तुर्की, यूक्रेनी और वियतनामी।
 
 ## 🚀 एप्लिकेशन के रूप में स्थापना (PWA)
 
@@ -325,7 +325,7 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 - `manifest.json` (PWA कॉन्फ़िगरेशन और मेटाडेटा)
 - `sw.js` (ऑफ़लाइन प्रीकैशिंग के लिए Service Worker)
 - `css/` (`styles.css` - संपूर्ण उत्तरदायी स्टाइलशीट)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - बूटस्ट्रैप, 15-भाषा शब्दकोश और मुख्य तर्क)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - बूटस्ट्रैप, 19-भाषा शब्दकोश और मुख्य तर्क)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - स्व-होस्टेड ऑफ़लाइन PDF इंजन)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ऐप आइकन)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - स्वागत स्क्रीन कलाकृतियां)
@@ -364,7 +364,7 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 - **⏱️ ポモドーロと読書習慣トラッカー：** 休憩時にテーマ連動の砂時計スクリーンセーバーが表示される集中タイマー、GitHubスタイルのアクティビティヒートマップを備えたローカル習慣トラッカー、統計共有カード。
 - **🔄 完全ローカルバックアップ＆復元 (JSON)：** すべての蔵書（IndexedDBの全文テキスト含む）、メモ、ハイライト、読書統計、カスタム抽出ルール、設定を1つの `.json` ファイルに完全書き出し・復元。
 - **✨ サンクチュアリ読書機能の向上：** 誤ってページをめくることなくメモ編集や色変更ができるインタラクティブ・ハイライトポップオーバー (`#highlightPopover`)、トップの「続きを読む」カード (`#continueReadingCard`)、すっきりとした3点ドットメニュー (`⋯`)、Web Share Target 対応。
-- **🌍 15言語対応：** 英語、ギリシャ語、簡体字中国語、フランス語、ドイツ語、ヒンディー語、日本語、ポルトガル語、ロシア語、スペイン語の完全なネイティブUI翻訳。
+- **🌍 19言語対応：** 英語、ギリシャ語、簡体字中国語、フランス語、ドイツ語、ヒンディー語、日本語、ポルトガル語、ロシア語、スペイン語の完全なネイティブUI翻訳。
 
 ## 🚀 アプリとしてインストール（PWA）
 
@@ -419,7 +419,7 @@ GitHub Pages上で自分専用または公開インスタンスをホストす�
 - **⏱️ Pomodoro & Estatísticas de Leitura:** Temporizador de foco com descanso de tela animado em ampulheta durante os intervalos, rastreador de hábitos local com mapa de calor no estilo GitHub e cartões de estatísticas exportáveis.
 - **🔄 Backup & Restauração Local Completa (JSON):** Exportação e restauração de toda a biblioteca (com texto completo do IndexedDB), notas, destaques, estatísticas, regras de scraping e preferências em um único arquivo `.json`.
 - **✨ Melhorias de Leitura Sanctuary:** Popover interativo de destaque (`#highlightPopover`) para edição rápida de notas e cores sem virar a página; cartão "Continuar Lendo" (`#continueReadingCard`); menu compacto de 3 pontos (`⋯`); e suporte ao Web Share Target.
-- **🌍 15 Idiomas:** Interface de usuário completa e traduzida nativamente em 15 idiomas: inglês, grego, chinês simplificado, francês, alemão, híndi, indonésio, italiano, japonês, coreano, polonês, português, russo, espanhol e turco.
+- **🌍 19 Idiomas:** Interface de usuário completa e traduzida nativamente em 19 idiomas: inglês, grego, chinês simplificado, chinês tradicional, holandês, francês, alemão, híndi, indonésio, italiano, japonês, coreano, polonês, português, russo, espanhol, turco, ucraniano e vietnamita.
 
 ## 🚀 Instalação como Aplicativo (PWA)
 
@@ -435,7 +435,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - `manifest.json` (configurações e metadados da PWA)
 - `sw.js` (Service Worker para operação offline e pré-carregamento)
 - `css/` (`styles.css` - folha de estilos responsiva completa)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - inicialização, dicionário de 15 idiomas e lógica central)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - inicialização, dicionário de 19 idiomas e lógica central)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - motor PDF offline auto-hospedado)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ícones do app)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - ilustrações da tela de boas-vindas)
@@ -474,7 +474,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - **⏱️ Помодоро и трекер привычки чтения:** Таймер концентрации с анимированной заставкой-песочными часами во время перерывов, локальный трекер привычек с тепловой картой активности в стиле GitHub и экспорт карточек со статистикой.
 - **🔄 Полный локальный бэкап и восстановление (JSON):** Экспорт и восстановление всей библиотеки (включая полный текст из IndexedDB), заметок, выделений, статистики, правил и настроек в один переносимый файл `.json`.
 - **✨ Улучшения спокойного чтения (Sanctuary):** Интерактивный поповер выделения (`#highlightPopover`) для редактирования заметок, смены цвета и создания карточек без случайного перелистывания страниц; карточка «Продолжить чтение» (`#continueReadingCard`); аккуратное меню из 3 точек (`⋯`); и поддержка Web Share Target.
-- **🌍 15 языков:** Полный перевод интерфейса на 15 языков: английский, греческий, китайский (упрощенный), французский, немецкий, хинди, индонезийский, итальянский, японский, корейский, польский, португальский, русский, испанский и турецкий.
+- **🌍 19 языков:** Полный перевод интерфейса на 19 языков: английский, греческий, китайский (упрощенный и традиционный), нидерландский, французский, немецкий, хинди, индонезийский, итальянский, японский, корейский, польский, португальский, русский, испанский, турецкий, украинский и вьетнамский.
 
 ## 🚀 Установка в качестве приложения (PWA)
 
@@ -490,7 +490,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - `manifest.json` (конфигурация и метаданные PWA)
 - `sw.js` (Service Worker для автономной работы и кэширования)
 - `css/` (`styles.css` - полная адаптивная таблица стилей)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - загрузка, словарь для 15 языков и основная логика)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - загрузка, словарь для 19 языков и основная логика)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - автономный движок рендеринга PDF)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - иконки приложения)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - графика экрана приветствия)
@@ -529,7 +529,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - **⏱️ Pomodoro y Estadísticas de Lectura:** Temporizador de enfoque con protector de pantalla animado de reloj de arena durante los descansos, seguimiento de hábitos local con mapa de calor de actividad estilo GitHub y tarjetas de estadísticas exportables.
 - **🔄 Copia de seguridad y Restauración local completa (JSON):** Exportación y restauración de toda la biblioteca (con texto completo de IndexedDB), notas, resaltados, estadísticas, reglas y ajustes en un único archivo `.json`.
 - **✨ Mejoras de lectura Sanctuary:** Popover interactivo de resaltado (`#highlightPopover`) para editar notas y colores sin pasar de página por error; tarjeta "Continuar Leyendo" (`#continueReadingCard`); menú limpio de 3 puntos (`⋯`); y soporte para Web Share Target.
-- **🌍 15 Idiomas:** Interfaz de usuario traducida de forma nativa e íntegra en 15 idiomas: inglés, griego, chino simplificado, francés, alemán, hindi, indonesio, italiano, japonés, coreano, polaco, portugués, ruso, español y turco.
+- **🌍 19 Idiomas:** Interfaz de usuario traducida de forma nativa e íntegra en 19 idiomas: inglés, griego, chino simplificado, chino tradicional, holandés, francés, alemán, hindi, indonesio, italiano, japonés, coreano, polaco, portugués, ruso, español, turco, ucraniano y vietnamita.
 
 ## 🚀 Instalación como Aplicación (PWA)
 
@@ -545,7 +545,7 @@ Para alojar su propia instancia privada o pública en GitHub Pages, suba todos l
 - `manifest.json` (configuración y metadatos de la PWA)
 - `sw.js` (Service Worker para funcionamiento offline y precaching)
 - `css/` (`styles.css` - hoja de estilos responsive completa)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - arranque seguro, diccionario de 15 idiomas y lógica central)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - arranque seguro, diccionario de 19 idiomas y lógica central)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - motor PDF offline autoalojado)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - iconos de la aplicación)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - imágenes de la pantalla de bienvenida)
@@ -583,7 +583,7 @@ Para alojar su propia instancia privada o pública en GitHub Pages, suba todos l
 - **⏱️ Pomodoro e Statistiche di Lettura:** Timer di concentrazione con salvaschermo animato a clessidra durante le pause, monitoraggio delle abitudini locali con mappa di calore stile GitHub e schede statistiche esportabili.
 - **🔄 Backup e Ripristino Locale Completo (JSON):** Esportazione e ripristino dell'intera libreria (con testo completo da IndexedDB), note, evidenziazioni, statistiche, regole e impostazioni in un unico file `.json`.
 - **✨ Miglioramenti di Lettura Sanctuary:** Popover interattivo per evidenziazioni (`#highlightPopover`) per modificare note e colori senza girare pagina involontariamente; scheda "Continua a leggere" (`#continueReadingCard`); menu compatto a 3 punti (`⋯`); e supporto Web Share Target.
-- **🌍 15 Lingue:** Interfaccia utente tradotta nativamente in 15 lingue: inglese, greco, cinese semplificato, francese, tedesco, hindi, indonesiano, italiano, giapponese, coreano, polacco, portoghese, russo, spagnolo e turco.
+- **🌍 19 Lingue:** Interfaccia utente tradotta nativamente in 19 lingue: inglese, greco, cinese semplificato, cinese tradizionale, olandese, francese, tedesco, hindi, indonesiano, italiano, giapponese, coreano, polacco, portoghese, russo, spagnolo, turco, ucraino e vietnamita.
 
 ## 🚀 Installazione come Applicazione (PWA)
 
@@ -599,7 +599,7 @@ Per ospitare la tua istanza privata o pubblica su GitHub Pages, carica tutti i f
 - `manifest.json` (configurazione e metadati della PWA)
 - `sw.js` (Service Worker per funzionamento offline e caching)
 - `css/` (`styles.css` - foglio di stile responsive completo)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - avvio sicuro, dizionario a 15 lingue e logica applicativa)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - avvio sicuro, dizionario a 19 lingue e logica applicativa)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - motore PDF offline locale)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - icone dell'applicazione)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - immagini della schermata di benvenuto)
@@ -638,7 +638,7 @@ Per ospitare la tua istanza privata o pubblica su GitHub Pages, carica tutti i f
 - **⏱️ 포모도로 타이머 & 독서 통계:** 휴식 시간 모래시계 화면보호기가 포함된 집중 타이머, GitHub 스타일 활동 잔디 히트맵 및 이미지 공유 카드를 지원하는 로컬 독서 통계.
 - **🔄 전체 로컬 백업 & 복원 (JSON):** 전체 라이브러리, 본문 텍스트, 메모, 통계, 규칙 및 설정을 단일 `.json` 파일로 안전하게 백업 및 복원.
 - **✨ Sanctuary 독서 편의 기능:** 실수로 페이지가 넘어가지 않도록 보호하는 인터랙티브 하이라이트 팝오버(`#highlightPopover`), "이어서 읽기" 카드(`#continueReadingCard`), 깔끔한 3단 메뉴(`⋯`), Web Share Target 지원.
-- **🌍 15개 언어 지원:** 한국어, 그리스어, 영어, 스페인어, 프랑스어, 독일어, 러시아어, 중국어 간체, 일본어, 힌디어, 포르투갈어, 이탈리아어, 폴란드어, 튀르키예어, 인도네시아어 15개 국어 완벽 로컬라이제이션.
+- **🌍 19개 언어 지원:** 한국어, 그리스어, 영어, 스페인어, 프랑스어, 독일어, 러시아어, 중국어 간체, 중국어 번체, 네덜란드어, 일본어, 힌디어, 포르투갈어, 이탈리아어, 폴란드어, 튀르키예어, 인도네시아어, 우크라이나어, 베트남어 19개 국어 완벽 로컬라이제이션.
 
 ## 🚀 앱 설치 안내 (PWA)
 
@@ -654,7 +654,7 @@ GitHub Pages에 배포하려면 다음 저장소 파일들을 업로드하세요
 - `manifest.json` (PWA 구성 및 메타데이터)
 - `sw.js` (오프라인 기능 및 캐싱을 위한 서비스 워커)
 - `css/` (`styles.css` - 반응형 스타일시트)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - 부트스트랩, 15개 언어 사전 및 핵심 로직)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - 부트스트랩, 19개 언어 사전 및 핵심 로직)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - 자체 호스팅 오프라인 PDF 엔진)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - 앱 아이콘)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - 웰컴 화면 배경)
@@ -693,7 +693,7 @@ GitHub Pages에 배포하려면 다음 저장소 파일들을 업로드하세요
 - **⏱️ Pomodoro i Statystyki Czytania:** Czasomierz skupienia z animowanym wygaszaczem klepsydry podczas przerw, lokalny rejestr nawyków z wykresem aktywności w stylu GitHub i kartami statystyk gotowymi do udostępnienia.
 - **🔄 Kompletna Kopia Zapasowa i Przywracanie (JSON):** Bezpieczny eksport i import całej biblioteki (wraz z pełnymi tekstami w IndexedDB), notatek, wyróżnień, statystyk, reguł i ustawień w jednym pliku `.json`.
 - **✨ Udoskonalenia Trybu Sanctuary:** Interaktywny popover wyróżnień (`#highlightPopover`) zapobiegający przypadkowym zmianom stron przy edycji notatek, karta "Kontynuuj czytanie" (`#continueReadingCard`), czyste menu opcji (`⋯`) oraz obsługa Web Share Target.
-- **🌍 15 Języków:** Interfejs użytkownika w pełni przetłumaczony na 15 języków: angielski, grecki, chiński uproszczony, francuski, niemiecki, hindi, indonezyjski, włoski, japoński, koreański, polski, portugalski, rosyjski, hiszpański oraz turecki.
+- **🌍 19 Języków:** Interfejs użytkownika w pełni przetłumaczony na 19 języków: angielski, grecki, chiński uproszczony, chiński tradycyjny, holenderski, francuski, niemiecki, hindi, indonezyjski, włoski, japoński, koreański, polski, portugalski, rosyjski, hiszpański, turecki, ukraiński oraz wietnamski.
 
 ## 🚀 Instalacja Aplikacji (PWA)
 
@@ -709,7 +709,7 @@ Aby uruchomić własną instalację na GitHub Pages, prześlij pliki repozytoriu
 - `manifest.json` (konfiguracja i metadane PWA)
 - `sw.js` (Service Worker do pracy offline i buforowania)
 - `css/` (`styles.css` - kompletny responsywny arkusz stylów)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - rozruch, słownik 15 języków i logika aplikacji)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - rozruch, słownik 19 języków i logika aplikacji)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - lokalny silnik PDF)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ikony aplikacji)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - obrazy tła)
@@ -748,7 +748,7 @@ Aby uruchomić własną instalację na GitHub Pages, prześlij pliki repozytoriu
 - **⏱️ Pomodoro ve Okuma İstatistikleri:** Molalarda hareketli kum saati ekran koruyuculu odaklanma zamanlayıcısı, GitHub tarzı aktivite ısı haritası ve paylaşılabilir istatistik kartları içeren yerel alışkanlık takipçisi.
 - **🔄 Tam Yerel Yedekleme ve Geri Yükleme (JSON):** Tüm kütüphaneyi (IndexedDB'deki tam metinler dahil), notları, vurguları, istatistikleri, kuralları ve ayarları tek bir `.json` dosyasında dışa aktarma ve geri yükleme.
 - **✨ Sanctuary Okuma Geliştirmeleri:** Sayfa geçişlerini koruyan etkileşimli vurgu popover'ı (`#highlightPopover`), "Okumaya Devam Et" kartı (`#continueReadingCard`), sade 3 nokta menüsü (`⋯`) ve Web Share Target desteği.
-- **🌍 15 Dil:** Türkçe, Yunanca, İngilizce, İspanyolca, Fransızca, Almanca, Rusça, Basitleştirilmiş Çince, Japonca, Hintçe, Portekizce, İtalyanca, Korece, Lehçe ve Endonezce olmak üzere 15 dilde eksiksiz yerel kullanıcı arayüzü.
+- **🌍 19 Dil:** Türkçe, Yunanca, İngilizce, İspanyolca, Fransızca, Almanca, Rusça, Basitleştirilmiş Çince, Geleneksel Çince, Felemenkçe, Japonca, Hintçe, Portekizce, İtalyanca, Korece, Lehçe, Endonezce, Ukraynaca ve Vietnamca olmak üzere 19 dilde eksiksiz yerel kullanıcı arayüzü.
 
 ## 🚀 Uygulama Olarak Yükleme (PWA)
 
@@ -764,7 +764,7 @@ Kendi kütüphanenizi GitHub Pages üzerinde çalıştırmak için tüm proje do
 - `manifest.json` (PWA yapılandırması ve meta verileri)
 - `sw.js` (çevrimdışı çalışma ve önbellekleme için Service Worker)
 - `css/` (`styles.css` - duyarlı stil dosyası)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - güvenli önyükleme, 15 dil sözlüğü ve uygulama mantığı)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - güvenli önyükleme, 19 dil sözlüğü ve uygulama mantığı)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - yerel PDF motoru)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - uygulama simgeleri)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - karşılama ekranı görselleri)
@@ -803,7 +803,7 @@ Kendi kütüphanenizi GitHub Pages üzerinde çalıştırmak için tüm proje do
 - **⏱️ Timer Pomodoro & Statistik Membaca:** Timer fokus dengan screensaver animasi jam pasir saat istirahat, pelacak kebiasaan membaca lokal dengan peta panas aktivitas gaya GitHub, dan kartu statistik yang dapat dibagikan.
 - **🔄 Cadangan & Pemulihan Lokal Penuh (JSON):** Ekspor dan pemulihan seluruh perpustakaan (termasuk teks lengkap dari IndexedDB), catatan, sorotan, statistik, aturan, dan pengaturan dalam satu file `.json`.
 - **✨ Penyempurnaan Membaca Sanctuary:** Popover sorotan interaktif (`#highlightPopover`) untuk mengedit catatan tanpa salah membalik halaman; kartu "Lanjutkan Membaca" (`#continueReadingCard`); menu ringkas 3 titik (`⋯`); dan dukungan Web Share Target.
-- **🌍 15 Bahasa:** Antarmuka pengguna diterjemahkan secara native dalam 15 bahasa: Indonesia, Inggris, Yunani, Spanyol, Prancis, Jerman, Rusia, Mandarin Sederhana, Jepang, Hindi, Portugis, Italia, Korea, Polandia, dan Turki.
+- **🌍 19 Bahasa:** Antarmuka pengguna diterjemahkan secara native dalam 19 bahasa: Indonesia, Inggris, Yunani, Spanyol, Prancis, Jerman, Rusia, Mandarin Sederhana, Mandarin Tradisional, Belanda, Jepang, Hindi, Portugis, Italia, Korea, Polandia, Turki, Ukraina, dan Vietnam.
 
 ## 🚀 Instalasi sebagai Aplikasi (PWA)
 
@@ -819,7 +819,7 @@ Untuk menjalankan instans Anda di GitHub Pages, unggah seluruh file repositori:
 - `manifest.json` (konfigurasi dan metadata PWA)
 - `sw.js` (Service Worker untuk fungsi offline dan caching)
 - `css/` (`styles.css` - stylesheet responsif lengkap)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - boot aman, kamus 15 bahasa, dan logika aplikasi)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - boot aman, kamus 19 bahasa, dan logika aplikasi)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - mesin PDF offline lokal)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ikon aplikasi)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - gambar latar layar pembuka)
@@ -839,5 +839,224 @@ Untuk menjalankan instans Anda di GitHub Pages, unggah seluruh file repositori:
 - **Catatan Tautan Web:** Fitur "Ambil dari URL" menggunakan proksi CORS publik untuk melewati batasan peramban. Untuk privasi offline 100%, gunakan **«Tempel HTML (Ctrl+U)»** atau impor file lokal.
 
 [↑ Kembali ke pilihan bahasa](#languages)
+
+---
+<a id="lang-zh-tw"></a>
+# Diavasma 📖 (繁體中文)
+
+> 一個安靜、100% 離線的沉浸式閱讀聖所，專為研讀、整理書籍與長篇文章而設計 — 無廣告、零追蹤，完全不依賴外部伺服器。
+
+## ✨ 主要特色
+
+- **📚 多格式支援與分類整理：** 原生離線閱讀 EPUB、PDF（配備智慧斷行修復與持久 IndexedDB 分頁快取的離線排版引擎）、Markdown (`.md`) 和純文字 (`.txt`)。透過即時情境 `+` 匯入彈窗將內容歸類為書籍、文章或自訂群組。
+- **🌐 網址文章擷取與自訂規則：** 智慧擷取網頁文章內容、針對個別網站設定 CSS 擷取規則（支援 JSON 匯入／匯出）、直接貼上原始 HTML 程式碼 (`Ctrl+U`)，並自動離線儲存網站圖示 (favicon)。
+- **⚡ 100% 離線 PWA (Progressive Web App)：** 斷網環境下亦可完整運作。支援在 Android、iOS、Windows 與 macOS 上透過現代瀏覽器安裝為獨立應用程式，具備健全的 Service Worker 預先快取與零閃爍的氛圍歡迎畫面（明亮／深色、桌面／行動裝置）。
+- **🎨 6 款精緻閱讀主題與本機字型：** 紙韻 (Paper)、暖杏 (Warm)、初苔 (Sage)、青石 (Slate)、玄夜 (Night) 與極黑 (AMOLED)。內建高品質本機字型（`Literata`、`Newsreader`、`Source Serif 4`、`Lora`、`Merriweather`、`Atkinson Hyperlegible Next`、`Inter`），支援上傳自訂字型檔（`.ttf`、`.otf`、`.woff`、`.woff2`）、文字對齊、自訂行高與單／雙頁檢視切換。
+- **🎧 音樂與氛圍音效：** 內建 Winamp 風格音訊播放器（IndexedDB 持久播放清單、隨機播放、3 種循環模式、進度列與行動版音量調節），並提供 6 種 Web Audio 程序化氛圍白噪音（細雨、壁爐柴火、海浪、林風、圖書館與黑膠、深沉棕噪音），支援鎖定畫面背景播放。
+- **🗣️ 語音朗讀 (TTS) 與筆記：** 支援即時句子醒目標示與鎖定畫面背景朗讀的語音合成。提供 3 色標記、研讀筆記、Markdown 匯出、選取文字即時翻譯，以及能套用閱讀器排版的精美金句圖卡 (Quote Share Cards) 製作分享。
+- **⏱️ 番茄時鐘與閱讀統計：** 附帶休息時間沙漏螢幕保護程式的專注計時器，本機習慣追蹤器（GitHub 風格熱度圖與可匯出圖卡）。
+- **🔄 完整本機備份與還原 (JSON)：** 將整個書庫（包含 IndexedDB 中的完整內文）、筆記、標記、統計資料、自訂規則與偏好設定完整匯出或還原為單一 `.json` 檔案。
+- **✨ Sanctuary 閱讀防呆與體驗升級：** 互動式標記彈窗 (`#highlightPopover`) 避免筆記編輯時意外翻頁；「繼續閱讀」捷徑卡片 (`#continueReadingCard`)；簡約 3 點選單 (`⋯`)；以及 Web Share Target 原生分享支援。
+- **🌍 19 種語言支援：** 完整繁體中文介面，並支援英文、希臘文、簡體中文、荷蘭文、法文、德文、印地文、印尼文、義大利文、日文、韓文、波蘭文、葡萄牙文、俄文、西班牙文、土耳其文、烏克蘭文與越南文。
+
+## 🚀 應用程式安裝指南 (PWA)
+
+1. 在現代瀏覽器（Chrome、Edge、Safari、Brave、Firefox）中開啟 `index.html`（或您的 GitHub Pages 網址）。
+2. 點擊網址列上的**「安裝應用程式」**圖示，或從選單中選取 **(⋯) → 安裝 Diavasma**。
+3. 在 **iOS (Safari)** 上：點擊**分享 (Share)** 按鈕 → 選擇**「加入主畫面」(Add to Home Screen)**。
+
+## 🌐 在 GitHub Pages 上託管
+
+若要在 GitHub Pages 上架設專屬於您的線上閱讀空間，請將專案檔案完整上傳：
+
+- `index.html`（核心應用程式結構與閱讀器介面）
+- `manifest.json`（PWA 設定與中繼資料）
+- `sw.js`（離線執行與快取的 Service Worker）
+- `css/`（`styles.css` - 完整響應式樣式表）
+- `js/`（`boot.js`、`i18n.js`、`app.js` - 安全引導、19 語言詞典與應用程式核心邏輯）
+- `libs/`（`pdf.min.js`、`pdf.worker.min.js` - 自託管離線 PDF 引擎）
+- `assets/icons/`（`icon.svg`、`icon-192.png`、`icon-512.png`、`apple-touch-icon.png` - 圖示）
+- `assets/images/`（`DesktopD.png`、`DesktopL.png`、`MobileD.jpg`、`MobileL.jpg` - 歡迎畫面桌布）
+- `fonts/`（本機 WOFF2 字型檔與 `fonts.css`）
+- `README.md`（專案說明文件）
+
+1. 在 GitHub 上建立一個新的存放庫 (Repository)。
+2. 將所有檔案推送 (Push) 或上傳至該存放庫。
+3. 進入存放庫設定頁面 (**Settings → Pages**)。
+4. 在 **Build and deployment** 下選擇 **Deploy from a branch**，指定 `main`（或 `master`）分支及 `/ (root)` 資料夾，點擊 **Save**。
+5. 數分鐘後，您的個人閱讀聖所即可透過 `https://<username>.github.io/<repo-name>/` 隨時存取與安裝。
+
+## 🔒 隱私至上 (Privacy First)
+
+- **100% 本機資料與嚴格離線模式：** Diavasma 絕不收集、儲存或傳輸任何個人隱私、閱讀紀錄或檔案內容至外部伺服器。所有書籍、筆記與統計數據完全留存在您的裝置中 (`localStorage` 與 `IndexedDB`)。內建**嚴格離線模式**（完全阻斷外部網路請求）與一鍵清除本機資料功能。
+- **字型與資源完全本機化：** 所有排版字型、音效產生器與閱讀解析引擎皆於瀏覽器本機端執行，絕不向 Google Fonts 等第三方伺服器發送網路連線。
+- **網頁擷取說明：** 「從網址擷取」功能使用公開 CORS 代理以突破瀏覽器跨域限制。若追求 100% 離線隱私，請使用**「貼上 HTML (Ctrl+U)」**或直接匯入本機檔案。
+
+[↑ 返回語言選擇](#languages)
+
+---
+
+<a id="lang-uk"></a>
+# Diavasma 📖 (Українська)
+
+> Затишний, на 100% офлайн-простір для читання, навчання та організації книг і статей — без реклами, без стеження та без залежностей від зовнішніх серверів.
+
+## ✨ Основні можливості
+
+- **📚 Мультиформатна підтримка та організація:** Нативне читання офлайн для форматів EPUB, PDF (офлайн-рушій перекомпонування тексту з інтелектуальним очищенням розривів рядків та постійним кешем пагінації в IndexedDB), Markdown (`.md`) та простого тексту (`.txt`). Швидке впорядкування матеріалів за групами (Книги, Статті, власні підбірки) за допомогою контекстного модального вікна `+`.
+- **🌐 Статті за URL та власні селектори:** Розумне вилучення статей із веб-посилань, індивідуальні правила CSS-скрейпінгу для сайтів (з імпортом/експортом JSON), пряме вставлення вихідного HTML-коду (`Ctrl+U`) та автоматичне збереження іконки сайту (favicon) для роботи офлайн.
+- **⚡ 100% Офлайн PWA (Progressive Web App):** Повна функціональність без підключення до Інтернету. Можливість встановлення як окремого застосунку на Android, iOS, Windows та macOS через сучасні браузери, надійне попереднє кешування через Service Worker та затишний вітальний екран без мерехтіння (Світлий/Темний, Десктоп/Мобільний).
+- **🎨 6 Вишуканих тем та локальна типографіка:** Теми Папір (Paper), Тепла (Warm), Шавлія (Sage), Сланець (Slate), Ніч (Night) та AMOLED. Набір локальних шрифтів (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), завантаження власних шрифтів (`.ttf`, `.otf`, `.woff`, `.woff2`), вирівнювання тексту, налаштування міжрядкового інтервалу та перемикання режиму 1 чи 2 сторінок.
+- **🎧 Музика та звукові пейзажі:** Вбудований міні-аудіоплеєр у стилі Winamp (постійний плейлист в IndexedDB, випадковий порядок, 3 режими повтору, смуга пошуку, регулятор гучності для мобільних) та 6 процедурних звукових пейзажів Web Audio (Дощ, Камін, Океанські хвилі, Ліс і вітер, Бібліотека та вініл, Глибокий коричневий шум) із фоновим відтворенням при вимкненому екрані.
+- **🗣️ Читання вголос (TTS) та нотатки:** Озвучення тексту з підсвічуванням поточного речення та роботою у фоновому режимі. Виділення 3 кольорами, навчальні нотатки, експорт у Markdown, миттєвий переклад виділеного тексту та генератор карток із цитатами (Quote Share Cards).
+- **⏱️ Помодоро та статистика читання:** Таймер фокусування з анімованою заставкою-пісковим годинником під час перерв, локальний трекер звичок із тепловою картою активності в стилі GitHub та картками статистики.
+- **🔄 Повне локальне резервне копіювання та відновлення (JSON):** Надійний експорт та імпорт усієї бібліотеки (разом із повними текстами в IndexedDB), нотаток, виділень, статистики, правил та налаштувань в один файл `.json`.
+- **✨ Зручності режиму Sanctuary:** Інтерактивне вікно виділень (`#highlightPopover`), що запобігає випадковому перегортанню сторінок під час редагування нотаток; картка «Продовжити читання» (`#continueReadingCard`); компактне меню (`⋯`); підтримка Web Share Target.
+- **🌍 19 Мов інтерфейсу:** Українська, англійська, грецька, китайська (спрощена та традиційна), нідерландська, французька, німецька, гінді, індонезійська, італійська, японська, корейська, польська, португальська, російська, іспанська, турецька та в'єтнамська.
+
+## 🚀 Встановлення застосунку (PWA)
+
+1. Відкрийте `index.html` (або URL вашого сайту на GitHub Pages) у сучасному браузері (Chrome, Edge, Safari, Brave, Firefox).
+2. Натисніть піктограму **«Встановити застосунок»** в адресному рядку або в меню **(⋯) → Встановити Diavasma**.
+3. На **iOS (Safari)**: Натисніть кнопку **Поділитися (Share)** → виберіть **«На початковий екран» (Add to Home Screen)**.
+
+## 🌐 Хостинг на GitHub Pages
+
+Щоб розгорнути власну онлайн-бібліотеку на GitHub Pages, завантажте всі файли репозиторію:
+
+- `index.html` (основна структура застосунку та інтерфейс читача)
+- `manifest.json` (конфігурація та метадані PWA)
+- `sw.js` (Service Worker для автономної роботи та кешування)
+- `css/` (`styles.css` - повний адаптивний файл стилів)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - завантажувач, словник для 19 мов і логіка застосунку)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - локальний рушій PDF)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - іконки застосунку)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - фонові зображення екрана привітання)
+- `fonts/` (локальні веб-шрифти WOFF2 та `fonts.css`)
+- `README.md` (документація проєкту)
+
+1. Створіть новий репозиторій на GitHub.
+2. Завантажте всі перелічені файли.
+3. Перейдіть до налаштувань репозиторію (**Settings → Pages**).
+4. У розділі **Build and deployment** виберіть **Deploy from a branch**, вкажіть гілку `main` (або `master`) та каталог `/ (root)`, після чого натисніть **Save**.
+5. За кілька хвилин ваш затишний простір для читання стане доступним за адресою `https://<username>.github.io/<repo-name>/`.
+
+## 🔒 Конфіденційність понад усе (Privacy First)
+
+- **100% Локальні дані та суворий офлайн-режим:** Diavasma не збирає, не зберігає і не передає жодних персональних даних, історії читання чи вмісту файлів на зовнішні сервери. Усі книги, нотатки та статистика зберігаються виключно на вашому пристрої (`localStorage` та `IndexedDB`). Доступний **Суворий офлайн-режим** (повне блокування зовнішніх мережевих запитів) та очищення даних в один клік.
+- **Локальні шрифти та ресурси:** Усі шрифти, генератори аудіо та рушії рендерингу працюють локально без звернень до Google Fonts або інших сторонніх сервісів.
+- **Примітка щодо веб-посилань:** Функція «Отримати за URL» використовує публічні CORS-проксі для обходу браузерних обмежень. Для повної приватності та роботи офлайн використовуйте **«Вставити HTML (Ctrl+U)»** або локальні файли.
+
+[↑ Повернутися до вибору мови](#languages)
+
+---
+
+<a id="lang-nl"></a>
+# Diavasma 📖 (Nederlands)
+
+> Een rustig, 100% offline toevluchtsoord om boeken en artikelen te bestuderen en te ordenen — zonder advertenties, zonder tracking en zonder serverafhankelijkheden.
+
+## ✨ Belangrijkste Kenmerken
+
+- **📚 Veelzijdige Formaatondersteuning & Organisatie:** Systeemeigen offline lezen voor EPUB, PDF (offline reflow-engine met slimme regelafbreking-opschoning en permanente paginering-cache in IndexedDB), Markdown (`.md`) en platte tekst (`.txt`). Rangschik items in groepen (Boeken, Artikelen, eigen collecties) via een snelle contextuele `+` importmodal.
+- **🌐 Artikelen via URL & Aangepaste Selectoren:** Slimme artikelextractie van weblinks, sitespecifieke CSS-scraperregels (met JSON-import/export), direct ruwe HTML-broncode plakken (`Ctrl+U`) en automatische offline favicon-download.
+- **⚡ 100% Offline PWA (Progressive Web App):** Volledig functioneel zonder internetverbinding. Installeerbaar als zelfstandige app op Android, iOS, Windows en macOS via moderne browsers, voorzien van robuuste Service Worker-caching en een sfeervol welkomstscherm zonder flikkering (Licht/Donker, Desktop/Mobiel).
+- **🎨 6 Zorgvuldig Gekozen Thema's & Lokale Typografie:** Thema's Papier (Paper), Warm, Salie (Sage), Leisteen (Slate), Nacht (Night) en AMOLED. Inclusief lokale kwaliteitslettertypen (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), ondersteuning voor eigen lettertypen (`.ttf`, `.otf`, `.woff`, `.woff2`), tekstuitlijning, regelafstand en weergave met 1 of 2 pagina's.
+- **🎧 Muziek & Geluidslandschappen:** Geïntegreerde audiospeler in Winamp-stijl (vaste afspeellijst in IndexedDB, shuffle, 3 herhaalmodi, zoekbalk, mobiele volumeregeling) en 6 procedurele Web Audio-sfeergeluiden (Regen, Open haard, Oceaangolven, Bos & wind, Bibliotheek & vinyl, Diepe bruine ruis) met achtergrondweergave bij vergrendeld scherm.
+- **🗣️ Voorlezen (TTS) & Notities:** Hardop voorlezen met live zinsmarkering en achtergrondweergave. Markeringen in 3 kleuren, studienotities, Markdown-export, directe vertaling van geselecteerde tekst en het genereren van deelbare citaatfotokaarten (Quote Share Cards).
+- **⏱️ Pomodoro & Leesstatistieken:** Focustimer met geanimeerde zandloper-screensaver tijdens pauzes, lokale gewoontetracker met GitHub-achtige activiteitshittemap en exporteerbare statistiekenkaarten.
+- **🔄 Volledige Lokale Back-up & Herstel (JSON):** Exporteer en herstel de volledige bibliotheek (inclusief volledige teksten in IndexedDB), notities, markeringen, statistieken, regels en instellingen in één enkel `.json`-bestand.
+- **✨ Sanctuary Leesverbeteringen:** Interactieve markeerpopover (`#highlightPopover`) om notities te bewerken zonder per ongeluk van pagina te wisselen; snelkoppeling "Verder lezen" (`#continueReadingCard`); compact 3-puntenmenu (`⋯`); en ondersteuning voor Web Share Target.
+- **🌍 19 Talen:** Volledig vertaald in het Nederlands, Engels, Grieks, Vereenvoudigd Chinees, Traditioneel Chinees, Frans, Duits, Hindi, Indonesisch, Italiaans, Japans, Koreaans, Pools, Portugees, Russisch, Spaans, Turks, Oekraïens en Vietnamees.
+
+## 🚀 Installatie als App (PWA)
+
+1. Open `index.html` (of uw GitHub Pages-URL) in een moderne browser (Chrome, Edge, Safari, Brave, Firefox).
+2. Klik op het pictogram **«App installeren»** in de adresbalk of kies in het menu **(⋯) → Diavasma installeren**.
+3. Op **iOS (Safari)**: Tik op de knop **Delen (Share)** → kies **«Zet op beginscherm» (Add to Home Screen)**.
+
+## 🌐 Hosting op GitHub Pages
+
+Om uw eigen instantie op GitHub Pages te hosten, uploadt u alle bestanden van de repository:
+
+- `index.html` (hoofdstructuur van de app en leesinterface)
+- `manifest.json` (PWA-configuratie en metadata)
+- `sw.js` (Service Worker voor offline werking en caching)
+- `css/` (`styles.css` - responsieve stylesheet)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - bootstrap, 19-talen woordenboek en app-logica)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - lokale PDF-engine)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - app-pictogrammen)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - achtergronden welkomstscherm)
+- `fonts/` (lokale WOFF2-lettertypen en `fonts.css`)
+- `README.md` (projectdocumentatie)
+
+1. Maak een nieuwe repository aan op GitHub.
+2. Upload alle bovenstaande bestanden.
+3. Ga naar de repository-instellingen (**Settings → Pages**).
+4. Kies onder **Build and deployment** voor **Deploy from a branch**, selecteer de branch `main` (of `master`) en de map `/ (root)`, en klik op **Save**.
+5. Binnen enkele minuten is uw leestoevluchtsoord wereldwijd beschikbaar via `https://<username>.github.io/<repository-naam>/`.
+
+## 🔒 Privacy Eerst (Privacy First)
+
+- **100% Lokale Gegevens & Strikte Offline-Modus:** Diavasma verzamelt, bewaart of verzendt nooit persoonlijke gegevens, leesgeschiedenis of bestandsinhoud naar externe servers. Alle boeken, notities en statistieken blijven uitsluitend op uw apparaat (`localStorage` en `IndexedDB`). Inclusief **Strikte Offline-Modus** (blokkeert alle externe verzoeken) en een knop om alle lokale gegevens te wissen.
+- **Lokale Lettertypen & Bronnen:** Alle typografie, audiogeneratoren en weergave-engines draaien lokaal zonder verbinding te maken met externe servers zoals Google Fonts.
+- **Opmerking over Weblinks:** De functie «Ophalen van URL» maakt gebruik van openbare CORS-proxy's om browserbeperkingen te omzeilen. Voor 100% privacy en offline gebruik kiest u voor **«HTML plakken (Ctrl+U)»** of lokale bestanden.
+
+[↑ Terug naar taalkeuze](#languages)
+
+---
+
+<a id="lang-vi"></a>
+# Diavasma 📖 (Tiếng Việt)
+
+> Không gian đọc sách yên tĩnh, 100% ngoại tuyến, giúp bạn nghiên cứu và sắp xếp sách cùng các bài viết — không quảng cáo, không theo dõi và hoàn toàn không phụ thuộc máy chủ.
+
+## ✨ Tính năng nổi bật
+
+- **📚 Hỗ trợ đa định dạng & Tổ chức khoa học:** Đọc ngoại tuyến gốc cho EPUB, PDF (công cụ tái sắp xếp văn bản ngoại tuyến với tính năng dọn dẹp ngắt dòng thông minh và bộ nhớ đệm phân trang IndexedDB bền vững), Markdown (`.md`) và văn bản thuần (`.txt`). Dễ dàng sắp xếp các mục thành nhóm (Sách, Bài viết, bộ sưu tập tùy chỉnh) bằng cửa sổ nhập `+` tiện lợi.
+- **🌐 Lấy bài viết từ URL & Bộ chọn tùy chỉnh:** Trích xuất bài viết thông minh từ liên kết web, thiết lập quy tắc thu thập CSS riêng cho từng trang (hỗ trợ nhập/xuất JSON), dán trực tiếp mã nguồn HTML gốc (`Ctrl+U`) và tự động tải biểu tượng trang web (favicon) ngoại tuyến.
+- **⚡ PWA 100% Ngoại tuyến (Progressive Web App):** Hoạt động hoàn hảo khi không có kết nối internet. Có thể cài đặt như một ứng dụng độc lập trên Android, iOS, Windows và macOS qua trình duyệt hiện đại, với bộ nhớ đệm Service Worker mạnh mẽ và màn hình chào mừng mượt mà không chớp nháy (Sáng/Tối, Máy tính/Điện thoại).
+- **🎨 6 Chủ đề tinh tế & Phông chữ nội bộ:** Giấy (Paper), Ấm áp (Warm), Xanh xám (Sage), Phiến đá (Slate), Đêm (Night) và AMOLED. Tích hợp sẵn các phông chữ chất lượng cao (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), hỗ trợ tải lên phông chữ tùy chỉnh (`.ttf`, `.otf`, `.woff`, `.woff2`), căn lề văn bản, chỉnh khoảng cách dòng và chế độ xem 1 hoặc 2 trang.
+- **🎧 Âm nhạc & Không gian âm thanh:** Trình phát âm thanh mini tích hợp phong cách Winamp (danh sách phát bền vững trong IndexedDB, phát ngẫu nhiên, 3 chế độ lặp, thanh tua và điều chỉnh âm lượng di động) cùng 6 âm thanh môi trường Web Audio mô phỏng (Mưa rơi, Lửa lò sưởi, Sóng biển, Rừng & gió, Thư viện & đĩa than, Tiếng ồn nâu sâu) có thể phát trong nền khi tắt màn hình.
+- **🗣️ Đọc to (TTS) & Ghi chú:** Đọc văn bản bằng giọng nói với tính năng tô sáng câu đang đọc theo thời gian thực và phát trong nền. Đánh dấu với 3 màu sắc, ghi chú học tập, xuất sang Markdown, dịch nhanh văn bản đã chọn và tạo thẻ trích dẫn đẹp mắt (Quote Share Cards) giữ nguyên kiểu chữ của trình đọc.
+- **⏱️ Đồng hồ Pomodoro & Thống kê đọc:** Bộ đếm thời gian tập trung với màn hình chờ đồng hồ cát sinh động trong giờ nghỉ, theo dõi thói quen đọc sách cục bộ với biểu đồ nhiệt kiểu GitHub và thẻ ảnh thống kê có thể chia sẻ.
+- **🔄 Sao lưu & Khôi phục toàn bộ cục bộ (JSON):** Xuất và khôi phục toàn bộ thư viện (bao gồm toàn văn trong IndexedDB), ghi chú, đánh dấu, thống kê, quy tắc và cài đặt vào một tệp `.json` duy nhất.
+- **✨ Cải tiến trải nghiệm Sanctuary:** Cửa sổ popover đánh dấu tương tác (`#highlightPopover`) ngăn việc lật trang nhầm khi chỉnh sửa ghi chú; thẻ lối tắt "Tiếp tục đọc" (`#continueReadingCard`); menu 3 chấm tinh gọn (`⋯`); và hỗ trợ Web Share Target.
+- **🌍 Hỗ trợ 19 ngôn ngữ:** Giao diện Tiếng Việt hoàn chỉnh, cùng với tiếng Anh, Hy Lạp, Trung Quốc (Giản thể & Phồn thể), Hà Lan, Pháp, Đức, Hindi, Indonesia, Ý, Nhật Bản, Hàn Quốc, Ba Lan, Bồ Đào Nha, Nga, Tây Ban Nha, Thổ Nhĩ Kỳ và Ukraina.
+
+## 🚀 Hướng dẫn cài đặt ứng dụng (PWA)
+
+1. Mở `index.html` (hoặc URL trang web của bạn trên GitHub Pages) trong trình duyệt hiện đại (Chrome, Edge, Safari, Brave, Firefox).
+2. Nhấn vào biểu tượng **«Cài đặt ứng dụng»** trên thanh địa chỉ hoặc chọn trong menu **(⋯) → Cài đặt Diavasma**.
+3. Trên **iOS (Safari)**: Nhấn nút **Chia sẻ (Share)** → chọn **«Thêm vào Màn hình chính» (Add to Home Screen)**.
+
+## 🌐 Triển khai trên GitHub Pages
+
+Để lưu trữ không gian đọc sách cá nhân trên GitHub Pages, hãy tải lên toàn bộ tệp trong kho lưu trữ:
+
+- `index.html` (cấu trúc ứng dụng chính và giao diện đọc sách)
+- `manifest.json` (cấu hình và siêu dữ liệu PWA)
+- `sw.js` (Service Worker hỗ trợ ngoại tuyến và lưu vào bộ nhớ đệm)
+- `css/` (`styles.css` - bảng kiểu phản hồi đầy đủ)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - khởi động an toàn, từ điển 19 ngôn ngữ và logic ứng dụng)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - công cụ đọc PDF ngoại tuyến tự lưu trữ)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - biểu tượng ứng dụng)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - hình ảnh chào mừng)
+- `fonts/` (phông chữ web WOFF2 cục bộ và `fonts.css`)
+- `README.md` (tài liệu dự án)
+
+1. Tạo một kho lưu trữ (repository) mới trên GitHub.
+2. Tải lên hoặc đẩy (push) tất cả các tệp trên vào kho lưu trữ.
+3. Chuyển đến mục cài đặt kho lưu trữ (**Settings → Pages**).
+4. Trong phần **Build and deployment**, chọn **Deploy from a branch**, chọn nhánh `main` (hoặc `master`) và thư mục `/ (root)`, sau đó nhấn **Save**.
+5. Sau vài phút, không gian đọc sách của bạn sẽ sẵn sàng hoạt động tại `https://<tên-người-dùng>.github.io/<tên-kho-lưu-trữ>/`.
+
+## 🔒 Ưu tiên quyền riêng tư (Privacy First)
+
+- **100% Dữ liệu cục bộ & Chế độ ngoại tuyến nghiêm ngặt:** Diavasma không thu thập, lưu trữ hay gửi bất kỳ dữ liệu cá nhân, lịch sử đọc sách hay nội dung tệp nào đến máy chủ bên ngoài. Mọi sách, ghi chú và thống kê chỉ nằm trên thiết bị của bạn (`localStorage` và `IndexedDB`). Tích hợp **Chế độ ngoại tuyến nghiêm ngặt** (ngăn chặn mọi kết nối mạng bên ngoài) và nút xóa sạch dữ liệu cục bộ chỉ với một lần bấm.
+- **Phông chữ & Tài nguyên cục bộ:** Tất cả phông chữ, trình phát âm thanh và công cụ đọc đều chạy trực tiếp trên máy của bạn, hoàn toàn không gọi đến máy chủ bên thứ ba như Google Fonts.
+- **Lưu ý về liên kết web:** Tính năng "Lấy từ URL" sử dụng proxy CORS công cộng để vượt qua hạn chế của trình duyệt. Để đảm bảo 100% riêng tư và dùng ngoại tuyến, hãy dùng **«Dán HTML (Ctrl+U)»** hoặc các tệp cục bộ.
+
+[↑ Quay lại danh sách ngôn ngữ](#languages)
 
 ---

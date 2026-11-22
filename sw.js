@@ -1,5 +1,5 @@
-/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v36) */
-const CACHE_NAME = "diavasma-shell-v36";
+/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v37) */
+const CACHE_NAME = "diavasma-shell-v37";
 
 const PRECACHE_URLS = [
   "./",
