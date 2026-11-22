@@ -230,6 +230,14 @@
     }
 
     .app.zen .topbar {
+      position: fixed;
+      top: var(--safe-top);
+      left: 0;
+      right: 0;
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
       opacity: 0;
       pointer-events: none;
     }
@@ -238,6 +246,10 @@
     .app.zen .topbar:focus-within {
       opacity: 1;
       pointer-events: auto;
+    }
+
+    .app.zen .reading {
+      padding: 6px clamp(6px, 2vw, 20px) calc(8px + var(--safe-bottom));
     }
 
     .brand {
@@ -258,7 +270,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: "Cinzel", "Literata", Georgia, serif;
+      font-family: "Literata", Georgia, serif;
       font-weight: 700;
       font-size: 17px;
       flex-shrink: 0;
@@ -271,13 +283,6 @@
     .brand-icon-btn:hover {
       transform: scale(1.06);
     }
-    button.brand {
-      background: transparent;
-      border: none;
-      padding: 0;
-      cursor: default;
-      text-align: left;
-    }
     .brand-icon {
       width: 34px;
       height: 34px;
@@ -286,7 +291,7 @@
       color: var(--sheet);
       display: grid;
       place-items: center;
-      font-family: "Cinzel", "Literata", "Playfair Display", Georgia, serif;
+      font-family: "Literata", Georgia, serif;
       font-weight: 700;
       font-size: 18px;
       letter-spacing: normal;
@@ -643,12 +648,6 @@
       align-items: center;
     }
 
-    .composer-meta-row {
-      display: grid;
-      grid-template-columns: 1fr 220px;
-      gap: 10px;
-    }
-
     .composer-input,
     .composer-select {
       height: 40px;
@@ -787,7 +786,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      animation: fadeIn 0.15s ease;
+      animation: fadeUp 0.15s var(--ease-spring);
     }
 
     .group-popover-lbl {
@@ -1131,17 +1130,6 @@
       background: rgba(200, 50, 50, 0.12);
     }
 
-    .btn.danger-outline {
-      background: transparent;
-      border: 1px solid rgba(224, 82, 82, 0.4);
-      color: #e05252;
-    }
-
-    .btn.danger-outline:hover {
-      background: rgba(224, 82, 82, 0.12);
-      border-color: #e05252;
-    }
-
     .move-group-select {
       height: 32px;
       max-width: 120px;
@@ -1382,6 +1370,12 @@
       border-radius: 4px;
       padding: 1px 0;
       cursor: pointer;
+      transition: opacity 0.15s ease, filter 0.15s ease;
+    }
+
+    .page-content mark.user-hl:hover {
+      filter: brightness(0.92);
+      text-decoration: underline dotted var(--accent);
     }
 
     .page-content mark.hl-yellow {
@@ -1602,14 +1596,6 @@
 
     
     /* --- Interactive Highlight Popover --- */
-    mark.user-hl {
-      cursor: pointer;
-      transition: opacity 0.15s ease, filter 0.15s ease;
-    }
-    mark.user-hl:hover {
-      filter: brightness(0.92);
-      text-decoration: underline dotted var(--accent);
-    }
     .highlight-popover {
       padding: 8px 12px;
       gap: 8px;
@@ -1848,12 +1834,6 @@
       color: var(--ink);
       flex: 1;
       min-width: 0;
-    }
-
-    .drawer-head-tools {
-      display: flex;
-      gap: 6px;
-      align-items: center;
     }
 
     .drawer-head .icon-only {
@@ -2185,6 +2165,10 @@
       flex-direction: column;
       gap: 2px;
       min-width: 140px;
+      max-height: min(380px, 70dvh);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
       z-index: 1000;
     }
 
@@ -2240,6 +2224,8 @@
       z-index: 10;
       text-align: center;
       margin-top: 4px;
+      margin-bottom: 4px;
+      padding: 2px 0;
     }
 
     .pomo-break-brand {
@@ -2254,7 +2240,7 @@
       border-radius: 10px;
       background: var(--accent);
       color: var(--sheet);
-      font-family: "Cinzel", "Literata", Georgia, serif;
+      font-family: "Literata", Georgia, serif;
       font-weight: 700;
       font-size: 20px;
       display: flex;
@@ -2324,10 +2310,6 @@
     }
 
     /* Sandglass Simulation Screensaver - Expands vertically between Resume and Footer */
-    .pomo-break-header {
-      margin-bottom: 4px;
-      padding: 2px 0;
-    }
     .pomo-saver-outer {
       position: relative;
       width: 100%;
@@ -2545,16 +2527,6 @@
       outline: none;
     }
 
-    .field input[type="color"] {
-      width: 100%;
-      height: 36px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--bg);
-      padding: 3px;
-      cursor: pointer;
-    }
-
     .field input[type="range"] {
       width: 100%;
       height: 28px;
@@ -2603,13 +2575,6 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-    }
-
-    audio {
-      width: 100%;
-      height: 38px;
-      margin: 8px 0;
-      border-radius: 10px;
     }
 
     /* old duplicate playlist-box removed */
@@ -2944,10 +2909,6 @@
         max-height: 92dvh;
       }
 
-      .composer-meta-row {
-        grid-template-columns: 1fr;
-      }
-
       .url-import-row {
         flex-direction: column;
         align-items: stretch;
@@ -2979,6 +2940,16 @@
         padding: 2px 8px calc(62px + var(--safe-bottom));
       }
 
+      .app.zen .reading {
+        padding: 4px 4px calc(6px + var(--safe-bottom));
+      }
+      .app.zen .page-sheet {
+        padding: 12px 12px;
+      }
+      .app.zen .book-stage {
+        border-radius: 10px;
+      }
+
       .page-sheet {
         padding: 16px 16px;
       }
@@ -3006,12 +2977,6 @@
       }
     }
   
-    /* --- Category 2: Mobile Fullscreen Deprecation --- */
-    @media (max-width: 900px), (hover: none) and (pointer: coarse) {
-      #zenBtn {
-        display: none !important;
-      }
-    }
 
     /* --- Category 2: Responsive Topbar Overflow Menu (<820px) --- */
     .more-btn {
@@ -3030,7 +2995,7 @@
         display: none !important;
       }
 
-      /* Mobile Topbar Flex Order: Timer (5) -> Library (10) -> More (20) -> Settings (30) -> Languages (40) */
+      /* Mobile Topbar Flex Order: Timer (5) -> Library (10) -> More (20) -> Settings (30) -> Languages (40) -> Zen (50) */
       .top-actions > #headerTimerPill {
         order: 5;
       }
@@ -3045,6 +3010,9 @@
       }
       .top-actions > .lang-selector-wrap {
         order: 40;
+      }
+      .top-actions > #zenBtn {
+        order: 50;
       }
 
       .more-dropdown {
@@ -3169,8 +3137,6 @@
       animation: zoomIn 0.2s var(--ease-spring);
     }
     .import-modal-card {
-      width: 100%;
-      max-width: 640px;
       width: min(640px, calc(100vw - 24px));
       max-height: 90dvh;
       overflow-y: auto;
@@ -3260,26 +3226,6 @@
     }
 
 
-    /* --- Reading Analytics & Habit Heatmap Card --- */
-    .stats-card {
-      margin-bottom: 22px;
-    }
-    .stats-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .stats-header-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Literata', Georgia, serif;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--ink);
-    }
     /* --- Stats Dedicated Drawer & Metrics --- */
     .drawer.stats-drawer {
       width: min(420px, calc(100vw - 24px));
@@ -3337,20 +3283,6 @@
       padding-top: 1px;
       width: 26px;
       flex-shrink: 0;
-    }
-    .heatmap-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .heatmap-title {
-      font-weight: 600;
-      color: var(--ink);
     }
     .heatmap-legend {
       display: flex;
@@ -3431,16 +3363,6 @@
     [data-theme="night"] .heatmap-cell.lvl-4,
     [data-theme="amoled"] .heatmap-cell.lvl-4 {
       background: #4ade80;
-    }
-
-    /* Pulse highlight animation for stats card jump */
-    @keyframes pulseCard {
-      0% { transform: scale(1); box-shadow: var(--shadow-sheet); }
-      50% { transform: scale(1.015); box-shadow: 0 0 0 3px var(--accent), var(--shadow-float); }
-      100% { transform: scale(1); box-shadow: var(--shadow-sheet); }
-    }
-    .pulse-highlight {
-      animation: pulseCard 1s var(--ease-spring);
     }
 
     /* Quote Card Studio Modal */

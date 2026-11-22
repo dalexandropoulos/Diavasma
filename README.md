@@ -11,9 +11,9 @@
 
 ---
 
-### 🌍 Languages / Γλώσσες / 语言 / Langues / Sprachen / भाषाएँ / 言語 / Idiomas / Языки
+### 🌍 Languages / Γλώσσες / 语言 / Langues / Sprachen / भाषाएँ / 言語 / Idiomas / Языки / Lingue / 언어 / Języki / Diller / Bahasa
 
-[🇬🇧 English](#lang-en) · [🇬🇷 Ελληνικά](#lang-el) · [🇨🇳 简体中文](#lang-zh) · [🇫🇷 Français](#lang-fr) · [🇩🇪 Deutsch](#lang-de) · [🇮🇳 हिन्दी](#lang-hi) · [🇯🇵 日本語](#lang-ja) · [🇵🇹 Português](#lang-pt) · [🇷🇺 Русский](#lang-ru) · [🇪🇸 Español](#lang-es)
+[🇬🇧 English](#lang-en) · [🇬🇷 Ελληνικά](#lang-el) · [🇨🇳 简体中文](#lang-zh) · [🇫🇷 Français](#lang-fr) · [🇩🇪 Deutsch](#lang-de) · [🇮🇳 हिन्दी](#lang-hi) · [🇮🇩 Bahasa Indonesia](#lang-id) · [🇮🇹 Italiano](#lang-it) · [🇯🇵 日本語](#lang-ja) · [🇰🇷 한국어](#lang-ko) · [🇵🇱 Polski](#lang-pl) · [🇵🇹 Português](#lang-pt) · [🇷🇺 Русский](#lang-ru) · [🇪🇸 Español](#lang-es) · [🇹🇷 Türkçe](#lang-tr)
 
 ---
 
@@ -25,7 +25,7 @@
 
 ## ✨ Key Features
 
-- **📚 Multi-Format Support & Organization:** Native offline reading for EPUB, PDF (offline reflow engine with smart line break cleanup & persistent IndexedDB pagination cache), Markdown (`.md`), plain text (`.txt`), and audio files. Organize items into groups (Books, Articles, custom collections) with an instant contextual `+` import modal.
+- **📚 Multi-Format Support & Organization:** Native offline reading for EPUB, PDF (offline reflow engine with smart line break cleanup & persistent IndexedDB pagination cache), Markdown (`.md`) and plain text (`.txt`). Organize items into groups (Books, Articles, custom collections) with an instant contextual `+` import modal.
 - **🌐 Articles from URL & Custom Selectors:** Smart article extraction from web links, site-specific custom CSS scraper rules (with JSON import/export), raw HTML source pasting (`Ctrl+U`), and automated offline site icon (favicon) grabbing.
 - **⚡ 100% Offline PWA (Progressive Web App):** Fully functional without an internet connection. Installable as a standalone app on Android, iOS, Windows, and macOS via modern web browsers, featuring robust Service Worker precaching and a zero-flash welcome screen (Light/Dark, Desktop/Mobile).
 - **🎨 6 Curated Themes & Self-Hosted Typography:** Paper, Warm, Sage, Slate, Night, and AMOLED themes. Includes locally bundled typefaces (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), support for custom font uploads (`.ttf`, `.otf`, `.woff`, `.woff2`), text alignment (Left, Center, Right, Justify), customizable line height, and 1 or 2 page spread view.
@@ -34,7 +34,7 @@
 - **⏱️ Pomodoro & Reading Habit Stats:** Focus timer with an animated hourglass screensaver during breaks, local reading habit tracker with a GitHub-style activity heatmap, and exportable Stats Share Cards.
 - **🔄 Full Local Backup & Restore (JSON):** Complete export and restoration of all library books (with full text from IndexedDB), notes, highlights, reading stats, custom scraper rules, and reader preferences in a single portable `.json` file.
 - **✨ Sanctuary Reading Upgrades:** Interactive Highlight Popover (`#highlightPopover`) for instant note editing, color switching, and Quote Cards without accidental page turns; "Continue Reading" card (`#continueReadingCard`) with 1-tap resume; clean 3-dots item action menu (`⋯`); and Web Share Target API integration to auto-import shared links directly into Articles.
-- **🌍 10 Languages:** Comprehensive, native UI localization in English, Greek, Chinese (Simplified), French, German, Hindi, Japanese, Portuguese, Russian, and Spanish.
+- **🌍 15 Languages:** Comprehensive, native UI localization in 15 languages: English, Greek, Chinese (Simplified), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, and Turkish.
 
 ## 🚀 Installation as an App (PWA)
 
@@ -80,7 +80,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 ## ✨ Κύρια Χαρακτηριστικά (Features)
 
-- **📚 Υποστήριξη Πολλαπλών Μορφών & Οργάνωση:** Αυτόνομη offline ανάγνωση για EPUB, PDF (offline reflow engine με έξυπνο καθαρισμό αλλαγών γραμμής & μόνιμη IndexedDB pagination cache), Markdown (`.md`), απλό κείμενο (`.txt`) και αρχεία ήχου. Οργάνωση σε ομάδες (Βιβλία, Άρθρα, προσαρμοσμένες ομάδες) με άμεσο contextual `+` import modal.
+- **📚 Υποστήριξη Πολλαπλών Μορφών & Οργάνωση:** Αυτόνομη offline ανάγνωση για EPUB, PDF (offline reflow engine με έξυπνο καθαρισμό αλλαγών γραμμής & μόνιμη IndexedDB pagination cache), Markdown (`.md`) και απλό κείμενο (`.txt`). Οργάνωση σε ομάδες (Βιβλία, Άρθρα, προσαρμοσμένες ομάδες) με άμεσο contextual `+` import modal.
 - **🌐 Άρθρα από URL & Custom Selectors:** Έξυπνη εξαγωγή άρθρων από συνδέσμους, εξειδικευμένοι κανόνες CSS scraper ανά ιστοσελίδα (με δυνατότητα εξαγωγής/εισαγωγής JSON), υποστήριξη επικόλλησης πηγαίου κώδικα HTML (`Ctrl+U`) και αυτόματο offline grab του favicon του site.
 - **⚡ 100% Offline PWA (Progressive Web App):** Πλήρως λειτουργικό χωρίς σύνδεση στο διαδίκτυο. Εγκαθίσταται ως αυτόνομη εφαρμογή σε Android, iOS, Windows και macOS μέσω του browser, με ανθεκτικό Service Worker precaching και zero-flash οθόνη καλωσορίσματος (Light/Dark, Desktop/Mobile).
 - **🎨 6 Επιμελημένα Θέματα & Self-hosted Τυπογραφία:** Χαρτί (Paper), Θερμό (Warm), Φασκόμηλο (Sage), Σχιστόλιθος (Slate), Νύχτα (Night) και AMOLED. Περιλαμβάνει τοπικά ενσωματωμένες γραμματοσειρές (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), ανέβασμα custom fonts (`.ttf`, `.otf`, `.woff`, `.woff2`), στοίχιση (Αριστερά, Κέντρο, Δεξιά, Πλήρης), διάστιχο και προβολή 1 ή 2 σελίδων.
@@ -89,7 +89,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **⏱️ Pomodoro & Στατιστικά Ανάγνωσης:** Χρονόμετρο εστίασης με δυναμικό screensaver κλεψύδρας κατά τα διαλείμματα, τοπικό habit tracker με activity heatmap τύπου GitHub και εξαγώγιμες Stats Share Cards.
 - **🔄 Πλήρες Τοπικό Backup & Restore (JSON):** Πλήρης εξαγωγή και επαναφορά ολόκληρου του αναγνωστηρίου (βιβλία με το πλήρες κείμενό τους από το IndexedDB, σημειώσεις, επισημάνσεις, στατιστικά ανάγνωσης, κανόνες scraper και ρυθμίσεις) σε ένα ενιαίο αρχείο `.json`.
 - **✨ Αναβαθμίσεις Sanctuary Reading:** Διαδραστικό Highlight Popover (`#highlightPopover`) για άμεση επεξεργασία σημείωσης, αλλαγή χρώματος και Quote Cards χωρίς άσκοπο γύρισμα σελίδας, κάρτα «Συνέχιση Ανάγνωσης» (`#continueReadingCard`) με άμεσο 1-tap άνοιγμα, καθαρό μενού επιλογών 3 τελειών (`⋯`) στη Βιβλιοθήκη και ενσωμάτωση Web Share Target API για αυτόματη προσθήκη κοινοποιημένων συνδέσμων στα Άρθρα.
-- **🌍 10 Γλώσσες:** Πλήρες περιβάλλον χρήσης μεταφρασμένο σε Αγγλικά, Ελληνικά, Κινεζικά (Απλοποιημένα), Γαλλικά, Γερμανικά, Χίντι, Ιαπωνικά, Πορτογαλικά, Ρωσικά και Ισπανικά.
+- **🌍 15 Γλώσσες:** Πλήρες περιβάλλον χρήσης μεταφρασμένο σε 15 γλώσσες: Αγγλικά, Ελληνικά, Κινεζικά (Απλοποιημένα), Γαλλικά, Γερμανικά, Χίντι, Ινδονησιακά, Ιταλικά, Ιαπωνικά, Κορεατικά, Πολωνικά, Πορτογαλικά, Ρωσικά, Ισπανικά και Τουρκικά.
 
 ## 🚀 Εγκατάσταση ως Εφαρμογή (PWA)
 
@@ -105,7 +105,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - `manifest.json` (ρυθμίσεις & μεταδεδομένα PWA)
 - `sw.js` (Service Worker για ανθεκτική offline λειτουργία & precaching)
 - `css/` (`styles.css` - πλήρες responsive stylesheet)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - εκκίνηση, λεξικό 10 γλωσσών & βασική λογική)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - εκκίνηση, λεξικό 15 γλωσσών & βασική λογική)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - τοπική μηχανή απόδοσης PDF)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - εικονίδια εφαρμογής)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - εικαστικά οθόνης καλωσορίσματος)
@@ -135,7 +135,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 ## ✨ 核心特性
 
-- **📚 多格式支持与分类整理：** 原生离线阅读 EPUB、PDF（配备智能断行清理与持久 IndexedDB 分页缓存的离线排版引擎）、Markdown (`.md`)、纯文本 (`.txt`) 和音频文件。通过即时上下文 `+` 导入弹窗将内容归类为书籍、文章或自定义分组。
+- **📚 多格式支持与分类整理：** 原生离线阅读 EPUB、PDF（配备智能断行清理与持久 IndexedDB 分页缓存的离线排版引擎）、Markdown (`.md`) 和纯文本 (`.txt`)。通过即时上下文 `+` 导入弹窗将内容归类为书籍、文章或自定义分组。
 - **🌐 网页文章抓取与自定义选择器：** 从网址智能提取文章内容，支持针对每个网站的自定义 CSS 选择器规则（带 JSON 导入/导出），支持粘贴原始网页源码 (`Ctrl+U`)，并自动离线获取网站图标 (Favicon)。
 - **⚡ 100% 离线 PWA (渐进式 Web 应用)：** 无需互联网连接即可完全运行。可通过浏览器在 Android、iOS、Windows 和 macOS 上安装为独立应用程序，具备稳健的 Service Worker 预缓存和零闪烁欢迎屏幕（深浅色/桌面移动端自适应）。
 - **🎨 6 种精选主题与本地字体：** 报纸 (Paper)、温和 (Warm)、鼠尾草 (Sage)、板岩 (Slate)、暗夜 (Night) 与 AMOLED 纯黑主题。内置本地字体库 (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`)，支持上传自定义字体 (`.ttf`, `.otf`, `.woff`, `.woff2`)，支持四向对齐（左/中/右/两端）、自定义行高以及单双页跨页排版。
@@ -144,7 +144,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **⏱️ 番茄钟专注计时与阅读统计：** 专注计时器配备休息时随主题变换的沙漏动态屏保，内置 GitHub 风格热力图的本地阅读打卡器，以及可导出的阅读统计分享卡片。
 - **🔄 完整本地备份与恢复 (JSON)：** 一键导出与还原整个书房（含 IndexedDB 完整文本的书籍、笔记、划线、阅读统计、自定义规则与设置）到单个便携式 `.json` 文件。
 - **✨ 宁静阅读体验升级：** 交互式划线浮窗 (`#highlightPopover`) 支持免误翻页编辑笔记/换色/生成名言卡；顶部“继续阅读”卡片 (`#continueReadingCard`) 一键续读；精简的三点操作菜单 (`⋯`)；支持 Web Share Target API 将网页链接直接分享至书房。
-- **🌍 10 种语言：** 提供英语、希腊语、简体中文、法语、德语、印地语、日语、葡萄牙语、俄语和西班牙语的完整原生界面汉化。
+- **🌍 15 种语言：** 提供英语、希腊语、简体中文、法语、德语、印地语、印度尼西亚语、意大利语、日语、韩语、波兰语、葡萄牙语、俄语、西班牙语和土耳其语 15 种语言的完整原生界面。
 
 ## 🚀 安装为应用程序 (PWA)
 
@@ -160,7 +160,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - `manifest.json` (PWA 配置文件与元数据)
 - `sw.js` (用于离线强力预缓存与离线策略的 Service Worker)
 - `css/` (`styles.css` - 完整的自适应排版样式表)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - 安全引导、10 语言词典与核心逻辑)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - 安全引导、15 语言词典与核心逻辑)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - 自托管离线 PDF 渲染引擎)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - 应用图标)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - 欢迎画面插图)
@@ -190,7 +190,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 
 ## ✨ Fonctionnalités Principales
 
-- **📚 Prise en charge multiformat & Organisation :** Lecture hors ligne native des formats EPUB, PDF (moteur de recomposition hors ligne avec nettoyage intelligent des sauts de ligne et cache de pagination persistant dans IndexedDB), Markdown (`.md`), texte brut (`.txt`) et fichiers audio. Classez vos lectures en groupes (Livres, Articles, collections personnalisées) grâce à un modal d'importation contextuel `+` instantané.
+- **📚 Prise en charge multiformat & Organisation :** Lecture hors ligne native des formats EPUB, PDF (moteur de recomposition hors ligne avec nettoyage intelligent des sauts de ligne et cache de pagination persistant dans IndexedDB), Markdown (`.md`) et texte brut (`.txt`). Classez vos lectures en groupes (Livres, Articles, collections personnalisées) grâce à un modal d'importation contextuel `+` instantané.
 - **🌐 Articles depuis une URL & Sélecteurs personnalisés :** Extraction intelligente d'articles Web, règles de scraping CSS personnalisées par site (avec import/export JSON), collage direct du code source HTML (`Ctrl+U`), et récupération automatique hors ligne du favicon du site.
 - **⚡ PWA 100 % hors ligne (Progressive Web App) :** Entièrement utilisable sans connexion Internet. S'installe comme une application autonome sur Android, iOS, Windows et macOS depuis votre navigateur, avec un préchargement robuste par Service Worker et un écran d'accueil sans scintillement (clair/sombre, bureau/mobile).
 - **🎨 6 Thèmes soignés & Typographie auto-hébergée :** Thèmes Papier (Paper), Chaleureux (Warm), Sauge (Sage), Ardoise (Slate), Nuit (Night) et AMOLED. Intègre des polices locales (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), l'importation de polices personnalisées (`.ttf`, `.otf`, `.woff`, `.woff2`), l'alignement (Gauche, Centre, Droite, Justifié), l'interligne réglable et l'affichage en 1 ou 2 pages.
@@ -199,7 +199,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **⏱️ Pomodoro & Suivi des habitudes de lecture :** Minuteur de concentration avec économiseur d'écran sablier animé pendant les pauses, suivi des habitudes de lecture local avec carte thermique d'activité style GitHub et cartes de statistiques exportables.
 - **🔄 Sauvegarde & Restauration locale complète (JSON) :** Exportation et restauration intégrale de votre sanctuaire (livres avec texte complet depuis IndexedDB, surlignages, notes, statistiques, règles et réglages) dans un fichier `.json`.
 - **✨ Améliorations de lecture Sanctuary :** Popover interactif (`#highlightPopover`) pour éditer vos notes, changer de couleur et partager sans tourner la page par inadvertance ; carte « Continuer la lecture » (`#continueReadingCard`) ; menu à 3 points épuré (`⋯`) ; et cible de partage Web Share Target.
-- **🌍 10 Langues :** Interface utilisateur traduite nativement et intégralement en anglais, grec, chinois simplifié, français, allemand, hindi, japonais, portugais, russe et espagnol.
+- **🌍 15 Langues :** Interface utilisateur traduite nativement et intégralement en 15 langues : anglais, grec, chinois simplifié, français, allemand, hindi, indonésien, italien, japonais, coréen, polonais, portugais, russe, espagnol et turc.
 
 ## 🚀 Installation en tant qu'application (PWA)
 
@@ -215,7 +215,7 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 - `manifest.json` (configuration & métadonnées de la PWA)
 - `sw.js` (Service Worker pour la mise en cache hors ligne et la stratégie de cache)
 - `css/` (`styles.css` - feuille de style responsive complète)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - amorçage, dictionnaire 10 langues & logique applicative)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - amorçage, dictionnaire 15 langues & logique applicative)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - moteur PDF hors ligne auto-hébergé)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - icônes d'application)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - visuels d'accueil)
@@ -245,7 +245,7 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 
 ## ✨ Hauptmerkmale
 
-- **📚 Multi-Format-Unterstützung & Organisation:** Natives Offline-Lesen von EPUB, PDF (Offline-Reflow-Engine mit intelligenter Zeilenumbruch-Bereinigung und persistentem IndexedDB-Paginierungs-Cache), Markdown (`.md`), Reintext (`.txt`) und Audiodateien. Organisieren Sie Ihre Inhalte in Gruppen (Bücher, Artikel, benutzerdefinierte Sammlungen) mit einem kontextuellen `+`-Import-Modal.
+- **📚 Multi-Format-Unterstützung & Organisation:** Natives Offline-Lesen von EPUB, PDF (Offline-Reflow-Engine mit intelligenter Zeilenumbruch-Bereinigung und persistentem IndexedDB-Paginierungs-Cache), Markdown (`.md`) und Reintext (`.txt`). Organisieren Sie Ihre Inhalte in Gruppen (Bücher, Artikel, benutzerdefinierte Sammlungen) mit einem kontextuellen `+`-Import-Modal.
 - **🌐 Web-Artikel & Benutzerdefinierte Selektoren:** Intelligente Artikelextraktion aus Web-Links, seitenspezifische CSS-Scraper-Regeln (mit JSON-Import/Export), Einfügen von Roh-HTML (`Ctrl+U`) und automatischer Offline-Abruf des Website-Icons (Favicon).
 - **⚡ 100 % Offline-PWA (Progressive Web App):** Ohne Internetverbindung voll funktionsfähig. Über den Browser installierbar als eigenständige Anwendung unter Android, iOS, Windows und macOS, mit robustem Service Worker Precaching und flackerfreiem Willkommensbildschirm (Hell/Dunkel, Desktop/Mobil).
 - **🎨 6 Kuratierte Themes & Selbst gehostete Typografie:** Themes Papier (Paper), Warm, Salbei (Sage), Schiefer (Slate), Nacht (Night) und AMOLED. Enthält lokale Schriftarten (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), Hochladen eigener Schriftarten (`.ttf`, `.otf`, `.woff`, `.woff2`), Textausrichtung (Links, Zentriert, Rechts, Blocksatz), einstellbare Zeilenhöhe sowie 1- oder 2-seitige Buchansicht.
@@ -254,7 +254,7 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 - **⏱️ Pomodoro-Timer & Lese-Statistiken:** Fokus-Timer mit animiertem Sanduhr-Bildschirmschoner während der Pausen, lokaler Lese-Gewohnheitstracker mit GitHub-artigem Aktivitäts-Heatmap und exportierbare Statistik-Karten.
 - **🔄 Vollständiges lokales Backup & Wiederherstellung (JSON):** Export und Import aller Bücher (inklusive Volltext aus IndexedDB), Notizen, Markierungen, Lesestatistiken, Scraper-Regeln und Einstellungen in einer portablen `.json`-Datei.
 - **✨ Sanctuary Lese-Upgrades:** Interaktives Highlight-Popover (`#highlightPopover`) zum Bearbeiten von Notizen, Ändern von Farben und Erstellen von Zitatkarten ohne unbeabsichtigtes Umblättern; „Weiterlesen“-Karte (`#continueReadingCard`); klares 3-Punkte-Aktionsmenü (`⋯`); und Web Share Target Integration.
-- **🌍 10 Sprachen:** Vollständig lokalisierte Benutzeroberfläche in Englisch, Griechisch, Chinesisch (Vereinfacht), Französisch, Deutsch, Hindi, Japanisch, Portugiesisch, Russisch und Spanisch.
+- **🌍 15 Sprachen:** Vollständig lokalisierte Benutzeroberfläche in 15 Sprachen: Englisch, Griechisch, Chinesisch (Vereinfacht), Französisch, Deutsch, Hindi, Indonesisch, Italienisch, Japanisch, Koreanisch, Polnisch, Portugiesisch, Russisch, Spanisch und Türkisch.
 
 ## 🚀 Installation als App (PWA)
 
@@ -300,7 +300,7 @@ Um Ihre eigene private oder öffentliche Instanz auf GitHub Pages zu betreiben, 
 
 ## ✨ मुख्य विशेषताएँ
 
-- **📚 बहु-प्रारूप समर्थन और संगठन:** EPUB, PDF (स्मार्ट लाइन ब्रेक क्लीनअप और स्थायी IndexedDB पेजिनेशन कैश से युक्त ऑफ़लाइन रीफ्लो इंजन), Markdown (`.md`), सादा पाठ (`.txt`), और ऑडियो फ़ाइलों का मूल ऑफ़लाइन वाचन। एक त्वरित प्रासंगिक `+` आयात मोडल के साथ सामग्री को समूहों (पुस्तकें, लेख, कस्टम समूह) में व्यवस्थित करें।
+- **📚 बहु-प्रारूप समर्थन और संगठन:** EPUB, PDF (स्मार्ट लाइन ब्रेक क्लीनअप और स्थायी IndexedDB पेजिनेशन कैश से युक्त ऑफ़लाइन रीफ्लो इंजन), Markdown (`.md`) और सादा पाठ (`.txt`) का मूल ऑफ़लाइन वाचन। एक त्वरित प्रासंगिक `+` आयात मोडल के साथ सामग्री को समूहों (पुस्तकें, लेख, कस्टम समूह) में व्यवस्थित करें।
 - **🌐 वेब लिंक से लेख और कस्टम चयनकर्ता:** वेब URL से लेखों का स्मार्ट निष्कर्षण, वेबसाइट-विशिष्ट कस्टम CSS स्क्रैपर नियम (JSON आयात/निर्यात के साथ), कच्चा HTML स्रोत पेस्ट (`Ctrl+U`), और स्वचालित ऑफ़लाइन साइट आइकन (फ़ेविकॉन) प्राप्ति।
 - **⚡ 100% ऑफ़लाइन PWA (प्रोग्रेसिव वेब ऐप):** इंटरनेट कनेक्शन के बिना पूरी तरह कार्यात्मक। आधुनिक ब्राउज़र के माध्यम से Android, iOS, Windows और macOS पर स्टैंडअलोन ऐप के रूप में स्थापित किया जा सकता है, जिसमें मजबूत Service Worker प्रीकैशिंग और शून्य-फ़्लैश स्वागत स्क्रीन शामिल है।
 - **🎨 6 चयनित थीम और स्व-होस्टेड टाइपोग्राफी:** पेपर (Paper), वार्म (Warm), सेज (Sage), स्लेट (Slate), नाइट (Night) और AMOLED थीम। अंतर्निहित स्थानीय फ़ॉन्ट (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), कस्टम फ़ॉन्ट अपलोड (`.ttf`, `.otf`, `.woff`, `.woff2`), संरेखण (बाएँ, केंद्र, दाएँ, औचित्य), पंक्ति रिक्ति और 1 या 2 पृष्ठ प्रसार दृश्य।
@@ -309,7 +309,7 @@ Um Ihre eigene private oder öffentliche Instanz auf GitHub Pages zu betreiben, 
 - **⏱️ पोमोडोरो और वाचन आदत सांख्यिकी:** अंतराल के दौरान एनिमेटेड ऑवरग्लास स्क्रीनसेवर के साथ फ़ोकस टाइमर, GitHub-शैली गतिविधि हीटमैप के साथ स्थानीय आदत ट्रैकर, और निर्यात योग्य आँकड़े कार्ड।
 - **🔄 पूर्ण स्थानीय बैकअप और पुनर्स्थापना (JSON):** सभी पुस्तकों (IndexedDB से पूर्ण पाठ सहित), नोट्स, हाइलाइट्स, आँकड़ों, नियमों और सेटिंग्स का एक ही `.json` फ़ाइल में निर्यात और पुनर्स्थापना।
 - **✨ अभयारण्य वाचन संवर्द्धन:** पृष्ठ पलटने से बचाते हुए त्वरित नोट संपादन हेतु इंटरएक्टिव हाइलाइट पॉपओवर (`#highlightPopover`), 1-टैप "पढ़ना जारी रखें" कार्ड (`#continueReadingCard`), स्वच्छ 3-डॉट्स मेनू (`⋯`), और वेब शेयर लक्ष्य API।
-- **🌍 10 भाषाएँ:** अंग्रेजी, ग्रीक, चीनी (सरलीकृत), फ्रेंच, जर्मन, हिन्दी, जापानी, पुर्तगाली, रूसी और स्पैनिश में पूर्ण मूल यूआई स्थानीयकरण।
+- **🌍 15 भाषाएँ:** 15 भाषाओं में पूर्ण मूल यूआई स्थानीयकरण: अंग्रेजी, ग्रीक, चीनी (सरलीकृत), फ्रेंच, जर्मन, हिन्दी, इंडोनेशियाई, इतालवी, जापानी, कोरियाई, पोलिश, पुर्तगाली, रूसी, स्पैनिश और तुर्की।
 
 ## 🚀 एप्लिकेशन के रूप में स्थापना (PWA)
 
@@ -325,7 +325,7 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 - `manifest.json` (PWA कॉन्फ़िगरेशन और मेटाडेटा)
 - `sw.js` (ऑफ़लाइन प्रीकैशिंग के लिए Service Worker)
 - `css/` (`styles.css` - संपूर्ण उत्तरदायी स्टाइलशीट)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - बूटस्ट्रैप, 10-भाषा शब्दकोश और मुख्य तर्क)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - बूटस्ट्रैप, 15-भाषा शब्दकोश और मुख्य तर्क)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - स्व-होस्टेड ऑफ़लाइन PDF इंजन)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ऐप आइकन)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - स्वागत स्क्रीन कलाकृतियां)
@@ -355,7 +355,7 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 
 ## ✨ 主な機能
 
-- **📚 マルチフォーマット対応と整理：** EPUB、PDF（スマートな改行補正と永続的なIndexedDBページネーションキャッシュを備えたオフラインリフローエンジン）、Markdown (`.md`)、テキスト (`.txt`)、音声ファイルをネイティブにオフライン読書。即時コンテキスト `+` インポートモーダルで書籍、記事、カスタムグループに整理できます。
+- **📚 マルチフォーマット対応と整理：** EPUB、PDF（スマートな改行補正と永続的なIndexedDBページネーションキャッシュを備えたオフラインリフローエンジン）、Markdown (`.md`)、テキスト (`.txt`) をネイティブにオフライン読書。即時コンテキスト `+` インポートモーダルで書籍、記事、カスタムグループに整理できます。
 - **🌐 Web記事取得とカスタムセレクター：** URLから記事本文をスマートに抽出、サイトごとのカスタムCSSスクレイパールール（JSONインポート/エクスポート対応）、HTMLソースの直接貼り付け (`Ctrl+U`)、サイトアイコン（ファビコン）の自動オフライン取得をサポート。
 - **⚡ 100% オフラインPWA（プログレッシブウェブアプリ）：** インターネット接続なしで完全に動作。最新ブラウザを介してAndroid、iOS、Windows、macOSに独立したアプリとしてインストール可能。強力なService Workerプリキャッシュと、ちらつきゼロのウェルカム画面（ライト/ダーク、デスクトップ/モバイル適応）を搭載。
 - **🎨 6つの洗練されたテーマとセルフホストフォント：** Paper（紙）、Warm（温かみ）、Sage（セージ）、Slate（スレート）、Night（夜）、AMOLED純黒テーマ。ローカルフォント（`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`）、カスタムフォントのアップロード（`.ttf`, `.otf`, `.woff`, `.woff2`）、文字揃え（左/中央/右/両端揃え）、行間調整、1ページまたは2ページ見開き表示に対応。
@@ -364,7 +364,7 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 - **⏱️ ポモドーロと読書習慣トラッカー：** 休憩時にテーマ連動の砂時計スクリーンセーバーが表示される集中タイマー、GitHubスタイルのアクティビティヒートマップを備えたローカル習慣トラッカー、統計共有カード。
 - **🔄 完全ローカルバックアップ＆復元 (JSON)：** すべての蔵書（IndexedDBの全文テキスト含む）、メモ、ハイライト、読書統計、カスタム抽出ルール、設定を1つの `.json` ファイルに完全書き出し・復元。
 - **✨ サンクチュアリ読書機能の向上：** 誤ってページをめくることなくメモ編集や色変更ができるインタラクティブ・ハイライトポップオーバー (`#highlightPopover`)、トップの「続きを読む」カード (`#continueReadingCard`)、すっきりとした3点ドットメニュー (`⋯`)、Web Share Target 対応。
-- **🌍 10言語対応：** 英語、ギリシャ語、簡体字中国語、フランス語、ドイツ語、ヒンディー語、日本語、ポルトガル語、ロシア語、スペイン語の完全なネイティブUI翻訳。
+- **🌍 15言語対応：** 英語、ギリシャ語、簡体字中国語、フランス語、ドイツ語、ヒンディー語、日本語、ポルトガル語、ロシア語、スペイン語の完全なネイティブUI翻訳。
 
 ## 🚀 アプリとしてインストール（PWA）
 
@@ -410,7 +410,7 @@ GitHub Pages上で自分専用または公開インスタンスをホストす�
 
 ## ✨ Principais Recursos
 
-- **📚 Suporte Multiformato & Organização:** Leitura offline nativa para EPUB, PDF (motor de refluxo offline com limpeza inteligente de quebras de linha e cache de paginação persistente no IndexedDB), Markdown (`.md`), texto simples (`.txt`) e arquivos de áudio. Organize tudo em grupos (Livros, Artigos, coleções personalizadas) através de um modal de importação contextual `+` instantâneo.
+- **📚 Suporte Multiformato & Organização:** Leitura offline nativa para EPUB, PDF (motor de refluxo offline com limpeza inteligente de quebras de linha e cache de paginação persistente no IndexedDB), Markdown (`.md`) e texto simples (`.txt`). Organize tudo em grupos (Livros, Artigos, coleções personalizadas) através de um modal de importação contextual `+` instantâneo.
 - **🌐 Artigos de URLs & Seletores Personalizados:** Extração inteligente de artigos da Web, regras de scraping CSS personalizadas por site (com importação/exportação JSON), colagem direta do código-fonte HTML (`Ctrl+U`) e captura automática offline do favicon do site.
 - **⚡ PWA 100% Offline (Progressive Web App):** Totalmente funcional sem conexão com a internet. Pode ser instalado como aplicativo autônomo no Android, iOS, Windows e macOS pelo navegador, com pré-carregamento robusto via Service Worker e tela de boas-vindas sem cintilação (claro/escuro, desktop/celular).
 - **🎨 6 Temas Selecionados & Tipografia Própria:** Temas Papel (Paper), Quente (Warm), Sálvia (Sage), Ardósia (Slate), Noite (Night) e AMOLED. Inclui fontes locais (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), envio de fontes personalizadas (`.ttf`, `.otf`, `.woff`, `.woff2`), alinhamento de texto (Esquerda, Centro, Direita, Justificado), espaçamento entre linhas ajustável e visualização em 1 ou 2 páginas.
@@ -419,7 +419,7 @@ GitHub Pages上で自分専用または公開インスタンスをホストす�
 - **⏱️ Pomodoro & Estatísticas de Leitura:** Temporizador de foco com descanso de tela animado em ampulheta durante os intervalos, rastreador de hábitos local com mapa de calor no estilo GitHub e cartões de estatísticas exportáveis.
 - **🔄 Backup & Restauração Local Completa (JSON):** Exportação e restauração de toda a biblioteca (com texto completo do IndexedDB), notas, destaques, estatísticas, regras de scraping e preferências em um único arquivo `.json`.
 - **✨ Melhorias de Leitura Sanctuary:** Popover interativo de destaque (`#highlightPopover`) para edição rápida de notas e cores sem virar a página; cartão "Continuar Lendo" (`#continueReadingCard`); menu compacto de 3 pontos (`⋯`); e suporte ao Web Share Target.
-- **🌍 10 Idiomas:** Interface de usuário completa e traduzida nativamente em inglês, grego, chinês simplificado, francês, alemão, híndi, japonês, português, russo e espanhol.
+- **🌍 15 Idiomas:** Interface de usuário completa e traduzida nativamente em 15 idiomas: inglês, grego, chinês simplificado, francês, alemão, híndi, indonésio, italiano, japonês, coreano, polonês, português, russo, espanhol e turco.
 
 ## 🚀 Instalação como Aplicativo (PWA)
 
@@ -435,7 +435,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - `manifest.json` (configurações e metadados da PWA)
 - `sw.js` (Service Worker para operação offline e pré-carregamento)
 - `css/` (`styles.css` - folha de estilos responsiva completa)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - inicialização, dicionário de 10 idiomas e lógica central)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - inicialização, dicionário de 15 idiomas e lógica central)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - motor PDF offline auto-hospedado)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ícones do app)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - ilustrações da tela de boas-vindas)
@@ -465,7 +465,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 
 ## ✨ Ключевые возможности
 
-- **📚 Поддержка множества форматов и организация:** Встроенное чтение офлайн для EPUB, PDF (офлайн-движок перекомпоновки текста с умной очисткой переносов строк и постоянным кэшем пагинации в IndexedDB), Markdown (`.md`), обычного текста (`.txt`) и аудиофайлов. Организуйте материалы по группам (Книги, Статьи, пользовательские подборки) с помощью быстрого контекстного модального окна `+`.
+- **📚 Поддержка множества форматов и организация:** Встроенное чтение офлайн для EPUB, PDF (офлайн-движок перекомпоновки текста с умной очисткой переносов строк и постоянным кэшем пагинации в IndexedDB), Markdown (`.md`) и обычного текста (`.txt`). Организуйте материалы по группам (Книги, Статьи, пользовательские подборки) с помощью быстрого контекстного модального окна `+`.
 - **🌐 Статьи по URL и пользовательские селекторы:** Интеллектуальное извлечение статей по ссылке, индивидуальные правила CSS-скрейпинга для конкретных сайтов (с импортом/экспортом JSON), поддержка вставки исходного кода HTML (`Ctrl+U`) и автоматическое сохранение иконки сайта (favicon) офлайн.
 - **⚡ 100% автономное PWA (Progressive Web App):** Полноценная работа без подключения к Интернету. Устанавливается как отдельное приложение на Android, iOS, Windows и macOS прямо из браузера, оснащено надежным предварительным кэшированием Service Worker и экраном приветствия без мерцания (светлая/темная тема, десктоп/мобильный).
 - **🎨 6 тщательно подобранных тем и локальные шрифты:** Темы Бумага (Paper), Теплая (Warm), Шалфей (Sage), Сланец (Slate), Ночь (Night) и AMOLED. Локальный набор шрифтов (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), загрузка собственных шрифтов (`.ttf`, `.otf`, `.woff`, `.woff2`), выравнивание (по левому краю, по центру, по правому краю, по ширине), регулировка межстрочного интервала и режим 1 или 2 страниц.
@@ -474,7 +474,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - **⏱️ Помодоро и трекер привычки чтения:** Таймер концентрации с анимированной заставкой-песочными часами во время перерывов, локальный трекер привычек с тепловой картой активности в стиле GitHub и экспорт карточек со статистикой.
 - **🔄 Полный локальный бэкап и восстановление (JSON):** Экспорт и восстановление всей библиотеки (включая полный текст из IndexedDB), заметок, выделений, статистики, правил и настроек в один переносимый файл `.json`.
 - **✨ Улучшения спокойного чтения (Sanctuary):** Интерактивный поповер выделения (`#highlightPopover`) для редактирования заметок, смены цвета и создания карточек без случайного перелистывания страниц; карточка «Продолжить чтение» (`#continueReadingCard`); аккуратное меню из 3 точек (`⋯`); и поддержка Web Share Target.
-- **🌍 10 языков:** Полный перевод интерфейса на английский, греческий, китайский (упрощенный), французский, немецкий, хинди, японский, португальский, русский и испанский языки.
+- **🌍 15 языков:** Полный перевод интерфейса на 15 языков: английский, греческий, китайский (упрощенный), французский, немецкий, хинди, индонезийский, итальянский, японский, корейский, польский, португальский, русский, испанский и турецкий.
 
 ## 🚀 Установка в качестве приложения (PWA)
 
@@ -490,7 +490,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - `manifest.json` (конфигурация и метаданные PWA)
 - `sw.js` (Service Worker для автономной работы и кэширования)
 - `css/` (`styles.css` - полная адаптивная таблица стилей)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - загрузка, словарь для 10 языков и основная логика)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - загрузка, словарь для 15 языков и основная логика)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - автономный движок рендеринга PDF)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - иконки приложения)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - графика экрана приветствия)
@@ -520,7 +520,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 
 ## ✨ Características Principales
 
-- **📚 Compatibilidad Multiformato y Organización:** Lectura offline nativa para EPUB, PDF (motor de reflujo offline con limpieza inteligente de saltos de línea y caché de paginación persistente en IndexedDB), Markdown (`.md`), texto plano (`.txt`) y archivos de audio. Organice sus lecturas en grupos (Libros, Artículos, colecciones personalizadas) mediante un modal de importación contextual `+` instantáneo.
+- **📚 Compatibilidad Multiformato y Organización:** Lectura offline nativa para EPUB, PDF (motor de reflujo offline con limpieza inteligente de saltos de línea y caché de paginación persistente en IndexedDB), Markdown (`.md`) y texto plano (`.txt`). Organice sus lecturas en grupos (Libros, Artículos, colecciones personalizadas) mediante un modal de importación contextual `+` instantáneo.
 - **🌐 Artículos desde URL y Selectores Personalizados:** Extracción inteligente de artículos web, reglas de scraping CSS personalizadas por sitio (con importación/exportación JSON), pegado directo del código fuente HTML (`Ctrl+U`) y captura automática offline del icono del sitio (favicon).
 - **⚡ PWA 100% Offline (Progressive Web App):** Completamente funcional sin conexión a internet. Se puede instalar como una aplicación independiente en Android, iOS, Windows y macOS desde el navegador, con precaching robusto mediante Service Worker y pantalla de bienvenida sin parpadeos (claro/oscuro, escritorio/móvil).
 - **🎨 6 Temas Cuidados y Tipografía Autoalojada:** Temas Papel (Paper), Cálido (Warm), Salvia (Sage), Pizarra (Slate), Noche (Night) y AMOLED. Incluye fuentes locales (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), carga de fuentes personalizadas (`.ttf`, `.otf`, `.woff`, `.woff2`), alineación de texto (Izquierda, Centro, Derecha, Justificado), interlineado ajustable y vista a 1 o 2 páginas.
@@ -529,7 +529,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - **⏱️ Pomodoro y Estadísticas de Lectura:** Temporizador de enfoque con protector de pantalla animado de reloj de arena durante los descansos, seguimiento de hábitos local con mapa de calor de actividad estilo GitHub y tarjetas de estadísticas exportables.
 - **🔄 Copia de seguridad y Restauración local completa (JSON):** Exportación y restauración de toda la biblioteca (con texto completo de IndexedDB), notas, resaltados, estadísticas, reglas y ajustes en un único archivo `.json`.
 - **✨ Mejoras de lectura Sanctuary:** Popover interactivo de resaltado (`#highlightPopover`) para editar notas y colores sin pasar de página por error; tarjeta "Continuar Leyendo" (`#continueReadingCard`); menú limpio de 3 puntos (`⋯`); y soporte para Web Share Target.
-- **🌍 10 Idiomas:** Interfaz de usuario traducida de forma nativa e íntegra en inglés, griego, chino simplificado, francés, alemán, hindi, japonés, portugués, ruso y español.
+- **🌍 15 Idiomas:** Interfaz de usuario traducida de forma nativa e íntegra en 15 idiomas: inglés, griego, chino simplificado, francés, alemán, hindi, indonesio, italiano, japonés, coreano, polaco, portugués, ruso, español y turco.
 
 ## 🚀 Instalación como Aplicación (PWA)
 
@@ -545,7 +545,7 @@ Para alojar su propia instancia privada o pública en GitHub Pages, suba todos l
 - `manifest.json` (configuración y metadatos de la PWA)
 - `sw.js` (Service Worker para funcionamiento offline y precaching)
 - `css/` (`styles.css` - hoja de estilos responsive completa)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - arranque seguro, diccionario de 10 idiomas y lógica central)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - arranque seguro, diccionario de 15 idiomas y lógica central)
 - `libs/` (`pdf.min.js`, `pdf.worker.min.js` - motor PDF offline autoalojado)
 - `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - iconos de la aplicación)
 - `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - imágenes de la pantalla de bienvenida)
@@ -565,5 +565,279 @@ Para alojar su propia instancia privada o pública en GitHub Pages, suba todos l
 - **Aviso sobre Enlaces Web:** La función «Obtener desde URL» utiliza proxies CORS públicos para sortear las restricciones del navegador al cargar páginas remotas. Para una privacidad 100% offline sin tráfico de red, utilice **«Pegar HTML (Ctrl+U)»** o importe archivos locales (`.epub`, `.pdf`, `.txt`, `.md`).
 
 [↑ Volver a la selección de idiomas](#languages)
+
+---
+<a id="lang-it"></a>
+# Diavasma 📖 (Italiano)
+
+> Un santuario di lettura tranquillo, 100% offline, per studiare e organizzare libri e articoli — senza pubblicità, senza tracciamento e senza dipendenze da server.
+
+## ✨ Caratteristiche Principali
+
+- **📚 Supporto Multiformato e Organizzazione:** Lettura offline nativa per EPUB, PDF (motore di reflow offline con pulizia intelligente delle interruzioni di riga e cache di impaginazione persistente in IndexedDB), Markdown (`.md`) e testo normale (`.txt`). Organizza le tue letture in gruppi (Libri, Articoli, raccolte personalizzate) tramite una finestra modale di importazione `+` istantanea.
+- **🌐 Articoli da URL e Selettori Personalizzati:** Estrazione intelligente di articoli web, regole CSS personalizzate per sito (con importazione/esportazione JSON), incolla diretto del codice sorgente HTML (`Ctrl+U`) e recupero automatico offline dell'icona del sito (favicon).
+- **⚡ PWA 100% Offline (Progressive Web App):** Perfettamente funzionante senza connessione Internet. Installabile come app indipendente su Android, iOS, Windows e macOS tramite i browser moderni, con solido pre-caching tramite Service Worker e schermata di benvenuto senza sfarfallio (Chiaro/Scuro, Desktop/Mobile).
+- **🎨 6 Temi Curati e Tipografia Locale:** Temi Carta (Paper), Caldo (Warm), Salvia (Sage), Lavagna (Slate), Notte (Night) e AMOLED. Include font locali (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), caricamento di font personalizzati (`.ttf`, `.otf`, `.woff`, `.woff2`), allineamento del testo (Sinistra, Centro, Destra, Giustificato), interlinea regolabile e visualizzazione a 1 o 2 pagine.
+- **🎧 Musica e Paesaggi Sonori:** Mini lettore audio integrato stile Winamp (playlist persistente in IndexedDB, riproduzione casuale, ripetizione a 3 stati, barra di ricerca e controllo volume mobile) insieme a 6 paesaggi sonori procedurali Web Audio (Pioggia, Camino, Onde del mare, Foresta e vento, Biblioteca e vinile, Rumore marrone profondo) con riproduzione in background a schermo bloccato.
+- **🗣️ Lettura Vocale (TTS) e Note:** Lettura ad alta voce con evidenziazione in tempo reale delle frasi e riproduzione in background. Evidenziazioni in 3 colori, note di studio, esportazione in Markdown, traduzione istantanea del testo selezionato e generazione di schede citazione condivisibili (Quote Share Cards) con la tipografia del lettore.
+- **⏱️ Pomodoro e Statistiche di Lettura:** Timer di concentrazione con salvaschermo animato a clessidra durante le pause, monitoraggio delle abitudini locali con mappa di calore stile GitHub e schede statistiche esportabili.
+- **🔄 Backup e Ripristino Locale Completo (JSON):** Esportazione e ripristino dell'intera libreria (con testo completo da IndexedDB), note, evidenziazioni, statistiche, regole e impostazioni in un unico file `.json`.
+- **✨ Miglioramenti di Lettura Sanctuary:** Popover interattivo per evidenziazioni (`#highlightPopover`) per modificare note e colori senza girare pagina involontariamente; scheda "Continua a leggere" (`#continueReadingCard`); menu compatto a 3 punti (`⋯`); e supporto Web Share Target.
+- **🌍 15 Lingue:** Interfaccia utente tradotta nativamente in 15 lingue: inglese, greco, cinese semplificato, francese, tedesco, hindi, indonesiano, italiano, giapponese, coreano, polacco, portoghese, russo, spagnolo e turco.
+
+## 🚀 Installazione come Applicazione (PWA)
+
+1. Apri `index.html` (o l'URL della tua istanza su GitHub Pages) in un browser moderno (Chrome, Edge, Safari, Brave, Firefox).
+2. Fai clic sull'icona **«Installa applicazione»** nella barra degli indirizzi o nel menu **(⋯) → Installa Diavasma**.
+3. Su **iOS (Safari)**: Tocca il pulsante **Condividi (Share)** → seleziona **«Aggiungi alla schermata Home» (Add to Home Screen)**.
+
+## 🌐 Hosting su GitHub Pages
+
+Per ospitare la tua istanza privata o pubblica su GitHub Pages, carica tutti i file del repository:
+
+- `index.html` (struttura principale dell'applicazione e interfaccia di lettura)
+- `manifest.json` (configurazione e metadati della PWA)
+- `sw.js` (Service Worker per funzionamento offline e caching)
+- `css/` (`styles.css` - foglio di stile responsive completo)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - avvio sicuro, dizionario a 15 lingue e logica applicativa)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - motore PDF offline locale)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - icone dell'applicazione)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - immagini della schermata di benvenuto)
+- `fonts/` (font web locali WOFF2 e `fonts.css`)
+- `README.md` (documentazione del progetto)
+
+1. Crea un nuovo repository su GitHub.
+2. Carica tutti i file indicati nel tuo repository.
+3. Vai alle impostazioni del repository (**Settings → Pages**).
+4. Sotto **Build and deployment**, seleziona **Deploy from a branch**, scegli il ramo `main` (o `master`) e la cartella `/ (root)`, quindi clicca su **Save**.
+5. In pochi minuti, il tuo santuario di lettura sarà disponibile globalmente su `https://<username>.github.io/<repository-name>/`.
+
+## 🔒 La Privacy Prima di Tutto (Privacy First)
+
+- **Dati 100% Locali e Modalità Offline Rigorosa:** Diavasma non raccoglie, memorizza o trasmette alcun dato personale, cronologia di lettura o contenuto dei file a server esterni. Tutti i libri, le note e le statistiche risiedono esclusivamente sul dispositivo (`localStorage` e `IndexedDB`). Include una **Modalità Offline Rigorosa** (zero richieste esterne) e un pulsante per cancellare tutti i dati locali.
+- **Font e Risorse Locali:** Tutte le tipografie, i generatori audio e i motori di lettura (incluso PDF.js) funzionano localmente senza contattare server esterni come Google Fonts.
+- **Nota sulle Pagine Web:** La funzione «Recupera da URL» utilizza proxy CORS pubblici per aggirare le restrizioni del browser. Per una privacy totale e l'uso offline, preferisci **«Incolla HTML (Ctrl+U)»** o importa file locali.
+
+[↑ Torna alla selezione lingua](#languages)
+
+---
+
+<a id="lang-ko"></a>
+# Diavasma 📖 (한국어)
+
+> 광고, 추적, 서버 의존 없이 책과 기사를 정리하고 집중해서 읽을 수 있는 조용하고 100% 오프라인 독서 안식처입니다.
+
+## ✨ 주요 기능
+
+- **📚 다양한 포맷 지원 및 정리:** EPUB, PDF(지능형 줄바꿈 정리 및 IndexedDB 기반 페이지네이션 캐시를 갖춘 오프라인 텍스트 재배치 엔진), Markdown(`.md`), 일반 텍스트(`.txt`) 오프라인 독서 지원. `+` 모달을 통해 도서, 기사, 사용자 정의 컬렉션 그룹으로 신속하게 정리할 수 있습니다.
+- **🌐 URL 기사 가져오기 & 사용자 지정 선택기:** 웹 링크 기사 스마트 추출, 사이트별 CSS 스크레이퍼 규칙(JSON 가져오기/내보내기 지원), 원시 HTML 소스 코드 직접 붙여넣기(`Ctrl+U`), 오프라인 사이트 아이콘(파비콘) 자동 다운로드.
+- **⚡ 100% 오프라인 PWA (Progressive Web App):** 인터넷 연결 없이 완벽하게 작동합니다. 서비스 워커 사전 캐싱 및 깜빡임 없는 분위기 있는 웰컴 화면(라이트/다크, 데스크톱/모바일)을 제공하여 브라우저에서 독립된 독립형 앱으로 설치 가능합니다.
+- **🎨 6가지 감성 테마 & 로컬 글꼴 탑재:** Paper, Warm, Sage, Slate, Night, AMOLED 테마 제공. 고품질 로컬 글꼴(`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`) 탑재, 커스텀 글꼴(`.ttf`, `.otf`, `.woff`, `.woff2`) 업로드, 텍스트 정렬, 줄 간격 및 1면/2면 보기 설정 지원.
+- **🎧 음악 및 앰비언트 사운드스케이프:** 내장 Winamp 스타일 오디오 플레이어(IndexedDB 재생목록, 셔플, 3가지 반복 모드, 탐색 막대, 모바일 볼륨 조절기) 및 6가지 절차적 사운드스케이프(빗소리, 벽난로, 파도, 숲과 바람, 도서관과 바이닐, 딥 브라운 노이즈) 탑재, 화면이 꺼져도 백그라운드 재생 지속.
+- **🗣️ 음성 읽어주기 (TTS) & 메모:** 화면 꺼짐 상태에서도 백그라운드 재생을 지원하는 실시간 문장 하이라이트 TTS. 3가지 색상 하이라이트, 메모 작성, Markdown 내보내기, 선택 텍스트 번역 및 인용구 카드(Quote Share Cards) 생성.
+- **⏱️ 포모도로 타이머 & 독서 통계:** 휴식 시간 모래시계 화면보호기가 포함된 집중 타이머, GitHub 스타일 활동 잔디 히트맵 및 이미지 공유 카드를 지원하는 로컬 독서 통계.
+- **🔄 전체 로컬 백업 & 복원 (JSON):** 전체 라이브러리, 본문 텍스트, 메모, 통계, 규칙 및 설정을 단일 `.json` 파일로 안전하게 백업 및 복원.
+- **✨ Sanctuary 독서 편의 기능:** 실수로 페이지가 넘어가지 않도록 보호하는 인터랙티브 하이라이트 팝오버(`#highlightPopover`), "이어서 읽기" 카드(`#continueReadingCard`), 깔끔한 3단 메뉴(`⋯`), Web Share Target 지원.
+- **🌍 15개 언어 지원:** 한국어, 그리스어, 영어, 스페인어, 프랑스어, 독일어, 러시아어, 중국어 간체, 일본어, 힌디어, 포르투갈어, 이탈리아어, 폴란드어, 튀르키예어, 인도네시아어 15개 국어 완벽 로컬라이제이션.
+
+## 🚀 앱 설치 안내 (PWA)
+
+1. 최신 웹 브라우저(Chrome, Edge, Safari, Brave 등)에서 `index.html`(또는 GitHub Pages URL)을 엽니다.
+2. 주소창의 **«앱 설치»** 아이콘을 클릭하거나 메뉴 **(⋯) → Diavasma 설치**를 선택합니다.
+3. **iOS (Safari)**: **공유(Share)** 버튼 → **«홈 화면에 추가»(Add to Home Screen)**를 선택합니다.
+
+## 🌐 GitHub Pages 배포 안내
+
+GitHub Pages에 배포하려면 다음 저장소 파일들을 업로드하세요:
+
+- `index.html` (메인 애플리케이션 구조 및 리더 UI)
+- `manifest.json` (PWA 구성 및 메타데이터)
+- `sw.js` (오프라인 기능 및 캐싱을 위한 서비스 워커)
+- `css/` (`styles.css` - 반응형 스타일시트)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - 부트스트랩, 15개 언어 사전 및 핵심 로직)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - 자체 호스팅 오프라인 PDF 엔진)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - 앱 아이콘)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - 웰컴 화면 배경)
+- `fonts/` (로컬 WOFF2 웹폰트 및 `fonts.css`)
+- `README.md` (프로젝트 문서)
+
+1. GitHub에서 새 저장소를 생성합니다.
+2. 해당 파일들을 저장소에 업로드합니다.
+3. 저장소 설정(**Settings → Pages**)으로 이동합니다.
+4. **Build and deployment**에서 **Deploy from a branch**를 선택하고, `main` 브랜치 및 `/ (root)` 폴더를 지정한 후 **Save**를 누릅니다.
+5. 몇 분 내에 나만의 온라인 독서 공간이 완성됩니다.
+
+## 🔒 개인정보 보호 (Privacy First)
+
+- **100% 로컬 데이터 & 엄격한 오프라인 모드:** Diavasma는 어떠한 개인정보, 독서 기록, 파일 내용도 외부 서버로 전송하지 않습니다. 모든 책, 메모, 통계는 기기의 `localStorage` 및 `IndexedDB`에 안전하게 보관됩니다. 외부 요청을 일체 차단하는 **엄격한 오프라인 모드** 및 원클릭 데이터 삭제 기능을 지원합니다.
+- **자체 호스팅 폰트 및 리소스:** 모든 폰트와 오디오, PDF 엔진은 로컬에서 로드되며 Google Fonts 등의 외부 서버 요청이 발생하지 않습니다.
+- **웹 링크 관련 안내:** "URL에서 가져오기" 기능은 브라우저 제약을 우회하기 위해 공개 CORS 프록시를 사용합니다. 100% 프라이버시를 원할 경우 **«HTML 붙여넣기 (Ctrl+U)»** 또는 로컬 파일 가져오기를 권장합니다.
+
+[↑ 언어 선택으로 돌아가기](#languages)
+
+---
+
+<a id="lang-pl"></a>
+# Diavasma 📖 (Polski)
+
+> Ciche, w 100% działające offline sanktuarium do czytania, nauki i organizacji książek oraz artykułów — bez reklam, bez śledzenia i bez zależności od serwerów.
+
+## ✨ Kluczowe Funkcje
+
+- **📚 Obsługa Wielu Formatów i Organizacja:** Natywne czytanie offline dla formatów EPUB, PDF (lokalny silnik reflow z inteligentnym oczyszczaniem podziałów wierszy i trwałą pamięcią podręczną paginacji w IndexedDB), Markdown (`.md`) oraz zwykłego tekstu (`.txt`). Organizuj pozycje w grupy (Książki, Artykuły, własne kolekcje) za pomocą błyskawicznego modala importu `+`.
+- **🌐 Artykuły z URL i Własne Selektory:** Inteligentne wyodrębnianie artykułów ze stron internetowych, własne reguły selektorów CSS dla witryn (z importem/eksportem JSON), wklejanie surowego kodu źródłowego HTML (`Ctrl+U`) i automatyczne pobieranie favicon do trybu offline.
+- **⚡ PWA w 100% Offline (Progressive Web App):** Pełna funkcjonalność bez połączenia z siecią. Możliwość instalacji jako samodzielna aplikacja na urządzeniach z systemem Android, iOS, Windows oraz macOS, ze stabilnym buforowaniem przez Service Worker i nastrojowym ekranem powitalnym (jasny/ciemny, desktop/mobile).
+- **🎨 6 Dopracowanych Motywów i Lokalne Czcionki:** Motywy Papier (Paper), Ciepły (Warm), Szałwia (Sage), Łupek (Slate), Noc (Night) i AMOLED. Zestaw wbudowanych czcionek (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), obsługa własnych czcionek (`.ttf`, `.otf`, `.woff`, `.woff2`), wyrównanie tekstu, regulacja interlinii oraz widok 1 lub 2 stron.
+- **🎧 Muzyka i Pejzaże Dźwiękowe:** Zintegrowany mini odtwarzacz audio w stylu Winampa (trwała playlista w IndexedDB, odtwarzanie losowe, 3 tryby pętli, pasek postępu, suwak głośności dla urządzeń mobilnych) oraz 6 proceduralnych pejzaży dźwiękowych Web Audio (Deszcz, Kominek, Fale oceanu, Las i wiatr, Biblioteka i winyl, Głęboki brązowy szum) z odtwarzaniem w tle przy wyłączonym ekranie.
+- **🗣️ Czytanie na Głos (TTS) i Notatki:** Czytanie tekstu na głos z podświetlaniem bieżącego zdania i pracą w tle. 3 kolory wyróżnień, notatki, eksport do Markdown, natychmiastowe tłumaczenie zaznaczonego tekstu oraz generator kart cytatów (Quote Share Cards) zachowujących typografię czytnika.
+- **⏱️ Pomodoro i Statystyki Czytania:** Czasomierz skupienia z animowanym wygaszaczem klepsydry podczas przerw, lokalny rejestr nawyków z wykresem aktywności w stylu GitHub i kartami statystyk gotowymi do udostępnienia.
+- **🔄 Kompletna Kopia Zapasowa i Przywracanie (JSON):** Bezpieczny eksport i import całej biblioteki (wraz z pełnymi tekstami w IndexedDB), notatek, wyróżnień, statystyk, reguł i ustawień w jednym pliku `.json`.
+- **✨ Udoskonalenia Trybu Sanctuary:** Interaktywny popover wyróżnień (`#highlightPopover`) zapobiegający przypadkowym zmianom stron przy edycji notatek, karta "Kontynuuj czytanie" (`#continueReadingCard`), czyste menu opcji (`⋯`) oraz obsługa Web Share Target.
+- **🌍 15 Języków:** Interfejs użytkownika w pełni przetłumaczony na 15 języków: angielski, grecki, chiński uproszczony, francuski, niemiecki, hindi, indonezyjski, włoski, japoński, koreański, polski, portugalski, rosyjski, hiszpański oraz turecki.
+
+## 🚀 Instalacja Aplikacji (PWA)
+
+1. Otwórz `index.html` (lub adres wdrożenia na GitHub Pages) w nowoczesnej przeglądarce (Chrome, Edge, Safari, Brave, Firefox).
+2. Kliknij ikonę **«Zainstaluj aplikację»** na pasku adresu lub wybierz w menu **(⋯) → Zainstaluj Diavasma**.
+3. Na systemie **iOS (Safari)**: Dotknij przycisku **Udostępnij (Share)** → wybierz **«Do ekranu początkowego» (Add to Home Screen)**.
+
+## 🌐 Hosting na GitHub Pages
+
+Aby uruchomić własną instalację na GitHub Pages, prześlij pliki repozytorium:
+
+- `index.html` (główna struktura aplikacji i interfejs czytnika)
+- `manifest.json` (konfiguracja i metadane PWA)
+- `sw.js` (Service Worker do pracy offline i buforowania)
+- `css/` (`styles.css` - kompletny responsywny arkusz stylów)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - rozruch, słownik 15 języków i logika aplikacji)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - lokalny silnik PDF)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ikony aplikacji)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - obrazy tła)
+- `fonts/` (lokalne czcionki WOFF2 i plik `fonts.css`)
+- `README.md` (dokumentacja projektu)
+
+1. Utwórz nowe repozytorium na GitHubie.
+2. Prześlij wszystkie powyższe pliki.
+3. Otwórz ustawienia repozytorium (**Settings → Pages**).
+4. W sekcji **Build and deployment** wybierz **Deploy from a branch**, ustaw gałąź `main` (lub `master`) oraz katalog `/ (root)`, a następnie kliknij **Save**.
+5. Po chwili Twoja przestrzeń do czytania będzie dostępna pod adresem `https://<username>.github.io/<repository-name>/`.
+
+## 🔒 Prywatność na Pierwszym Miejscu (Privacy First)
+
+- **100% Danych Lokalnie i Ścisły Tryb Offline:** Diavasma nie gromadzi, nie zapisuje ani nie przesyła żadnych danych osobowych, historii czytania czy treści plików na serwery zewnętrzne. Wszystkie książki, notatki i statystyki pozostają wyłącznie na Twoim urządzeniu (`localStorage` i `IndexedDB`). Dostępny jest **Ścisły Tryb Offline** (całkowity brak zapytań sieciowych) oraz opcja wyczyszczenia wszystkich danych lokalnych.
+- **Własne Czcionki i Zasoby:** Wszelkie kroje pisma, syntezatory dźwięku i silniki renderowania działają lokalnie bez odwołań do Google Fonts czy innych podmiotów trzecich.
+- **Uwaga dotycząca Łączy Web:** Opcja «Pobierz z URL» korzysta z publicznych proxy CORS w celu ominięcia ograniczeń przeglądarki. Aby zachować 100% prywatności offline, użyj **«Wklej HTML (Ctrl+U)»** lub plików lokalnych.
+
+[↑ Powrót do wyboru języka](#languages)
+
+---
+
+<a id="lang-tr"></a>
+# Diavasma 📖 (Türkçe)
+
+> Kitaplar ve makaleler için dikkatsiz, reklamsız, izleyicisiz ve sunucu bağımlılığı olmayan, %100 çevrimdışı sessiz bir okuma ve çalışma alanı.
+
+## ✨ Temel Özellikler
+
+- **📚 Çoklu Format Desteği ve Düzenleme:** EPUB, PDF (akıllı satır sonu temizleme ve IndexedDB sayfalandırma önbelleğine sahip çevrimdışı yeniden akış motoru), Markdown (`.md`) ve düz metin (`.txt`) için yerel çevrimdışı okuma. Hızlı içe aktarma modali `+` ile okumalarınızı gruplar (Kitaplar, Makaleler, özel koleksiyonlar) halinde düzenleyin.
+- **🌐 URL'den Makale ve Özel Seçiciler:** Web bağlantılarından akıllı makale çıkarma, siteye özel CSS kazıma kuralları (JSON içe/dışa aktarma özellikli), doğrudan ham HTML kaynak kodu yapıştırma (`Ctrl+U`) ve otomatik çevrimdışı site simgesi (favicon) alma.
+- **⚡ %100 Çevrimdışı PWA (Progressive Web App):** İnternet bağlantısı olmadan eksiksiz çalışır. Service Worker önbelleğe alması ve kesintisiz açılış ekranı (Açık/Koyu, Masaüstü/Mobil) sayesinde Android, iOS, Windows ve macOS cihazlarda bağımsız bir uygulama olarak yüklenebilir.
+- **🎨 6 Özel Tema ve Yerel Tipografi:** Kağıt (Paper), Sıcak (Warm), Adaçayı (Sage), Arduvaz (Slate), Gece (Night) ve AMOLED temaları. Yerel yazı tipleri (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), özel font yükleme (`.ttf`, `.otf`, `.woff`, `.woff2`), metin hizalama, satır yüksekliği ve 1 veya 2 sayfa görünümü desteği.
+- **🎧 Müzik ve Ortam Sesleri:** Entegre Winamp tarzı mini müzik çalar (IndexedDB kalıcı çalma listesi, karışık çalma, 3 modlu döngü, arama çubuğu ve mobil ses kontrolü) ve ekran kapalıyken arka planda çalabilen 6 prosedürel Web Audio ortam sesi (Yağmur, Şömine, Okyanus dalgaları, Orman ve rüzgar, Kütüphane ve plak cızırtısı, Derin kahverengi gürültü).
+- **🗣️ Sesli Okuma (TTS) ve Notlar:** Canlı cümle vurgulama ve ekran kapalıyken arka planda oynatma özellikli sesli okuma. 3 renkte vurgulama, ders notları, Markdown dışa aktarma, anında metin çevirisi ve okuyucu tipografisini benimseyen paylaşılabilir alıntı kartları (Quote Share Cards).
+- **⏱️ Pomodoro ve Okuma İstatistikleri:** Molalarda hareketli kum saati ekran koruyuculu odaklanma zamanlayıcısı, GitHub tarzı aktivite ısı haritası ve paylaşılabilir istatistik kartları içeren yerel alışkanlık takipçisi.
+- **🔄 Tam Yerel Yedekleme ve Geri Yükleme (JSON):** Tüm kütüphaneyi (IndexedDB'deki tam metinler dahil), notları, vurguları, istatistikleri, kuralları ve ayarları tek bir `.json` dosyasında dışa aktarma ve geri yükleme.
+- **✨ Sanctuary Okuma Geliştirmeleri:** Sayfa geçişlerini koruyan etkileşimli vurgu popover'ı (`#highlightPopover`), "Okumaya Devam Et" kartı (`#continueReadingCard`), sade 3 nokta menüsü (`⋯`) ve Web Share Target desteği.
+- **🌍 15 Dil:** Türkçe, Yunanca, İngilizce, İspanyolca, Fransızca, Almanca, Rusça, Basitleştirilmiş Çince, Japonca, Hintçe, Portekizce, İtalyanca, Korece, Lehçe ve Endonezce olmak üzere 15 dilde eksiksiz yerel kullanıcı arayüzü.
+
+## 🚀 Uygulama Olarak Yükleme (PWA)
+
+1. Modern bir web tarayıcısında (Chrome, Edge, Safari, Brave, Firefox) `index.html` dosyasını (veya GitHub Pages adresinizi) açın.
+2. Adres çubuğundaki **«Uygulamayı Yükle»** simgesine tıklayın veya menüden **(⋯) → Diavasma'yı Yükle** seçeneğini seçin.
+3. **iOS (Safari)** üzerinde: **Paylaş (Share)** düğmesine dokunun → **«Ana Ekrana Ekle» (Add to Home Screen)** seçeneğini seçin.
+
+## 🌐 GitHub Pages Üzerinde Barındırma
+
+Kendi kütüphanenizi GitHub Pages üzerinde çalıştırmak için tüm proje dosyalarını yükleyin:
+
+- `index.html` (ana uygulama yapısı ve okuyucu arayüzü)
+- `manifest.json` (PWA yapılandırması ve meta verileri)
+- `sw.js` (çevrimdışı çalışma ve önbellekleme için Service Worker)
+- `css/` (`styles.css` - duyarlı stil dosyası)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - güvenli önyükleme, 15 dil sözlüğü ve uygulama mantığı)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - yerel PDF motoru)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - uygulama simgeleri)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - karşılama ekranı görselleri)
+- `fonts/` (yerel WOFF2 yazı tipleri ve `fonts.css`)
+- `README.md` (proje dokümantasyonu)
+
+1. GitHub'da yeni bir depo (repository) oluşturun.
+2. İlgili dosyaları depoya yükleyin.
+3. Depo ayarlarına (**Settings → Pages**) gidin.
+4. **Build and deployment** altında **Deploy from a branch** seçeneğini belirleyin, `main` dalını ve `/ (root)` dizinini seçerek **Save** düğmesine tıklayın.
+5. Birkaç dakika içinde okuma alanınız `https://<kullanıcı-adınız>.github.io/<depo-adı>/` adresinde yayına girecektir.
+
+## 🔒 Önce Gizlilik (Privacy First)
+
+- **%100 Yerel Veri ve Katı Çevrimdışı Modu:** Diavasma hiçbir kişisel veriyi, okuma geçmişini veya dosya içeriğini harici sunuculara göndermez. Tüm kitaplar, notlar ve istatistikler yalnızca cihazınızda (`localStorage` ve `IndexedDB`) saklanır. Dış bağlantıları tamamen engelleyen **Katı Çevrimdışı Modu** ve tek tıkla tüm verileri temizleme özelliği mevcuttur.
+- **Yerel Yazı Tipleri ve Kaynaklar:** Tüm yazı tipleri, ses üreteçleri ve okuma motorları yerel olarak çalıştırılır; Google Fonts gibi üçüncü taraf sunuculara bağlanmaz.
+- **Web Bağlantıları Bildirimi:** "URL'den Al" özelliği, tarayıcı kısıtlamalarını aşmak için genel CORS proxy sunucularını kullanır. %100 gizlilik için **«HTML Yapıştır (Ctrl+U)»** yöntemini veya yerel dosyaları tercih edin.
+
+[↑ Dil seçimine dön](#languages)
+
+---
+
+<a id="lang-id"></a>
+# Diavasma 📖 (Bahasa Indonesia)
+
+> Suaka membaca yang tenang, 100% offline, untuk belajar dan mengelola buku serta artikel — tanpa iklan, tanpa pelacakan, dan tanpa ketergantungan server.
+
+## ✨ Fitur Utama
+
+- **📚 Dukungan Multi-Format & Organisasi:** Membaca offline untuk EPUB, PDF (mesin reflow offline dengan pembersihan jeda baris cerdas dan cache penomoran halaman persisten di IndexedDB), Markdown (`.md`), dan teks biasa (`.txt`). Atur bacaan ke dalam grup (Buku, Artikel, koleksi kustom) melalui modal impor cepat `+`.
+- **🌐 Artikel dari URL & Selektor Kustom:** Ekstraksi artikel web pintar, aturan scraper CSS kustom per situs (dengan impor/ekspor JSON), tempel kode sumber HTML mentah (`Ctrl+U`), dan pengambilan favicon situs secara offline.
+- **⚡ PWA 100% Offline (Progressive Web App):** Berfungsi penuh tanpa koneksi internet. Dapat diinstal sebagai aplikasi mandiri di Android, iOS, Windows, dan macOS melalui peramban modern, dilengkapi precaching Service Worker yang tangguh dan layar pembuka tanpa kedip (Terang/Gelap, Desktop/Seluler).
+- **🎨 6 Tema Pilihan & Tipografi Lokal:** Tema Kertas (Paper), Hangat (Warm), Sage, Batu Tulis (Slate), Malam (Night), dan AMOLED. Termasuk font bawaan (`Literata`, `Newsreader`, `Source Serif 4`, `Lora`, `Merriweather`, `Atkinson Hyperlegible Next`, `Inter`), unggah font kustom (`.ttf`, `.otf`, `.woff`, `.woff2`), perataan teks, jarak antarbaris, dan tampilan 1 atau 2 halaman.
+- **🎧 Musik & Lanskap Suara:** Pemutar audio mini terintegrasi bergaya Winamp (daftar putar persisten di IndexedDB, acak lagu, 3 mode pengulangan, bilah pencarian, kontrol volume seluler) dan 6 lanskap suara prosedural Web Audio (Hujan, Perapian, Ombak laut, Hutan & angin, Perpustakaan & piringan hitam, Derau cokelat dalam) dengan pemutaran latar belakang saat layar mati.
+- **🗣️ Baca Nyaring (TTS) & Catatan:** Pembacaan suara nyaring dengan penyorotan kalimat waktu nyata dan pemutaran latar belakang. Sorotan 3 warna, catatan belajar, ekspor Markdown, terjemahan instan teks yang dipilih, dan pembuatan kartu kutipan yang dapat dibagikan (Quote Share Cards).
+- **⏱️ Timer Pomodoro & Statistik Membaca:** Timer fokus dengan screensaver animasi jam pasir saat istirahat, pelacak kebiasaan membaca lokal dengan peta panas aktivitas gaya GitHub, dan kartu statistik yang dapat dibagikan.
+- **🔄 Cadangan & Pemulihan Lokal Penuh (JSON):** Ekspor dan pemulihan seluruh perpustakaan (termasuk teks lengkap dari IndexedDB), catatan, sorotan, statistik, aturan, dan pengaturan dalam satu file `.json`.
+- **✨ Penyempurnaan Membaca Sanctuary:** Popover sorotan interaktif (`#highlightPopover`) untuk mengedit catatan tanpa salah membalik halaman; kartu "Lanjutkan Membaca" (`#continueReadingCard`); menu ringkas 3 titik (`⋯`); dan dukungan Web Share Target.
+- **🌍 15 Bahasa:** Antarmuka pengguna diterjemahkan secara native dalam 15 bahasa: Indonesia, Inggris, Yunani, Spanyol, Prancis, Jerman, Rusia, Mandarin Sederhana, Jepang, Hindi, Portugis, Italia, Korea, Polandia, dan Turki.
+
+## 🚀 Instalasi sebagai Aplikasi (PWA)
+
+1. Buka `index.html` (atau URL GitHub Pages Anda) di peramban modern (Chrome, Edge, Safari, Brave, Firefox).
+2. Klik ikon **«Instal Aplikasi»** di bilah alamat atau pilih menu **(⋯) → Instal Diavasma**.
+3. Di **iOS (Safari)**: Ketuk tombol **Bagikan (Share)** → pilih **«Tambahkan ke Layar Utama» (Add to Home Screen)**.
+
+## 🌐 Hosting di GitHub Pages
+
+Untuk menjalankan instans Anda di GitHub Pages, unggah seluruh file repositori:
+
+- `index.html` (struktur utama aplikasi dan antarmuka pembaca)
+- `manifest.json` (konfigurasi dan metadata PWA)
+- `sw.js` (Service Worker untuk fungsi offline dan caching)
+- `css/` (`styles.css` - stylesheet responsif lengkap)
+- `js/` (`boot.js`, `i18n.js`, `app.js` - boot aman, kamus 15 bahasa, dan logika aplikasi)
+- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - mesin PDF offline lokal)
+- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - ikon aplikasi)
+- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - gambar latar layar pembuka)
+- `fonts/` (font web WOFF2 lokal dan `fonts.css`)
+- `README.md` (dokumentasi proyek)
+
+1. Buat repositori baru di GitHub.
+2. Unggah file-file di atas ke repositori Anda.
+3. Buka pengaturan repositori (**Settings → Pages**).
+4. Di bagian **Build and deployment**, pilih **Deploy from a branch**, pilih cabang `main` (atau `master`) dan folder `/ (root)`, lalu klik **Save**.
+5. Dalam beberapa menit, aplikasi membaca Anda akan aktif dan dapat diakses di `https://<username>.github.io/<repository-name>/`.
+
+## 🔒 Privasi Utama (Privacy First)
+
+- **100% Data Lokal & Mode Offline Ketat:** Diavasma tidak mengumpulkan, menyimpan, atau mengirimkan data pribadi, riwayat membaca, atau konten file ke server eksternal. Semua buku, catatan, dan statistik tersimpan secara eksklusif di perangkat Anda (`localStorage` dan `IndexedDB`). Dilengkapi dengan **Mode Offline Ketat** (nol permintaan eksternal) dan tombol hapus semua data lokal.
+- **Font & Sumber Daya Lokal:** Semua tipografi, generator audio, dan mesin pembaca berjalan secara lokal tanpa menghubungi server pihak ketiga seperti Google Fonts.
+- **Catatan Tautan Web:** Fitur "Ambil dari URL" menggunakan proksi CORS publik untuk melewati batasan peramban. Untuk privasi offline 100%, gunakan **«Tempel HTML (Ctrl+U)»** atau impor file lokal.
+
+[↑ Kembali ke pilihan bahasa](#languages)
 
 ---

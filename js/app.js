@@ -287,8 +287,6 @@
         if (openedOrProgress.length > 0) {
           openedOrProgress.sort((a, b) => (b.lastOpenedAt || 0) - (a.lastOpenedAt || 0) || (b.progress || 0) - (a.progress || 0) || (b.updatedAt || 0) - (a.updatedAt || 0));
           target = openedOrProgress[0];
-        } else if (library.length > 0) {
-          target = library[0];
         }
       }
       if (!target) {
@@ -991,6 +989,8 @@
       const headerTitle = $("#headerTitle");
       if (scrapersView && !scrapersView.classList.contains("d-none") && !scrapersView.hidden) {
         if (headerTitle) headerTitle.textContent = t("scrapers_title");
+      } else if (!$("#readingView")?.hidden && bookTitle) {
+        updateReadingHeaderTitle();
       }
 
 /* #brandHeader is static */
@@ -1001,14 +1001,15 @@
           "Η συνήθεια της καθημερινής ανάγνωσης", "The habit of daily reading",
           "El hábito de la lectura diaria", "L'habitude de la lecture quotidienne",
           "Die Gewohnheit des täglichen Lesens", "Привычка ежедневного чтения",
-          "每日阅读的好习惯", "毎日の読书习惯", "毎日の読書習慣", "दैनिक पढ़ने की आदत", "O hábito da leitura diária"
+          "每日阅读的好习惯", "毎日の読书习惯", "毎日の読書習慣", "दैनिक पढ़ने की आदत", "O hábito da leitura diária",
+          "L'abitudine della lettura quotidiana", "매일 독서하는 습관", "Nawyk codziennego czytania", "Günlük okuma alışkanlığı", "Kebiasaan membaca setiap hari"
         ];
         if (!statsMsgInput.value || prevDefaults.includes(statsMsgInput.value.trim())) {
           statsMsgInput.value = t("stats_default_custom_msg") || "Η συνήθεια της καθημερινής ανάγνωσης";
         }
         if (typeof StatsCardStudio !== "undefined") {
           StatsCardStudio.customMessage = statsMsgInput.value;
-          if (typeof StatsCardStudio.render === "function") StatsCardStudio.render();
+          if (!$("#statsCardModal")?.hidden && typeof StatsCardStudio.draw === "function") StatsCardStudio.draw();
         }
       }
 
@@ -1021,15 +1022,13 @@
 
       if (typeof updateHubUI === "function") updateHubUI();
       if (typeof renderLibraryHub === "function") renderLibraryHub();
-      if (typeof syncGroupSelectors === "function") syncGroupSelectors();
-      renderContinueReadingCard();
       if (typeof buildOutline === "function") buildOutline();
       if (typeof renderScraperRulesList === "function") renderScraperRulesList();
       if (typeof renderNotesDrawer === "function") renderNotesDrawer();
       if (typeof updatePomoUI === "function") updatePomoUI();
       if (typeof ReadingStatsEngine !== "undefined" && typeof ReadingStatsEngine.render === "function") ReadingStatsEngine.render();
-      if (typeof StatsCardStudio !== "undefined" && typeof StatsCardStudio.draw === "function") StatsCardStudio.draw();
-      if (typeof QuoteCardStudio !== "undefined" && typeof QuoteCardStudio.draw === "function") QuoteCardStudio.draw();
+      if (!$("#statsCardModal")?.hidden && typeof StatsCardStudio !== "undefined" && typeof StatsCardStudio.draw === "function") StatsCardStudio.draw();
+      if (!$("#quoteCardModal")?.hidden && typeof QuoteCardStudio !== "undefined" && typeof QuoteCardStudio.draw === "function") QuoteCardStudio.draw();
     }
     
 
@@ -4108,12 +4107,6 @@
       const libraryBtn = $("#libraryBtn");
       if (libraryBtn) libraryBtn.hidden = false;
 
-      const scrapersBtn = $("#scrapersBtn");
-      if (scrapersBtn) scrapersBtn.hidden = (viewName === "reading");
-
-      const statsBtn = $("#statsBtn");
-      if (statsBtn) statsBtn.hidden = (viewName === "reading");
-
       const moreScrapersBtn = $("#moreScrapersBtn");
       if (moreScrapersBtn) moreScrapersBtn.hidden = (viewName === "reading");
 
@@ -4157,11 +4150,7 @@
         if (libView) libView.scrollTop = 0;
         renderLibraryHub();
       } else if (viewName === "reading") {
-        const grpObj = groups.find((g) => g.id === currentGroupId);
-        const headerTitle = $("#headerTitle");
-        if (headerTitle) {
-          headerTitle.textContent = grpObj ? `${grpObj.name} · ${bookTitle}` : bookTitle;
-        }
+        updateReadingHeaderTitle();
         updateNotesBadge();
         recalcAfterLayoutSettle();
       }
@@ -4169,6 +4158,28 @@
       WakeLockManager.sync();
     }
     
+
+    function updateReadingHeaderTitle() {
+      if ($("#readingView")?.hidden || !bookTitle) return;
+      const headerTitle = $("#headerTitle");
+      if (!headerTitle) return;
+      const grp = groups.find((g) => g.id === currentGroupId);
+      let grpDisplayName = "";
+      if (grp) {
+        if (grp.customRenamed) grpDisplayName = grp.name;
+        else if (grp.id === "grp-books") grpDisplayName = t("group_books") || grp.name;
+        else if (grp.id === "grp-articles") grpDisplayName = t("group_articles") || grp.name;
+        else grpDisplayName = grp.name;
+      }
+      if (window.innerWidth <= 820) {
+        headerTitle.textContent = bookTitle;
+      } else {
+        headerTitle.textContent = grpDisplayName ? `${grpDisplayName} · ${bookTitle}` : bookTitle;
+        if (grpDisplayName && headerTitle.scrollWidth > headerTitle.clientWidth + 1) {
+          headerTitle.textContent = bookTitle;
+        }
+      }
+    }
 
     function showScrapersView() {
       setActiveView("scrapers");
@@ -4292,8 +4303,8 @@
                       <label class="group-popover-lbl">${escapeHtml(t("btn_rename_group") || "Μετονομασία ομάδας")}</label>
                       <input type="text" class="group-rename-input" value="${escapeHtml(grpTitle)}" maxlength="40" placeholder="${escapeHtml(t("prompt_rename_group") || "Όνομα ομάδας")}" />
                       <div class="group-popover-actions">
-                        <button type="button" class="btn sm primary group-rename-save">${escapeHtml(t("btn_save") || "Αποθήκευση")}</button>
-                        ${!isDefaultGrp ? `<button type="button" class="btn sm danger-outline group-popover-del" title="${escapeHtml(t("btn_delete_group") || "Διαγραφή")}">${escapeHtml(t("btn_delete_group") || "Διαγραφή")}</button>` : ""}
+                        <button type="button" class="btn sm primary group-rename-save">${escapeHtml(t("hl_pop_save") || "Αποθήκευση")}</button>
+                        ${!isDefaultGrp ? `<button type="button" class="btn sm danger-btn group-popover-del" title="${escapeHtml(t("btn_delete_group") || "Διαγραφή")}">${escapeHtml(t("btn_delete_group") || "Διαγραφή")}</button>` : ""}
                       </div>
                     </div>
                   </div>
@@ -4442,7 +4453,7 @@
             }
 
             let faviconHtml = "";
-            const hasFavicon = Boolean(item.favicon && (item.favicon.startsWith("data:image/") || item.favicon.startsWith("blob:") || item.favicon.startsWith("http")));
+            const hasFavicon = Boolean(item.favicon && (item.favicon.startsWith("data:image/") || item.favicon.startsWith("blob:")));
 
             if (domain || hasFavicon) {
               const fbLetter = domain ? domain.charAt(0).toUpperCase() : (item.title ? item.title.charAt(0).toUpperCase() : "A");
@@ -4606,7 +4617,6 @@
               }
               normalizeGroupOrders(grp.id);
               saveLibraryState();
-              renderLibraryHub();
             });
 
             listEl.appendChild(row);
@@ -5126,12 +5136,17 @@
 
     /* --- Visual Loading / Waiting Screen --- */
     const LoadingOverlay = {
+      _hideTimer: 0,
       show(title, detail = "", pct = null) {
+        if (this._hideTimer) {
+          clearTimeout(this._hideTimer);
+          this._hideTimer = 0;
+        }
         const ov = $("#loadingOverlay");
         if (!ov) return;
         const titleEl = $("#loadingTitle");
         const detailEl = $("#loadingDetail");
-        const barEl = $("#loadingProgressFill") || $("#loadingProgressBar");
+        const barEl = $("#loadingProgressFill");
         const trackEl = $("#loadingProgressTrack");
         if (titleEl) titleEl.textContent = title || t("loading_title") || "Φόρτωση...";
         if (detailEl) detailEl.textContent = detail || "";
@@ -5147,8 +5162,12 @@
         ov.classList.remove("closing");
       },
       update(detail = "", pct = null) {
+        if (this._hideTimer) {
+          clearTimeout(this._hideTimer);
+          this._hideTimer = 0;
+        }
         const detailEl = $("#loadingDetail");
-        const barEl = $("#loadingProgressFill") || $("#loadingProgressBar");
+        const barEl = $("#loadingProgressFill");
         const trackEl = $("#loadingProgressTrack");
         if (detailEl && detail) detailEl.textContent = detail;
         if (trackEl && barEl && typeof pct === "number" && pct >= 0) {
@@ -5159,10 +5178,12 @@
       hide() {
         const ov = $("#loadingOverlay");
         if (!ov || ov.hidden) return;
+        if (this._hideTimer) clearTimeout(this._hideTimer);
         ov.classList.add("closing");
-        setTimeout(() => {
+        this._hideTimer = setTimeout(() => {
           ov.hidden = true;
           ov.classList.remove("closing");
+          this._hideTimer = 0;
         }, 220);
       }
     };
@@ -5372,8 +5393,25 @@
       }
     }
 
-    /* --- Exact DOM-Measured Pagination (Zero Scroll & Zero Leading Spaces on Split) --- */
-    function paginateExact(text) {
+    /* --- Exact DOM-Measured Pagination Helper --- */
+    function buildPagesFromOffsets(text, offsets) {
+      if (!Array.isArray(offsets) || !offsets.length) {
+        return [{ text: text, start: 0, end: text.length }];
+      }
+      const res = [];
+      const len = text.length;
+      for (let i = 0; i < offsets.length; i++) {
+        const s = offsets[i];
+        const e = (i + 1 < offsets.length) ? offsets[i + 1] : len;
+        const sl = text.slice(s, e).replace(/\s+$/, "");
+        if (sl) res.push({ text: sl, start: s, end: s + sl.length });
+      }
+      return res.length ? res : [{ text: text, start: 0, end: len }];
+    }
+
+    let activePaginationJobId = 0;
+
+    async function paginateExactAsync(text, onProgress = null, jobId = activePaginationJobId) {
       if (prefs.mode === "scroll") {
         return [{ text: text, start: 0, end: text.length }];
       }
@@ -5381,19 +5419,20 @@
       // Check layout-keyed cache first
       const cachedOffsets = PaginationCache.get(currentBookId);
       if (Array.isArray(cachedOffsets) && cachedOffsets.length > 0) {
-        const cachedPages = [];
-        for (let i = 0; i < cachedOffsets.length; i++) {
-          const s = cachedOffsets[i];
-          const e = (i + 1 < cachedOffsets.length) ? cachedOffsets[i + 1] : text.length;
-          const sl = text.slice(s, e).replace(/\s+$/, "");
-          if (sl) cachedPages.push({ text: sl, start: s, end: s + sl.length });
+        const cachedPages = buildPagesFromOffsets(text, cachedOffsets);
+        if (cachedPages.length > 0) {
+          if (onProgress) onProgress(100);
+          return cachedPages;
         }
-        if (cachedPages.length > 0) return cachedPages;
       }
 
       const sheet = $("#pageA");
       const contentEl = $("#contentA");
       const measurer = $("#pageMeasurer");
+
+      if (!sheet || !contentEl || !measurer) {
+        return [{ text: text, start: 0, end: text.length }];
+      }
 
       const sheetStyle = getComputedStyle(sheet);
       const contentStyle = getComputedStyle(contentEl);
@@ -5419,9 +5458,29 @@
       let cursor = 0;
       const len = text.length;
       let estChunk = 1800;
+      let lastYieldTime = performance.now();
 
       while (cursor < len) {
-        // Skip ALL leading whitespace (newlines, spaces, tabs) so a split sentence never starts with a space on the next page
+        if (jobId !== activePaginationJobId) {
+          measurer.textContent = "";
+          return null;
+        }
+
+        const now = performance.now();
+        if (now - lastYieldTime > 20) {
+          if (onProgress) {
+            const pct = Math.min(99, Math.round((cursor / len) * 100));
+            onProgress(pct);
+          }
+          await new Promise((r) => requestAnimationFrame(r));
+          if (jobId !== activePaginationJobId) {
+            measurer.textContent = "";
+            return null;
+          }
+          lastYieldTime = performance.now();
+        }
+
+        // Skip ALL leading whitespace (newlines, spaces, tabs)
         while (cursor < len && /\s/.test(text[cursor])) cursor++;
         if (cursor >= len) break;
 
@@ -5478,6 +5537,8 @@
       }
 
       measurer.textContent = "";
+      if (onProgress) onProgress(100);
+
       const finalRes = result.length ? result : [{ text: text, start: 0, end: text.length }];
       PaginationCache.set(currentBookId, finalRes.map((p) => p.start));
       return finalRes;
@@ -5643,9 +5704,15 @@
         if (ttsActive && activeTtsRange) {
           charOffset = activeTtsRange.start;
         }
-        pages = paginateExact(bookText);
-        needsRepaginate = false;
-        buildOutline();
+        const cachedOffsets = PaginationCache.get(currentBookId);
+        if (Array.isArray(cachedOffsets) && cachedOffsets.length > 0) {
+          pages = buildPagesFromOffsets(bookText, cachedOffsets);
+          needsRepaginate = false;
+          buildOutline();
+        } else {
+          recalcAfterLayoutSettle();
+          return;
+        }
       }
 
       const anchorOffset = (ttsActive && activeTtsRange) ? activeTtsRange.start : charOffset;
@@ -5735,7 +5802,6 @@
       }
       currentBookMeta = Object.assign({}, existingEntry || {}, extraMeta || {});
       needsRepaginate = true;
-      buildOutline();
       setActiveView("reading");
 
       restoreBookAudio(savedAudio, inheritActiveMedia);
@@ -5744,25 +5810,13 @@
     }
     
 
-    let hubMode = "library"; // always library in current UI
-
-    function setHubMode(mode) {
-      hubMode = "library";
-      updateHubUI();
-      renderLibraryHub();
-    }
-    
-    
-
     function updateHubUI() {
-      const composerCard = $("#composerCard");
       const libraryListSection = $("#libraryListSection");
       const hubMainTitle = $("#hubMainTitle");
       const hubSubtitle = $("#hubSubtitle");
       const headerTitle = $("#headerTitle");
       const newGroupBtn = $("#newGroupBtn");
 
-      if (composerCard) composerCard.hidden = true;
       if (libraryListSection) libraryListSection.hidden = false;
 
       const mainTitleText = t("hub_title") || "Βιβλιοθήκη & Ομάδες";
@@ -5776,7 +5830,6 @@
     }
 
     function showLibraryView() {
-      setHubMode("library");
       setActiveView("library");
     }
 
@@ -5799,10 +5852,20 @@
     function openImportModal(groupId) {
       const modal = $("#importModal");
       if (!modal) return;
-      document.body.style.overflow = "hidden";
-      FocusManager.push(modal);
       const targetGrp = groups.find((g) => g.id === groupId) || groups[0];
       const activeGrpId = targetGrp ? targetGrp.id : (groups[0]?.id || "grp-books");
+
+      // 1-Click File Picker on Books (grp-books): directly open native file picker
+      if (activeGrpId === "grp-books") {
+        syncGroupSelectors();
+        const grpSel = $("#targetGroupSelect");
+        if (grpSel) grpSel.value = "grp-books";
+        $("#textFileInput")?.click();
+        return;
+      }
+
+      document.body.style.overflow = "hidden";
+      FocusManager.push(modal);
 
       // Sync dropdown
       syncGroupSelectors();
@@ -5820,16 +5883,7 @@
       const tabUrl = modal.querySelector('.mode-tab[data-pane="paneUrl"]');
       const tabPaste = modal.querySelector('.mode-tab[data-pane="panePaste"]');
 
-      if (activeGrpId === "grp-books") {
-        // Books: Only paneFile, hide mode tabs bar completely
-        if (titleEl) titleEl.textContent = t("import_modal_books_title") || "Προσθήκη Βιβλίου / Αρχείου";
-        if (modeTabsContainer) modeTabsContainer.hidden = true;
-        if (tabFile) tabFile.hidden = false;
-        if (tabUrl) tabUrl.hidden = true;
-        if (tabPaste) tabPaste.hidden = true;
-        setImportPane("paneFile");
-        setTimeout(() => $("#pickFileBtn")?.focus(), 60);
-      } else if (activeGrpId === "grp-articles") {
+      if (activeGrpId === "grp-articles") {
         // Articles: paneUrl & panePaste (paneUrl default)
         if (titleEl) titleEl.textContent = t("import_modal_articles_title") || "Προσθήκη Άρθρου / Κειμένου";
         if (modeTabsContainer) modeTabsContainer.hidden = false;
@@ -5868,7 +5922,7 @@
       if (!document.fonts) return;
       try {
         const sizePx = `${prefs.size}px`;
-        const family = prefs.font === "ReaderUploaded" ? "ReaderUploaded" : `"${prefs.font}"`;
+        const family = `"${prefs.font}"`;
         await Promise.race([
           document.fonts.load(`${sizePx} ${family}`),
           new Promise((r) => setTimeout(r, 700))
@@ -5883,17 +5937,18 @@
         buildOutline();
         return;
       }
+      const jobId = ++activePaginationJobId;
       const wasSpeaking = ttsActive;
       const resumeFromOffset = activeTtsRange ? activeTtsRange.start : null;
 
-      needsRepaginate = true;
-      const shouldShowLoading = typeof LoadingOverlay !== "undefined";
-
       await waitForActiveFontLoad();
-      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+      if (jobId !== activePaginationJobId) return;
+      await new Promise((r) => requestAnimationFrame(r));
+      if (jobId !== activePaginationJobId) return;
 
       // Layout-keyed cache check
       const cached = await PaginationCache.load(currentBookId);
+      if (jobId !== activePaginationJobId) return;
       if (cached && cached.length > 0) {
         try {
           renderPages(false, true);
@@ -5906,30 +5961,42 @@
         return;
       }
 
-      // Cache miss: show loading overlay and calculate
-      if (shouldShowLoading) {
-        LoadingOverlay.show(t("loading_repaginating") || "Επανυπολογισμός σελίδων...", t("loading_repaginating_sub") || "Εφαρμογή νέας τυπογραφίας και διάταξης", null);
-      }
-      await new Promise((r) => requestAnimationFrame(r));
+      // Cache miss: immediate overlay with 0% progress and yield for paint
+      LoadingOverlay.show(
+        t("loading_repaginating") || "Επανυπολογισμός σελίδων...",
+        "0%",
+        0
+      );
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+      if (jobId !== activePaginationJobId) return;
 
       try {
-        renderPages(false, true);
+        const newPages = await paginateExactAsync(
+          bookText,
+          (pct) => {
+            LoadingOverlay.update(`${pct}%`, pct);
+          },
+          jobId
+        );
+        if (jobId !== activePaginationJobId || !newPages) return;
+
+        pages = newPages;
+        needsRepaginate = false;
+        buildOutline();
+        renderPages(false, false);
         if (wasSpeaking && resumeFromOffset !== null) {
           speakCurrentSpread(resumeFromOffset);
         }
+      } catch (err) {
+        console.error("[PaginationAsync error]", err);
       } finally {
-        if (shouldShowLoading) {
+        if (jobId === activePaginationJobId) {
           LoadingOverlay.hide();
         }
       }
     }
 
     function toggleFullscreenZen() {
-      // Deprecate fullscreen on mobile and tablet viewports
-      const isMobileOrTablet = window.innerWidth <= 900 || window.matchMedia("(pointer: coarse)").matches;
-      if (isMobileOrTablet) {
-        return; // Simplified UI on mobile/tablet
-      }
       const app = $("#app");
       const isCurrentlyZen = app.classList.contains("zen") || Boolean(document.fullscreenElement);
 
@@ -6193,7 +6260,7 @@
     }
 
     function renderNotesDrawer() {
-      const hls = (Array.isArray(window.highlights) && window.highlights.length) ? window.highlights : highlights;
+      const hls = highlights;
       const container = $("#notesListContainer");
       if (!hls.length) {
         container.innerHTML = `<div style="text-align:center;color:var(--muted);padding:24px 0;font-size:13px">${t("notes_empty")}</div>`;
@@ -6610,7 +6677,7 @@
         const firstLine = parsed.text.split("\n")[0];
         const title = (firstLine && firstLine.length < 90) ? firstLine : file.name.replace(/\.(txt|md|markdown)$/i, "");
         const existing = library.find((b) => b.title === title);
-        const selectedGrp = $("#targetGroupSelect").value || groups[0].id;
+        const selectedGrp = $("#targetGroupSelect")?.value || (groups.some((g) => g.id === "grp-books") ? "grp-books" : groups[0].id);
         openBook(
           title,
           parsed.text,
@@ -6787,26 +6854,15 @@
     /* --- Event Bindings --- */
     $("#brandLogoBtn")?.addEventListener("click", (e) => {
       e.stopPropagation();
-      closeAllDrawers();
-      $("#aboutModal").hidden = false;
+      openAboutModal();
     });
 
 /* #goHome navigation removed, use #libraryBtn */
 
     $("#libraryBtn")?.addEventListener("click", () => {
-      const scrapersView = $("#scrapersHubView");
-      const readingView = $("#readingView");
-      if (scrapersView && !scrapersView.hidden) {
-        setHubMode("library");
-        setActiveView("library");
-      } else if (readingView && !readingView.hidden) {
-        setHubMode("library");
-        setActiveView("library");
-      } else {
-        setActiveView("library");
-        const libView = $("#libraryHubView");
-        if (libView) libView.scrollTop = 0;
-      }
+      setActiveView("library");
+      const libView = $("#libraryHubView");
+      if (libView) libView.scrollTop = 0;
     });
 
     // Contextual Import Modal Events
@@ -6821,7 +6877,6 @@
     $("#closePomodoroDrawerBtn")?.addEventListener("click", closeAllDrawers);
     $("#musicBtn")?.addEventListener("click", () => toggleMusicDrawer(true));
     $("#closeMusicDrawerBtn")?.addEventListener("click", closeAllDrawers);
-    $("#statsBtn")?.addEventListener("click", () => toggleStatsDrawer(true));
     $("#closeStatsDrawerBtn")?.addEventListener("click", closeAllDrawers);
     $("#resetStatsBtn")?.addEventListener("click", () => {
       if (typeof ReadingStatsEngine !== "undefined") ReadingStatsEngine.reset();
@@ -6840,13 +6895,7 @@
     });
     $("#closeDrawerBtn")?.addEventListener("click", closeAllDrawers);
     $("#settingsAboutBtn")?.addEventListener("click", () => {
-      closeAllDrawers();
-      const ab = $("#aboutModal");
-      if (ab) {
-        ab.hidden = false;
-        document.body.style.overflow = "hidden";
-        FocusManager.push(ab, $("#closeAboutModalBtn"));
-      }
+      openAboutModal();
     });
     $("#closeAboutModalBtn")?.addEventListener("click", closeAboutModal);
     $("#aboutModal")?.addEventListener("click", (e) => {
@@ -7114,7 +7163,6 @@
     });
 
     // Custom Scraper Mapping Page Events
-    $("#scrapersBtn")?.addEventListener("click", showScrapersView);
     $("#backFromScrapersBtn")?.addEventListener("click", showLibraryView);
     $("#clearScraperFormBtn")?.addEventListener("click", () => fillScraperForm(null));
 
@@ -7370,14 +7418,7 @@
     $("#pickFileBtn")?.addEventListener("click", () => $("#textFileInput").click());
     $("#textFileInput")?.addEventListener("change", (e) => {
       if (e.target.files && e.target.files[0]) {
-        const file = e.target.files[0];
-        if (file.type.startsWith("audio/") || /\.(mp3|m4a|wav|ogg)$/i.test(file.name)) {
-          addAudioFilesToPlaylist([file]);
-          toggleMusicDrawer(true);
-          showToast(t("toast_audio_added") || "Το αρχείο ήχου προστέθηκε στη μουσική!");
-        } else {
-          loadDocumentFile(file);
-        }
+        loadDocumentFile(e.target.files[0]);
         e.target.value = "";
       }
     });
@@ -7396,12 +7437,7 @@
       $("#dropZone")?.classList.remove("dragover");
       const files = Array.from(e.dataTransfer?.files || []);
       const doc = files.find((f) => /\.(epub|pdf|txt|md|markdown)$/i.test(f.name) || f.type === "application/pdf" || f.type === "application/epub+zip" || f.type.startsWith("text/"));
-      const audio = files.filter((f) => f.type.startsWith("audio/") || /\.(mp3|m4a|aac|wav|ogg|opus|flac)$/i.test(f.name));
       if (doc) loadDocumentFile(doc);
-      if (audio.length) {
-        addAudioFilesToPlaylist(audio);
-        toggleMusicDrawer(true);
-      }
     });
 
     // Page Navigation
@@ -7446,6 +7482,19 @@
       } else if (relX > 0.78) {
         movePage(1);
       } else if ($("#app").classList.contains("zen")) {
+        const app = $("#app");
+        const show = !app.classList.contains("reveal-top");
+        app.classList.toggle("reveal-top", show);
+        app.classList.toggle("reveal-dock", show);
+      }
+    });
+
+    $("#scrollStage")?.addEventListener("click", (e) => {
+      if (prefs.mode !== "scroll") return;
+      if (e.target.closest("mark.user-hl") || e.target.closest("#highlightPopover")) return;
+      const sel = window.getSelection();
+      if (sel && sel.toString().length > 0) return;
+      if ($("#app").classList.contains("zen")) {
         const app = $("#app");
         const show = !app.classList.contains("reveal-top");
         app.classList.toggle("reveal-top", show);
@@ -7961,7 +8010,6 @@
 
         // UX bonus: If in scrapersHubView, not inside input/textarea, and no drawer/modal was open, return to Library
         if (scrapersView && !scrapersView.hidden && !anyDrawerOpen && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) {
-          setHubMode("library");
           setActiveView("library");
         }
         return;
@@ -7986,6 +8034,7 @@
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
+        updateReadingHeaderTitle();
         recalcAfterLayoutSettle();
       }, 120);
     }, { passive: true });
@@ -8219,7 +8268,7 @@
           const cell = document.createElement("div");
           cell.className = `heatmap-cell lvl-${lvl}` + (dateKey === this.getTodayKey() ? " today" : "");
 
-          const localeMap = { el: "el-GR", en: "en-US", es: "es-ES", fr: "fr-FR", de: "de-DE", ru: "ru-RU", zh: "zh-CN", ja: "ja-JP", hi: "hi-IN", pt: "pt-PT" };
+          const localeMap = { el: "el-GR", en: "en-US", es: "es-ES", fr: "fr-FR", de: "de-DE", ru: "ru-RU", zh: "zh-CN", ja: "ja-JP", hi: "hi-IN", pt: "pt-PT", it: "it-IT", ko: "ko-KR", pl: "pl-PL", tr: "tr-TR", id: "id-ID" };
           const dateFormatted = cur.toLocaleDateString(localeMap[prefs.lang] || "en-US", {
             month: "short",
             day: "numeric",
@@ -8512,7 +8561,7 @@
 
           // Watermark (Δ DIAVASMA)
           if (incWatermark) {
-            ctx.font = '700 16px "Playfair Display", "Literata", serif';
+            ctx.font = '700 16px "Literata", Georgia, serif';
             ctx.fillStyle = th.brandText;
             ctx.textBaseline = "top";
             ctx.textAlign = "left";
@@ -9182,7 +9231,7 @@
         ctx.stroke();
 
         ctx.fillStyle = th.pillText;
-        ctx.font = 'bold 24px "Playfair Display", "Georgia", serif';
+        ctx.font = 'bold 24px "Literata", Georgia, serif';
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText("Δ", badgeX + badgeR, badgeY + badgeR);
@@ -9190,7 +9239,7 @@
         ctx.textBaseline = "alphabetic";
 
         ctx.fillStyle = th.brandText;
-        ctx.font = 'bold 24px "Playfair Display", "Georgia", serif';
+        ctx.font = 'bold 24px "Literata", Georgia, serif';
         ctx.fillText("Diavasma", badgeX + badgeR * 2 + 14, footerY + 8);
 
         ctx.fillStyle = th.muted;
@@ -9448,7 +9497,8 @@
 
       updateWelcomeImage(prefs.theme);
 
-      if (launchedViaShare === true) {
+      const hasShareParams = /[?&](share_url|share_text|share_title)=/i.test(window.location.search);
+      if (launchedViaShare === true || hasShareParams) {
         ov.hidden = true;
       } else if (prefs.showWelcome !== false) {
         welcomeShownInSession = true;
@@ -9477,7 +9527,6 @@
     QuoteCardStudio.init();
     StatsCardStudio.init();
     applyLanguage(prefs.lang);
-    renderLibraryHub();
     updatePomoUI();
     playlistReadyPromise = refreshPersistentPlaylist();
     refreshUploadedFonts();

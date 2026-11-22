@@ -150,6 +150,11 @@
             <button type="button" class="lang-opt" data-lang="ja">🇯🇵 日本語</button>
             <button type="button" class="lang-opt" data-lang="hi">🇮🇳 हिन्दी</button>
             <button type="button" class="lang-opt" data-lang="pt">🇵🇹 Português</button>
+            <button type="button" class="lang-opt" data-lang="it">🇮🇹 Italiano</button>
+            <button type="button" class="lang-opt" data-lang="ko">🇰🇷 한국어</button>
+            <button type="button" class="lang-opt" data-lang="pl">🇵🇱 Polski</button>
+            <button type="button" class="lang-opt" data-lang="tr">🇹🇷 Türkçe</button>
+            <button type="button" class="lang-opt" data-lang="id">🇮🇩 Bahasa Indonesia</button>
           </div>
 
         </div>
@@ -731,7 +736,7 @@
 
       <button type="button" class="btn sm danger-btn" id="clearAllDataBtn" style="width:100%;margin-top:6px" data-i18n="btn_clear_all_data">Εκκαθάριση όλων των δεδομένων</button>
 
-      <button class="btn sm" id="settingsAboutBtn" style="width:100%;margin-top:4px;gap:6px" data-i18n="settings_about_btn">
+      <button class="btn sm" id="settingsAboutBtn" style="width:100%;margin-top:4px;gap:6px">
         <span>ℹ️</span> <span data-i18n="about_title">Σχετικά με το Diavasma</span>
       </button>
     </aside>
@@ -1066,7 +1071,7 @@
               </div>
 
               <div>
-                <strong data-i18n="pane_file_drop">Εισαγωγή EPUB, PDF, Markdown, TXT ή MP3</strong>
+                <strong data-i18n="pane_file_drop">Εισαγωγή EPUB, PDF, Markdown ή TXT</strong>
                 <div style="font-size:12px;color:var(--muted)" data-i18n="pane_file_sub">Επίλεξε αρχείο από τη συσκευή ή σύρε το εδώ (drag &amp; drop)</div>
               </div>
 
@@ -1074,7 +1079,7 @@
 
             <button type="button" class="btn primary" id="pickFileBtn" data-i18n="btn_pick_file">Επιλογή αρχείου</button>
             <input type="file" id="textFileInput"
-              accept=".epub,.pdf,.txt,.md,.markdown,audio/*,.mp3,.m4a,.wav,.ogg,application/epub+zip,application/pdf,text/plain,text/markdown"
+              accept=".epub,.pdf,.txt,.md,.markdown,application/epub+zip,application/pdf,text/plain,text/markdown"
               hidden />
           </div>
 
@@ -1097,9 +1102,7 @@
           </div>
 
           <div id="urlRuleMatchHint" style="font-size:12px;color:var(--accent);font-weight:500" hidden></div>
-          <div class="field-hint" style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:6px" data-i18n="url_privacy_notice">
-            <span>🔒</span> <span>Σημείωση απορρήτου: Η αυτόματη ανάκτηση χρησιμοποιεί ασφαλείς proxies. Για 100% ιδιωτικότητα &amp; offline λειτουργία, προτίμησε «Επικόλληση HTML (Ctrl+U)».</span>
-          </div>
+          <div class="field-hint" style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45" data-i18n="url_privacy_notice">🔒 Σημείωση απορρήτου: Η αυτόματη ανάκτηση χρησιμοποιεί ασφαλείς proxies. Για 100% ιδιωτικότητα &amp; offline λειτουργία, προτίμησε «Επικόλληση HTML (Ctrl+U)».</div>
           <div id="rawHtmlUrlBox" hidden style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
             <div style="font-size:11.5px;color:var(--muted)" data-i18n="raw_html_hint">Αν το site μπλοκάρει την αυτόματη λήψη, άνοιξε τη σελίδα → Ctrl+U (Προβολή κώδικα) → Ctrl+A, Ctrl+C και επικόλλησέ τον εδώ (μαζί με το URL επάνω):</div>
             <textarea class="paste-area mono-input" id="rawHtmlUrlInput" style="height:90px"

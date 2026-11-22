@@ -1,6 +1,5 @@
-/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v32) */
-const CACHE_NAME = "diavasma-shell-v32";
-const FONT_CACHE = "reading-room-fonts-v1";
+/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v36) */
+const CACHE_NAME = "diavasma-shell-v36";
 
 const PRECACHE_URLS = [
   "./",
@@ -46,7 +45,7 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((k) => {
-          if (k !== CACHE_NAME && k !== FONT_CACHE) {
+          if (k !== CACHE_NAME) {
             console.log("[SW] Deleting old cache:", k);
             return caches.delete(k);
           }
@@ -77,7 +76,8 @@ self.addEventListener("fetch", (event) => {
     url.hostname.includes("favicone.com") ||
     url.hostname.includes("icon.horse") ||
     url.hostname.includes("duckduckgo.com") ||
-    url.hostname.includes("google.com")
+    url.hostname.includes("google.com") ||
+    url.hostname.includes("googleapis.com")
   ) {
     return;
   }
