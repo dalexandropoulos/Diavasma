@@ -2,6 +2,10 @@
   try {
     var pRaw = localStorage.getItem("reading-room-prefs-v14") || localStorage.getItem("reading-room-prefs-v13") || localStorage.getItem("reading-room-prefs-v12");
     var p = pRaw ? JSON.parse(pRaw) : null;
+    var lang = (p && p.lang) ? p.lang : (navigator.language || "").slice(0, 2).toLowerCase();
+    var isRtl = (lang === "ar" || lang === "he" || lang === "fa");
+    document.documentElement.dir = isRtl ? "rtl" : "ltr";
+    if (p && p.lang) document.documentElement.lang = p.lang;
     var appEl = document.getElementById("app");
     var ov = document.getElementById("welcomeOverlay");
     var theme = (p && p.theme) ? p.theme : "paper";

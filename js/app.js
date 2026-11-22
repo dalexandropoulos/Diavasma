@@ -6,6 +6,20 @@
   try {
     const I18N = window.DIAVASMA_I18N || {};
 
+    const RTL_LANGS = new Set(["ar", "he", "fa"]);
+    function isRtlLang(lang) { return RTL_LANGS.has(lang); }
+    function isRtlText(text) {
+      if (!text) return false;
+      const sample = text.slice(0, 1500);
+      const rtlMatches = sample.match(/[֐-׿؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]/g);
+      const rtlCount = rtlMatches ? rtlMatches.length : 0;
+      const letterMatches = sample.match(/[\p{L}]/gu);
+      const letterCount = letterMatches ? letterMatches.length : 0;
+      if (letterCount === 0) return false;
+      return (rtlCount / letterCount) >= 0.3;
+    }
+    let bookIsRtl = false;
+
     function detectBrowserLang() {
       const raw = (navigator.language || "").toLowerCase();
       if ((raw.startsWith("zh-tw") || raw.startsWith("zh-hk") || raw.startsWith("zh-mo") || raw.includes("hant")) && I18N["zh-TW"]) {
@@ -936,6 +950,23 @@
       prefs.lang = lang;
       savePrefs();
       document.documentElement.lang = lang;
+
+      const prevIsRtl = document.documentElement.dir === "rtl";
+      const nextIsRtl = isRtlLang(lang);
+      document.documentElement.dir = nextIsRtl ? "rtl" : "ltr";
+      if (prevIsRtl !== nextIsRtl) {
+        if (nextIsRtl && prefs.align === "left") {
+          prefs.align = "right";
+        } else if (!nextIsRtl && prefs.align === "right") {
+          prefs.align = "left";
+        }
+        const app = $("#app");
+        if (app) app.style.setProperty("--reader-align", prefs.align);
+        document.querySelectorAll(".align-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.val === prefs.align);
+        });
+        savePrefs();
+      }
       document.title = `${t("app_name") || "Diavasma"} — ${t("app_title_suffix") || "Χώρος Ανάγνωσης"}`;
 
       const badge = $("#currentLangBadge");
@@ -1011,7 +1042,8 @@
           "Die Gewohnheit des täglichen Lesens", "Привычка ежедневного чтения",
           "每日阅读的好习惯", "毎日の読书习惯", "毎日の読書習慣", "दैनिक पढ़ने की आदत", "O hábito da leitura diária",
           "L'abitudine della lettura quotidiana", "매일 독서하는 습관", "Nawyk codziennego czytania", "Günlük okuma alışkanlığı", "Kebiasaan membaca setiap hari",
-          "每日閱讀的好習慣", "Звичка щоденного читання", "De gewoonte van dagelijks lezen", "Thói quen đọc sách mỗi ngày"
+          "每日閱讀的好習慣", "Звичка щоденного читання", "De gewoonte van dagelijks lezen", "Thói quen đọc sách mỗi ngày",
+          "عادة القراءة اليومية", "הרגל הקריאה היומי", "عادت مطالعه روزانه"
         ];
         if (!statsMsgInput.value || prevDefaults.includes(statsMsgInput.value.trim())) {
           statsMsgInput.value = t("stats_default_custom_msg") || "Η συνήθεια της καθημερινής ανάγνωσης";
@@ -4487,11 +4519,17 @@
             }
 
             const dateHtml = item.datetime ? `<span class="meta-tag date-tag">📅 ${escapeHtml(item.datetime)}</span>` : "";
-            const pct = Math.min(100, Math.max(0, item.progress || 0));
+            const pct = Math.min(100, Math.max(0, Math.round(Number(item.progress) || 0)));
+            let pieSvg = "";
+            if (pct >= 100) {
+              pieSvg = '<svg class="track-num-pie" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="var(--progress-pie-full)" /></svg>';
+            } else if (pct > 0) {
+              pieSvg = `<svg class="track-num-pie" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="8" fill="none" stroke="var(--progress-pie)" stroke-width="16" pathLength="100" stroke-dasharray="${pct} 100" transform="rotate(-90 16 16)" /></svg>`;
+            }
 
             row.innerHTML = `
                 <div class="track-left">
-                  <span class="track-num ${pct >= 100 ? "is-complete" : ""}" style="--pct:${pct}" title="${escapeHtml(t("lbl_progress") || "Πρόοδος")}: ${pct}%" aria-label="${escapeHtml(t("lbl_progress") || "Πρόοδος")} ${pct}%">${idx + 1}</span>
+                  <span class="track-num${pct >= 100 ? " is-complete" : ""}" title="${escapeHtml(t("lbl_progress") || "Πρόοδος")}: ${pct}%" aria-label="${escapeHtml(t("lbl_progress") || "Πρόοδος")} ${pct}%">${pieSvg}<span class="track-num-label">${idx + 1}</span></span>
                   ${faviconHtml}
                   <div class="track-info">
                     <strong>${escapeHtml(item.title)}</strong>
@@ -5684,6 +5722,11 @@
     function renderPages(animate = false, forceRecalc = false, persistFull = true) {
       if (!bookText) return;
       const isScroll = prefs.mode === "scroll";
+      const stageDir = bookIsRtl ? "rtl" : "ltr";
+      $("#bookStage")?.setAttribute("dir", stageDir);
+      $("#scrollStage")?.setAttribute("dir", stageDir);
+      $("#pageMeasurer")?.setAttribute("dir", stageDir);
+      $("#readingView")?.classList.toggle("book-rtl", bookIsRtl);
       $("#bookStage").hidden = isScroll;
       $("#scrollStage").hidden = !isScroll;
 
@@ -5810,6 +5853,16 @@
         existingEntry.lastOpenedAt = Date.now();
       }
       currentBookMeta = Object.assign({}, existingEntry || {}, extraMeta || {});
+      bookIsRtl = isRtlText(cleaned);
+      const stageDir = bookIsRtl ? "rtl" : "ltr";
+      const bStage = $("#bookStage");
+      if (bStage) bStage.setAttribute("dir", stageDir);
+      const sStage = $("#scrollStage");
+      if (sStage) sStage.setAttribute("dir", stageDir);
+      const pMeasurer = $("#pageMeasurer");
+      if (pMeasurer) pMeasurer.setAttribute("dir", stageDir);
+      const readingView = $("#readingView");
+      if (readingView) readingView.classList.toggle("book-rtl", bookIsRtl);
       needsRepaginate = true;
       setActiveView("reading");
 
@@ -6408,8 +6461,24 @@
         const chosen = voices.find((v) => v.voiceURI === prefs.ttsVoice);
         if (chosen) return chosen;
       }
-      const isGreek = /[α-ωΑ-ΩάέήίόύώΆΈΉΊΌΎΏ]/.test(sampleText);
-      const langPrefix = isGreek ? "el" : "en";
+      const text = sampleText || "";
+      let langPrefix = "en";
+      if (/[֐-׿]/.test(text)) {
+        langPrefix = "he";
+      } else if (/[پچژگیک]/.test(text)) {
+        langPrefix = "fa";
+      } else if (/[؀-ۿ]/.test(text)) {
+        langPrefix = "ar";
+      } else if (/[α-ωΑ-ΩάέήίόύώΆΈΉΊΌΎΏ]/.test(text)) {
+        langPrefix = "el";
+      } else if (prefs.lang && voices.some((v) => v.lang.toLowerCase().startsWith(prefs.lang.toLowerCase()))) {
+        langPrefix = prefs.lang.toLowerCase().split("-")[0];
+      }
+
+      if (langPrefix === "fa" && !voices.some((v) => v.lang.toLowerCase().startsWith("fa"))) {
+        langPrefix = "ar";
+      }
+
       return (
         voices.find((v) => v.lang.toLowerCase().startsWith(langPrefix) && /natural|online/i.test(v.name)) ||
         voices.find((v) => v.lang.toLowerCase().startsWith(langPrefix)) ||
@@ -7487,9 +7556,9 @@
       const rect = $("#bookStage").getBoundingClientRect();
       const relX = (e.clientX - rect.left) / rect.width;
       if (relX < 0.22) {
-        movePage(-1);
+        movePage(bookIsRtl ? 1 : -1);
       } else if (relX > 0.78) {
-        movePage(1);
+        movePage(bookIsRtl ? -1 : 1);
       } else if ($("#app").classList.contains("zen")) {
         const app = $("#app");
         const show = !app.classList.contains("reveal-top");
@@ -7526,7 +7595,8 @@
       const dx = e.changedTouches[0].screenX - touchStartX;
       const dy = e.changedTouches[0].screenY - touchStartY;
       if (Math.abs(dx) > 46 && Math.abs(dx) > Math.abs(dy) * 1.2) {
-        movePage(dx < 0 ? 1 : -1);
+        const step = bookIsRtl ? (dx > 0 ? 1 : -1) : (dx < 0 ? 1 : -1);
+        movePage(step);
       }
     }, { passive: true });
 
@@ -8026,8 +8096,16 @@
       if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
       if ($("#readingView").hidden) return;
 
-      if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); movePage(1); }
-      else if (e.key === "ArrowLeft") { e.preventDefault(); movePage(-1); }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        movePage(bookIsRtl ? -1 : 1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        movePage(bookIsRtl ? 1 : -1);
+      } else if (e.key === " ") {
+        e.preventDefault();
+        movePage(1);
+      }
       else if (e.key.toLowerCase() === "f") {
         e.preventDefault();
         toggleFullscreenZen();
@@ -8281,7 +8359,8 @@
             el: "el-GR", en: "en-US", es: "es-ES", fr: "fr-FR", de: "de-DE",
             ru: "ru-RU", zh: "zh-CN", ja: "ja-JP", hi: "hi-IN", pt: "pt-PT",
             it: "it-IT", ko: "ko-KR", pl: "pl-PL", tr: "tr-TR", id: "id-ID",
-            "zh-TW": "zh-TW", uk: "uk-UA", nl: "nl-NL", vi: "vi-VN"
+            "zh-TW": "zh-TW", uk: "uk-UA", nl: "nl-NL", vi: "vi-VN",
+            ar: "ar-SA", he: "he-IL", fa: "fa-IR"
           };
           const dateFormatted = cur.toLocaleDateString(localeMap[prefs.lang] || "en-US", {
             month: "short",
@@ -8565,6 +8644,10 @@
         canvas.width = width;
         canvas.height = height;
 
+        const quoteIsRtl = isRtlText(quoteText) || isRtlLang(prefs.lang);
+        ctx.direction = quoteIsRtl ? "rtl" : "ltr";
+        const effectiveAlign = (quoteIsRtl && activeAlign === "left") ? "right" : activeAlign;
+
         // 4. Background Fill
         ctx.fillStyle = th.bg;
         ctx.fillRect(0, 0, width, height);
@@ -8578,8 +8661,13 @@
             ctx.font = '700 16px "Literata", Georgia, serif';
             ctx.fillStyle = th.brandText;
             ctx.textBaseline = "top";
-            ctx.textAlign = "left";
-            ctx.fillText("Δ  D I A V A S M A", cardX, headerCurY);
+            if (quoteIsRtl) {
+              ctx.textAlign = "right";
+              ctx.fillText("Δ  D I A V A S M A", cardX + cardW, headerCurY);
+            } else {
+              ctx.textAlign = "left";
+              ctx.fillText("Δ  D I A V A S M A", cardX, headerCurY);
+            }
             headerCurY += watermarkH;
             if (incMeta && rawTitle) headerCurY += 16;
           }
@@ -8589,17 +8677,27 @@
             ctx.font = `700 36px ${fontStack}`;
             ctx.fillStyle = th.text;
             ctx.textBaseline = "top";
-            ctx.textAlign = "left";
-            for (let i = 0; i < titleLines.length; i++) {
-              ctx.fillText(titleLines[i], cardX, headerCurY);
-              headerCurY += titleLineH;
+            if (quoteIsRtl) {
+              ctx.textAlign = "right";
+              for (let i = 0; i < titleLines.length; i++) {
+                ctx.fillText(titleLines[i], cardX + cardW, headerCurY);
+                headerCurY += titleLineH;
+              }
+              headerCurY += 4;
+              ctx.fillStyle = th.quoteIcon;
+              this.roundRect(ctx, cardX + cardW - 56, headerCurY, 56, 4, 2);
+              ctx.fill();
+            } else {
+              ctx.textAlign = "left";
+              for (let i = 0; i < titleLines.length; i++) {
+                ctx.fillText(titleLines[i], cardX, headerCurY);
+                headerCurY += titleLineH;
+              }
+              headerCurY += 4;
+              ctx.fillStyle = th.quoteIcon;
+              this.roundRect(ctx, cardX, headerCurY, 56, 4, 2);
+              ctx.fill();
             }
-
-            // Accent Bar below title
-            headerCurY += 4;
-            ctx.fillStyle = th.quoteIcon;
-            this.roundRect(ctx, cardX, headerCurY, 56, 4, 2);
-            ctx.fill();
           }
         }
 
@@ -8623,10 +8721,10 @@
         ctx.fillStyle = th.quoteIcon;
         ctx.font = 'bold 84px "Georgia", "Times New Roman", serif';
         ctx.textBaseline = "top";
-        if (activeAlign === "center") {
+        if (effectiveAlign === "center") {
           ctx.textAlign = "center";
           ctx.fillText("“", cardX + cardW / 2, cardY + 36);
-        } else if (activeAlign === "right") {
+        } else if (effectiveAlign === "right") {
           ctx.textAlign = "right";
           ctx.fillText("“", cardX + cardW - 44, cardY + 36);
         } else {
@@ -8642,7 +8740,7 @@
 
         let currentY = quoteY;
         for (let i = 0; i < quoteLineObjs.length; i++) {
-          this.renderAlignedLine(ctx, quoteLineObjs[i], cardX + 44, currentY, maxTextW, activeAlign);
+          this.renderAlignedLine(ctx, quoteLineObjs[i], cardX + 44, currentY, maxTextW, effectiveAlign);
           currentY += quoteLineHeight;
         }
 
@@ -8654,21 +8752,40 @@
           ctx.fill();
 
           ctx.fillStyle = th.noteBorder;
-          this.roundRect(ctx, cardX + 44, currentY, 6, noteBoxH, 3);
-          ctx.fill();
+          if (quoteIsRtl) {
+            this.roundRect(ctx, cardX + 44 + maxTextW - 6, currentY, 6, noteBoxH, 3);
+            ctx.fill();
 
-          ctx.fillStyle = th.quoteIcon;
-          ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
-          ctx.textAlign = "left";
-          ctx.textBaseline = "top";
-          ctx.fillText(`💭 ${t("card_note_label") || "ΣΗΜΕΙΩΣΗ"}`, cardX + 64, currentY + 16);
+            ctx.fillStyle = th.quoteIcon;
+            ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+            ctx.textAlign = "right";
+            ctx.textBaseline = "top";
+            ctx.fillText(`💭 ${t("card_note_label") || "ΣΗΜΕΙΩΣΗ"}`, cardX + 44 + maxTextW - 20, currentY + 16);
 
-          ctx.fillStyle = th.noteText;
-          ctx.font = `400 ${noteFontSize}px ${fontStack}`;
-          let ny = currentY + 38;
-          for (let i = 0; i < noteLineObjs.length; i++) {
-            this.renderAlignedLine(ctx, noteLineObjs[i], cardX + 64, ny, maxTextW - 54, activeAlign);
-            ny += noteLineHeight;
+            ctx.fillStyle = th.noteText;
+            ctx.font = `400 ${noteFontSize}px ${fontStack}`;
+            let ny = currentY + 38;
+            for (let i = 0; i < noteLineObjs.length; i++) {
+              this.renderAlignedLine(ctx, noteLineObjs[i], cardX + 44, ny, maxTextW - 54, effectiveAlign);
+              ny += noteLineHeight;
+            }
+          } else {
+            this.roundRect(ctx, cardX + 44, currentY, 6, noteBoxH, 3);
+            ctx.fill();
+
+            ctx.fillStyle = th.quoteIcon;
+            ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+            ctx.textAlign = "left";
+            ctx.textBaseline = "top";
+            ctx.fillText(`💭 ${t("card_note_label") || "ΣΗΜΕΙΩΣΗ"}`, cardX + 64, currentY + 16);
+
+            ctx.fillStyle = th.noteText;
+            ctx.font = `400 ${noteFontSize}px ${fontStack}`;
+            let ny = currentY + 38;
+            for (let i = 0; i < noteLineObjs.length; i++) {
+              this.renderAlignedLine(ctx, noteLineObjs[i], cardX + 64, ny, maxTextW - 54, effectiveAlign);
+              ny += noteLineHeight;
+            }
           }
         }
       },
@@ -9060,14 +9177,17 @@
         this.roundRect(ctx, cardX, cardY, cardW, cardH, cornerR);
         ctx.stroke();
 
+        const uiIsRtl = isRtlLang(prefs.lang);
+        ctx.direction = uiIsRtl ? "rtl" : "ltr";
+
         // 3. Top Tag / Pill
-        const pillX = cardX + 44;
-        const pillY = cardY + 42;
         const pillText = t("card_stats_pill") || "📊 DIAVASMA · READING HABIT";
         ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
         const pillTextW = ctx.measureText(pillText).width;
         const pillW = pillTextW + 28;
         const pillH = 32;
+        const pillX = uiIsRtl ? (cardX + cardW - 44 - pillW) : (cardX + 44);
+        const pillY = cardY + 42;
 
         ctx.fillStyle = th.pillBg;
         this.roundRect(ctx, pillX, pillY, pillW, pillH, 16);
@@ -9075,7 +9195,8 @@
 
         ctx.fillStyle = th.pillText;
         ctx.textBaseline = "middle";
-        ctx.fillText(pillText, pillX + 14, pillY + pillH / 2);
+        ctx.textAlign = "center";
+        ctx.fillText(pillText, pillX + pillW / 2, pillY + pillH / 2);
 
         // 4. Headline / Message
         ctx.textBaseline = "alphabetic";
@@ -9087,7 +9208,13 @@
         while (ctx.measureText(msg).width > maxHeadW && msg.length > 10) {
           msg = msg.slice(0, -4) + "...";
         }
-        ctx.fillText(msg, cardX + 44, headlineY);
+        if (uiIsRtl) {
+          ctx.textAlign = "right";
+          ctx.fillText(msg, cardX + cardW - 44, headlineY);
+        } else {
+          ctx.textAlign = "left";
+          ctx.fillText(msg, cardX + 44, headlineY);
+        }
 
         // 5. Four Key Metric Cards
         const streaks = (typeof ReadingStatsEngine !== "undefined" && ReadingStatsEngine.calculateStreaks)
@@ -9116,7 +9243,9 @@
         const boxH = 92;
 
         for (let b = 0; b < 4; b++) {
-          const bx = cardX + 44 + b * (boxW + gap);
+          const bx = uiIsRtl
+            ? (cardX + cardW - 44 - (b + 1) * boxW - b * gap)
+            : (cardX + 44 + b * (boxW + gap));
           ctx.fillStyle = th.boxBg;
           this.roundRect(ctx, bx, boxesY, boxW, boxH, 14);
           ctx.fill();
@@ -9127,18 +9256,34 @@
 
           ctx.font = '600 13px system-ui, -apple-system, sans-serif';
           ctx.fillStyle = th.muted;
-          ctx.fillText(`${metrics[b].icon} ${metrics[b].label}`, bx + 14, boxesY + 30);
-
-          ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
-          ctx.fillStyle = th.text;
-          ctx.fillText(metrics[b].val, bx + 14, boxesY + 68);
+          if (uiIsRtl) {
+            ctx.textAlign = "right";
+            ctx.fillText(`${metrics[b].icon} ${metrics[b].label}`, bx + boxW - 14, boxesY + 30);
+            ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
+            ctx.fillStyle = th.text;
+            ctx.fillText(metrics[b].val, bx + boxW - 14, boxesY + 68);
+          } else {
+            ctx.textAlign = "left";
+            ctx.fillText(`${metrics[b].icon} ${metrics[b].label}`, bx + 14, boxesY + 30);
+            ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
+            ctx.fillStyle = th.text;
+            ctx.fillText(metrics[b].val, bx + 14, boxesY + 68);
+          }
         }
+        ctx.textAlign = "left";
 
         // 6. GitHub-style Calendar Heatmap Grid
         const heatSectionY = boxesY + boxH + 42;
         ctx.font = '600 16px system-ui, -apple-system, sans-serif';
         ctx.fillStyle = th.muted;
-        ctx.fillText(t("heatmap_title"), cardX + 44, heatSectionY);
+        if (uiIsRtl) {
+          ctx.textAlign = "right";
+          ctx.fillText(t("heatmap_title"), cardX + cardW - 44, heatSectionY);
+        } else {
+          ctx.textAlign = "left";
+          ctx.fillText(t("heatmap_title"), cardX + 44, heatSectionY);
+        }
+        ctx.textAlign = "left";
 
         const gridStartX = cardX + 88;
         const gridStartY = heatSectionY + 22;

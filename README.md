@@ -11,9 +11,9 @@
 
 ---
 
-### 🌍 Languages / Γλώσσες / 语言 / Langues / Sprachen / भाषाएँ / 言語 / Idiomas / Языки / Lingue / 언어 / Języki / Diller / Bahasa / 繁體中文 / Мови / Talen / Ngôn ngữ
+### 🌍 Languages / Γλώσσες / 语言 / Langues / Sprachen / भाषाएँ / 言語 / Idiomas / Языки / Lingue / 언어 / Języki / Diller / Bahasa / 繁體中文 / Мови / Talen / Ngôn ngữ / العربية / עברית / فارسی
 
-[🇬🇧 English](#lang-en) · [🇬🇷 Ελληνικά](#lang-el) · [🇨🇳 简体中文](#lang-zh) · [🇹🇼 繁體中文](#lang-zh-tw) · [🇳🇱 Nederlands](#lang-nl) · [🇫🇷 Français](#lang-fr) · [🇩🇪 Deutsch](#lang-de) · [🇮🇳 हिन्दी](#lang-hi) · [🇮🇩 Bahasa Indonesia](#lang-id) · [🇮🇹 Italiano](#lang-it) · [🇯🇵 日本語](#lang-ja) · [🇰🇷 한국어](#lang-ko) · [🇵🇱 Polski](#lang-pl) · [🇵🇹 Português](#lang-pt) · [🇷🇺 Русский](#lang-ru) · [🇪🇸 Español](#lang-es) · [🇹🇷 Türkçe](#lang-tr) · [🇺🇦 Українська](#lang-uk) · [🇻🇳 Tiếng Việt](#lang-vi)
+[🇬🇧 English](#lang-en) · [🇬🇷 Ελληνικά](#lang-el) · [🇪🇸 Español](#lang-es) · [🇨🇳 简体中文](#lang-zh) · [🇫🇷 Français](#lang-fr) · [🇩🇪 Deutsch](#lang-de) · [🇵🇹 Português](#lang-pt) · [🇯🇵 日本語](#lang-ja) · [🇷🇺 Русский](#lang-ru) · [🇸🇦 العربية](#lang-ar) · [🇮🇳 हिन्दी](#lang-hi) · [🇮🇩 Bahasa Indonesia](#lang-id) · [🇰🇷 한국어](#lang-ko) · [🇮🇹 Italiano](#lang-it) · [🇹🇷 Türkçe](#lang-tr) · [🇵🇱 Polski](#lang-pl) · [🇹🇼 繁體中文](#lang-zh-tw) · [🇻🇳 Tiếng Việt](#lang-vi) · [🇮🇷 فارسی](#lang-fa) · [🇳🇱 Nederlands](#lang-nl) · [🇺🇦 Українська](#lang-uk) · [🇮🇱 עברית](#lang-he)
 
 ---
 
@@ -34,7 +34,7 @@
 - **⏱️ Pomodoro & Reading Habit Stats:** Focus timer with an animated hourglass screensaver during breaks, local reading habit tracker with a GitHub-style activity heatmap, and exportable Stats Share Cards.
 - **🔄 Full Local Backup & Restore (JSON):** Complete export and restoration of all library books (with full text from IndexedDB), notes, highlights, reading stats, custom scraper rules, and reader preferences in a single portable `.json` file.
 - **✨ Sanctuary Reading Upgrades:** Interactive Highlight Popover (`#highlightPopover`) for instant note editing, color switching, and Quote Cards without accidental page turns; "Continue Reading" card (`#continueReadingCard`) with 1-tap resume; clean 3-dots item action menu (`⋯`); and Web Share Target API integration to auto-import shared links directly into Articles.
-- **🌍 19 Languages:** Comprehensive, native UI localization in 19 languages: English, Greek, Chinese (Simplified), Traditional Chinese, Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Ukrainian, and Vietnamese.
+- **🌍 22 Languages (with full RTL):** Comprehensive, native UI localization in 22 languages: English, Greek, Chinese (Simplified), Traditional Chinese, Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Ukrainian, Vietnamese, Arabic, Hebrew, and Persian (with complete Right-to-Left RTL support).
 
 ## 🚀 Installation as an App (PWA)
 
@@ -89,7 +89,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **⏱️ Pomodoro & Στατιστικά Ανάγνωσης:** Χρονόμετρο εστίασης με δυναμικό screensaver κλεψύδρας κατά τα διαλείμματα, τοπικό habit tracker με activity heatmap τύπου GitHub και εξαγώγιμες Stats Share Cards.
 - **🔄 Πλήρες Τοπικό Backup & Restore (JSON):** Πλήρης εξαγωγή και επαναφορά ολόκληρου του αναγνωστηρίου (βιβλία με το πλήρες κείμενό τους από το IndexedDB, σημειώσεις, επισημάνσεις, στατιστικά ανάγνωσης, κανόνες scraper και ρυθμίσεις) σε ένα ενιαίο αρχείο `.json`.
 - **✨ Αναβαθμίσεις Sanctuary Reading:** Διαδραστικό Highlight Popover (`#highlightPopover`) για άμεση επεξεργασία σημείωσης, αλλαγή χρώματος και Quote Cards χωρίς άσκοπο γύρισμα σελίδας, κάρτα «Συνέχιση Ανάγνωσης» (`#continueReadingCard`) με άμεσο 1-tap άνοιγμα, καθαρό μενού επιλογών 3 τελειών (`⋯`) στη Βιβλιοθήκη και ενσωμάτωση Web Share Target API για αυτόματη προσθήκη κοινοποιημένων συνδέσμων στα Άρθρα.
-- **🌍 19 Γλώσσες:** Πλήρες περιβάλλον χρήσης μεταφρασμένο σε 19 γλώσσες: Αγγλικά, Ελληνικά, Κινεζικά (Απλοποιημένα & Παραδοσιακά), Ολλανδικά, Γαλλικά, Γερμανικά, Χίντι, Ινδονησιακά, Ιταλικά, Ιαπωνικά, Κορεατικά, Πολωνικά, Πορτογαλικά, Ρωσικά, Ισπανικά, Τουρκικά, Ουκρανικά και Βιετναμέζικα.
+- **🌍 22 Γλώσσες (με πλήρες RTL):** Πλήρες περιβάλλον χρήσης μεταφρασμένο σε 22 γλώσσες: Αγγλικά, Ελληνικά, Κινεζικά (Απλοποιημένα & Παραδοσιακά), Ολλανδικά, Γαλλικά, Γερμανικά, Χίντι, Ινδονησιακά, Ιταλικά, Ιαπωνικά, Κορεατικά, Πολωνικά, Πορτογαλικά, Ρωσικά, Ισπανικά, Τουρκικά, Ουκρανικά, Βιετναμέζικα, Αραβικά, Εβραϊκά και Περσικά (με πλήρη υποστήριξη Right-to-Left).
 
 ## 🚀 Εγκατάσταση ως Εφαρμογή (PWA)
 
@@ -199,7 +199,7 @@ To host your own private or public instance on GitHub Pages, upload all the repo
 - **⏱️ Pomodoro & Suivi des habitudes de lecture :** Minuteur de concentration avec économiseur d'écran sablier animé pendant les pauses, suivi des habitudes de lecture local avec carte thermique d'activité style GitHub et cartes de statistiques exportables.
 - **🔄 Sauvegarde & Restauration locale complète (JSON) :** Exportation et restauration intégrale de votre sanctuaire (livres avec texte complet depuis IndexedDB, surlignages, notes, statistiques, règles et réglages) dans un fichier `.json`.
 - **✨ Améliorations de lecture Sanctuary :** Popover interactif (`#highlightPopover`) pour éditer vos notes, changer de couleur et partager sans tourner la page par inadvertance ; carte « Continuer la lecture » (`#continueReadingCard`) ; menu à 3 points épuré (`⋯`) ; et cible de partage Web Share Target.
-- **🌍 19 Langues :** Interface utilisateur traduite nativement et intégralement en 19 langues : anglais, grec, chinois simplifié, chinois traditionnel, néerlandais, français, allemand, hindi, indonésien, italien, japonais, coréen, polonais, portugais, russe, espagnol, turc, ukrainien et vietnamien.
+- **🌍 22 Langues (avec RTL complet) :** Interface utilisateur traduite nativement et intégralement en 22 langues : anglais, grec, chinois simplifié, chinois traditionnel, néerlandais, français, allemand, hindi, indonésien, italien, japonais, coréen, polonais, portugais, russe, espagnol, turc, ukrainien, vietnamien, arabe, hébreu et persan (avec prise en charge complète RTL de droite à gauche).
 
 ## 🚀 Installation en tant qu'application (PWA)
 
@@ -254,7 +254,7 @@ Pour héberger votre propre instance privée ou publique sur GitHub Pages, dépo
 - **⏱️ Pomodoro-Timer & Lese-Statistiken:** Fokus-Timer mit animiertem Sanduhr-Bildschirmschoner während der Pausen, lokaler Lese-Gewohnheitstracker mit GitHub-artigem Aktivitäts-Heatmap und exportierbare Statistik-Karten.
 - **🔄 Vollständiges lokales Backup & Wiederherstellung (JSON):** Export und Import aller Bücher (inklusive Volltext aus IndexedDB), Notizen, Markierungen, Lesestatistiken, Scraper-Regeln und Einstellungen in einer portablen `.json`-Datei.
 - **✨ Sanctuary Lese-Upgrades:** Interaktives Highlight-Popover (`#highlightPopover`) zum Bearbeiten von Notizen, Ändern von Farben und Erstellen von Zitatkarten ohne unbeabsichtigtes Umblättern; „Weiterlesen“-Karte (`#continueReadingCard`); klares 3-Punkte-Aktionsmenü (`⋯`); und Web Share Target Integration.
-- **🌍 19 Sprachen:** Vollständig lokalisierte Benutzeroberfläche in 19 Sprachen: Englisch, Griechisch, Chinesisch (Vereinfacht & Traditionell), Niederländisch, Französisch, Deutsch, Hindi, Indonesisch, Italienisch, Japanisch, Koreanisch, Polnisch, Portugiesisch, Russisch, Spanisch, Türkisch, Ukrainisch und Vietnamesisch.
+- **🌍 22 Sprachen (mit vollständigem RTL):** Vollständig lokalisierte Benutzeroberfläche in 22 Sprachen: Englisch, Griechisch, Chinesisch (Vereinfacht & Traditionell), Niederländisch, Französisch, Deutsch, Hindi, Indonesisch, Italienisch, Japanisch, Koreanisch, Polnisch, Portugiesisch, Russisch, Spanisch, Türkisch, Ukrainisch, Vietnamesisch, Arabisch, Hebräisch und Persisch (mit vollständiger Rechts-nach-Links RTL-Unterstützung).
 
 ## 🚀 Installation als App (PWA)
 
@@ -364,7 +364,7 @@ GitHub Pages पर अपना स्वयं का निजी या स�
 - **⏱️ ポモドーロと読書習慣トラッカー：** 休憩時にテーマ連動の砂時計スクリーンセーバーが表示される集中タイマー、GitHubスタイルのアクティビティヒートマップを備えたローカル習慣トラッカー、統計共有カード。
 - **🔄 完全ローカルバックアップ＆復元 (JSON)：** すべての蔵書（IndexedDBの全文テキスト含む）、メモ、ハイライト、読書統計、カスタム抽出ルール、設定を1つの `.json` ファイルに完全書き出し・復元。
 - **✨ サンクチュアリ読書機能の向上：** 誤ってページをめくることなくメモ編集や色変更ができるインタラクティブ・ハイライトポップオーバー (`#highlightPopover`)、トップの「続きを読む」カード (`#continueReadingCard`)、すっきりとした3点ドットメニュー (`⋯`)、Web Share Target 対応。
-- **🌍 19言語対応：** 英語、ギリシャ語、簡体字中国語、フランス語、ドイツ語、ヒンディー語、日本語、ポルトガル語、ロシア語、スペイン語の完全なネイティブUI翻訳。
+- **🌍 22言語対応（完全なRTLサポート）：** 英語、ギリシャ語、簡体字中国語、繁体字中国語、オランダ語、フランス語、ドイツ語、ヒンディー語、インドネシア語、イタリア語、日本語、韓国語、ポーランド語、ポルトガル語、ロシア語、スペイン語、トルコ語、ウクライナ語、ベトナム語、アラビア語、ヘブライ語、ペルシャ語（右横書きRTL対応）の完全なネイティブUI翻訳。
 
 ## 🚀 アプリとしてインストール（PWA）
 
@@ -419,7 +419,7 @@ GitHub Pages上で自分専用または公開インスタンスをホストす�
 - **⏱️ Pomodoro & Estatísticas de Leitura:** Temporizador de foco com descanso de tela animado em ampulheta durante os intervalos, rastreador de hábitos local com mapa de calor no estilo GitHub e cartões de estatísticas exportáveis.
 - **🔄 Backup & Restauração Local Completa (JSON):** Exportação e restauração de toda a biblioteca (com texto completo do IndexedDB), notas, destaques, estatísticas, regras de scraping e preferências em um único arquivo `.json`.
 - **✨ Melhorias de Leitura Sanctuary:** Popover interativo de destaque (`#highlightPopover`) para edição rápida de notas e cores sem virar a página; cartão "Continuar Lendo" (`#continueReadingCard`); menu compacto de 3 pontos (`⋯`); e suporte ao Web Share Target.
-- **🌍 19 Idiomas:** Interface de usuário completa e traduzida nativamente em 19 idiomas: inglês, grego, chinês simplificado, chinês tradicional, holandês, francês, alemão, híndi, indonésio, italiano, japonês, coreano, polonês, português, russo, espanhol, turco, ucraniano e vietnamita.
+- **🌍 22 Idiomas (com RTL completo):** Interface de usuário completa e traduzida nativamente em 22 idiomas: inglês, grego, chinês simplificado, chinês tradicional, holandês, francês, alemão, híndi, indonésio, italiano, japonês, coreano, polonês, português, russo, espanhol, turco, ucraniano, vietnamita, árabe, hebraico e persa (com suporte completo Right-to-Left da direita para a esquerda).
 
 ## 🚀 Instalação como Aplicativo (PWA)
 
@@ -474,7 +474,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - **⏱️ Помодоро и трекер привычки чтения:** Таймер концентрации с анимированной заставкой-песочными часами во время перерывов, локальный трекер привычек с тепловой картой активности в стиле GitHub и экспорт карточек со статистикой.
 - **🔄 Полный локальный бэкап и восстановление (JSON):** Экспорт и восстановление всей библиотеки (включая полный текст из IndexedDB), заметок, выделений, статистики, правил и настроек в один переносимый файл `.json`.
 - **✨ Улучшения спокойного чтения (Sanctuary):** Интерактивный поповер выделения (`#highlightPopover`) для редактирования заметок, смены цвета и создания карточек без случайного перелистывания страниц; карточка «Продолжить чтение» (`#continueReadingCard`); аккуратное меню из 3 точек (`⋯`); и поддержка Web Share Target.
-- **🌍 19 языков:** Полный перевод интерфейса на 19 языков: английский, греческий, китайский (упрощенный и традиционный), нидерландский, французский, немецкий, хинди, индонезийский, итальянский, японский, корейский, польский, португальский, русский, испанский, турецкий, украинский и вьетнамский.
+- **🌍 22 языка (с полной поддержкой RTL):** Полный перевод интерфейса на 22 языка: английский, греческий, китайский (упрощенный и традиционный), нидерландский, французский, немецкий, хинди, индонезийский, итальянский, японский, корейский, польский, португальский, русский, испанский, турецкий, украинский, вьетнамский, арабский, иврит и персидский (с поддержкой письма справа налево RTL).
 
 ## 🚀 Установка в качестве приложения (PWA)
 
@@ -529,7 +529,7 @@ Para hospedar sua própria instância privada ou pública no GitHub Pages, envie
 - **⏱️ Pomodoro y Estadísticas de Lectura:** Temporizador de enfoque con protector de pantalla animado de reloj de arena durante los descansos, seguimiento de hábitos local con mapa de calor de actividad estilo GitHub y tarjetas de estadísticas exportables.
 - **🔄 Copia de seguridad y Restauración local completa (JSON):** Exportación y restauración de toda la biblioteca (con texto completo de IndexedDB), notas, resaltados, estadísticas, reglas y ajustes en un único archivo `.json`.
 - **✨ Mejoras de lectura Sanctuary:** Popover interactivo de resaltado (`#highlightPopover`) para editar notas y colores sin pasar de página por error; tarjeta "Continuar Leyendo" (`#continueReadingCard`); menú limpio de 3 puntos (`⋯`); y soporte para Web Share Target.
-- **🌍 19 Idiomas:** Interfaz de usuario traducida de forma nativa e íntegra en 19 idiomas: inglés, griego, chino simplificado, chino tradicional, holandés, francés, alemán, hindi, indonesio, italiano, japonés, coreano, polaco, portugués, ruso, español, turco, ucraniano y vietnamita.
+- **🌍 22 Idiomas (con RTL completo):** Interfaz de usuario traducida de forma nativa e íntegra en 22 idiomas: inglés, griego, chino simplificado, chino tradicional, holandés, francés, alemán, hindi, indonesio, italiano, japonés, coreano, polaco, portugués, ruso, español, turco, ucraniano, vietnamita, árabe, hebreo y persa (con soporte completo de derecha a izquierda RTL).
 
 ## 🚀 Instalación como Aplicación (PWA)
 
@@ -583,7 +583,7 @@ Para alojar su propia instancia privada o pública en GitHub Pages, suba todos l
 - **⏱️ Pomodoro e Statistiche di Lettura:** Timer di concentrazione con salvaschermo animato a clessidra durante le pause, monitoraggio delle abitudini locali con mappa di calore stile GitHub e schede statistiche esportabili.
 - **🔄 Backup e Ripristino Locale Completo (JSON):** Esportazione e ripristino dell'intera libreria (con testo completo da IndexedDB), note, evidenziazioni, statistiche, regole e impostazioni in un unico file `.json`.
 - **✨ Miglioramenti di Lettura Sanctuary:** Popover interattivo per evidenziazioni (`#highlightPopover`) per modificare note e colori senza girare pagina involontariamente; scheda "Continua a leggere" (`#continueReadingCard`); menu compatto a 3 punti (`⋯`); e supporto Web Share Target.
-- **🌍 19 Lingue:** Interfaccia utente tradotta nativamente in 19 lingue: inglese, greco, cinese semplificato, cinese tradizionale, olandese, francese, tedesco, hindi, indonesiano, italiano, giapponese, coreano, polacco, portoghese, russo, spagnolo, turco, ucraino e vietnamita.
+- **🌍 22 Lingue (con supporto RTL completo):** Interfaccia utente tradotta nativamente in 22 lingue: inglese, greco, cinese semplificato, cinese tradizionale, olandese, francese, tedesco, hindi, indonesiano, italiano, giapponese, coreano, polacco, portoghese, russo, spagnolo, turco, ucraino, vietnamita, arabo, ebraico e persiano (con supporto completo da destra a sinistra RTL).
 
 ## 🚀 Installazione come Applicazione (PWA)
 
@@ -967,7 +967,7 @@ Untuk menjalankan instans Anda di GitHub Pages, unggah seluruh file repositori:
 - **⏱️ Pomodoro & Leesstatistieken:** Focustimer met geanimeerde zandloper-screensaver tijdens pauzes, lokale gewoontetracker met GitHub-achtige activiteitshittemap en exporteerbare statistiekenkaarten.
 - **🔄 Volledige Lokale Back-up & Herstel (JSON):** Exporteer en herstel de volledige bibliotheek (inclusief volledige teksten in IndexedDB), notities, markeringen, statistieken, regels en instellingen in één enkel `.json`-bestand.
 - **✨ Sanctuary Leesverbeteringen:** Interactieve markeerpopover (`#highlightPopover`) om notities te bewerken zonder per ongeluk van pagina te wisselen; snelkoppeling "Verder lezen" (`#continueReadingCard`); compact 3-puntenmenu (`⋯`); en ondersteuning voor Web Share Target.
-- **🌍 19 Talen:** Volledig vertaald in het Nederlands, Engels, Grieks, Vereenvoudigd Chinees, Traditioneel Chinees, Frans, Duits, Hindi, Indonesisch, Italiaans, Japans, Koreaans, Pools, Portugees, Russisch, Spaans, Turks, Oekraïens en Vietnamees.
+- **🌍 22 Talen (met volledige RTL-ondersteuning):** Volledig vertaald in het Nederlands, Engels, Grieks, Vereenvoudigd Chinees, Traditioneel Chinees, Frans, Duits, Hindi, Indonesisch, Italiaans, Japans, Koreaans, Pools, Portugees, Russisch, Spaans, Turks, Oekraïens, Vietnamees, Arabisch, Hebreeuws en Perzisch (met volledige van-rechts-naar-links RTL-ondersteuning).
 
 ## 🚀 Installatie als App (PWA)
 
@@ -1060,3 +1060,89 @@ Om uw eigen instantie op GitHub Pages te hosten, uploadt u alle bestanden van de
 [↑ Quay lại danh sách ngôn ngữ](#languages)
 
 ---
+---
+
+<a id="lang-ar"></a>
+<div dir="rtl">
+
+# Diavasma 📖 (العربية)
+
+> ملاذ قراءة هادئ، ومساحة دراسة وتنظيم للكتب والمقالات، يعمل بنسبة 100% دون اتصال بالإنترنت — دون إعلانات، دون تتبع، وبلا أي اعتمادية على خوادم خارجية.
+
+## ✨ الميزات الرئيسية
+
+- **📚 دعم متعدد التنسيقات وتنظيم متقدم:** قراءة مريحة بدون إنترنت لملفات EPUB وPDF (محرك إعادة تنسيق محلي متطور مع تصحيح ذكي لكسر الأسطر وذاكرة تخزين مؤقت للترقيم في IndexedDB)، ومستندات Markdown (`.md`) والنصوص العادية (`.txt`). تنظيم العناصر في مجموعات (كتب، مقالات، ومجموعات مخصصة) مع نافذة إضافة سريعة.
+- **🌐 استيراد المقالات من الروابط وقواعد استخراج مخصصة:** استخراج ذكي للمقالات من روابط الويب، مع إمكانية تحديد محددات CSS خاصة بالمواقع (مع استيراد وتصدير بتنسيق JSON)، ولصق كود HTML المصدري المباشر (`Ctrl+U`)، وتنزيل تلقائي لأيقونات المواقع بصيغة offline data-URI.
+- **⚡ تطبيق ويب تقدمي (PWA) يعمل 100% دون إنترنت:** يعمل بكامل طاقته دون أي اتصال بالإنترنت. قابل للتثبيت كتطبيق مستقل على أجهزة Android وiOS وWindows وmacOS، مع تخزين مسبق مرن عبر Service Worker وشاشة ترحيب خالية من الوميض.
+- **🎨 6 سمات مختارة وتيبوغرافيا محلية بالكامل:** سمات الورقي، الدافئ، المريمي، الرمادي، الليلي، والأسود النقي AMOLED. يتضمن خطوطاً مدمجة محلياً مع دعم تثبيت الخطوط المخصصة (`.ttf`, `.otf`, `.woff`, `.woff2`)، محاذاة النص (يمين، وسط، ضبط، يسار)، تباعد الأسطر، وعرض صفحة واحدة أو صفحتين.
+- **🎧 موسيقى وأصوات بيئية مهدئة:** مشغل صوتيات مدمج أنيق (قائمة تشغيل دائمة في IndexedDB، تشغيل عشوائي، وتكرار ثلاثي الأوضاع) إلى جانب 6 مسارات صوتية بيئية اصطناعية (مطر، مدفأة، أمواج، غابة، مقهى، وضوضاء عميقة) مع دعم التشغيل في الخلفية والشاشة مقفلة.
+- **🗣️ قراءة صوتية (TTS) وتدوين ملاحظات:** نطق صوتي مع مزامنة الجملة المقروءة وتشغيل مستمر في الخلفية. تمييز النصوص بثلاثة ألوان، تدوين الملاحظات وتصديرها بصيغة Markdown، ترجمة الكلمات، وإنشاء بطاقات اقتباس متكيفة ومصممة بدقة.
+- **⏱️ مؤقت بومودورو وإحصاءات عادات القراءة:** مؤقت تركيز مصحوب بشاشة توقف متحركة أثناء الاستراحات، متتبع محلي لعادات القراءة مع مخطط حراري سنوي بنمط GitHub، وبطاقات إحصاءات قابلة للمشاركة.
+- **🔄 نسخ احتياطي واستعادة محلية كاملة (JSON):** تصدير واسترجاع فوري لجميع كتب المكتبة (مع النصوص الكاملة المخزنة في IndexedDB)، والملاحظات، والتمييزات، والإحصاءات، وقواعد المواقع، والإعدادات في ملف `.json` واحد ومحمول.
+- **🌍 22 لغة ودعم كامل للغات من اليمين إلى اليسار (RTL):** ترجمة كاملة ومتقنة لـ 22 لغة، مع دعم مخصص وتلقائي للكتابة من اليمين إلى اليسار (RTL) للغة العربية، العبرية، والفارسية.
+
+## 🚀 التثبيت كتطبيق (PWA)
+
+1. افتح التطبيق في أي متصفح حديث (Chrome, Edge, Safari, Brave, Firefox).
+2. انقر على أيقونة **"تثبيت التطبيق"** في شريط العناوين، أو من قائمة المتصفح **(⋯) ← تثبيت Diavasma**.
+3. على نظام **iOS (Safari)**: اضغط على زر **مشاركة (Share)** ← اختر **"إضافة إلى الشاشة الرئيسية"**.
+
+</div>
+
+---
+
+<a id="lang-he"></a>
+<div dir="rtl">
+
+# Diavasma 📖 (עברית)
+
+> מרחב קריאה שליו, מקום למידה וארגון לספרים ומאמרים הפועל 100% ללא צורך ברשת — ללא פרסומות, ללא מעקב, ואפס תלות בשרתים חיצוניים.
+
+## ✨ תכונות עיקריות
+
+- **📚 תמיכה בריבוי פורמטים וארגון מתקדם:** קריאה מקומית חלקה של קובצי EPUB, מסמכי PDF (מנוע עיבוד מקומי חכם לסידור פסקאות וחלוקת עמודים מואצת עם זיכרון מטמון ב-IndexedDB), קובצי Markdown (`.md`) וטקסט פשוט (`.txt`). ארגון פריטים בקבוצות עם הוספה מהירה.
+- **🌐 ייבוא מאמרים מקישורים וכללי חילוץ מותאמים:** חילוץ תוכן חכם מקישורי אינטרנט, כללי CSS ייעודיים לאתרים לניקוי פרסומות (עם ייצוא/ייבוא JSON), הדבקת קוד מקור HTML ישיר (`Ctrl+U`), והורדה אוטומטית של סמלילי אתרים.
+- **⚡ אפליקציית PWA מלאה ללא אינטרנט:** עובדת באופן מלא ללא כל חיבור לרשת. ניתנת להתקנה כאפליקציה עצמאית ב-Android, iOS, Windows ו-macOS באמצעות דפדפנים מודרניים.
+- **🎨 6 ערכות נושא וטיפוגרפיה מותאמת:** ערכות נייר, חמים, מרווה, צפחה, לילה ושחור מוחלט AMOLED. כולל גופנים מקומיים, תמיכה בהתקנת גופנים מותאמים אישית (`.ttf`, `.otf`, `.woff`, `.woff2`), יישור טקסט (ימין, מרכז, יישור לשני הצדדים, שמאל), פריסת עמוד אחד או שניים.
+- **🎧 מוזיקה וצלילי אווירה לריכוז:** נגן שמע מובנה (פלייליסט קבוע ב-IndexedDB, השמעה אקראית, חזרות) לצד 6 נופי שמע אווירתיים (גשם, אח, גלי ים, יער, בית קפה ורעש עמוק) עם תמיכה בהשמעה במסך כבוי.
+- **🗣️ הקראה קולית (TTS) וסימוני טקסט:** הקראה קולית עם הדגשת משפטים מסונכרנת בזמן אמת ופעולה ברקע. הדגשת טקסט ב-3 צבעים, רישום הערות וייצוא ל-Markdown, תרגום מילים, ויצירת כרטיסי ציטוט מעוצבים.
+- **⏱️ טיימר פומודורו ונתוני הרגלי קריאה:** טיימר ריכוז עם שומר מסך מונפש בהפסקות, מעקב הרגלי קריאה עם מפת חום שנתית בסגנון GitHub, וכרטיסי נתונים לשיתוף.
+- **🔄 גיבוי ושחזור מקומי מלא (JSON):** ייצוא ושחזור של כל הספרייה, הטקסטים המלאים, ההערות, הנתונים, הכללים וההגדרות בקובץ `.json` יחיד ונייד.
+- **🌍 22 שפות ותמיכה מלאה ב-RTL (מימין לשמאל):** תמיכה מושלמת ומדויקת ב-22 שפות, כולל התאמה טיפוגרפית ומבנית מלאה לעברית, ערבית ופרסית.
+
+## 🚀 התקנה כאפליקציה (PWA)
+
+1. פתח את הדף בדפדפן מודרני (Chrome, Edge, Safari, Brave, Firefox).
+2. לחץ על סמל **"התקנת אפליקציה"** בשורת הכתובת, או מתפריט הדפדפן **(⋯) ← התקן את Diavasma**.
+3. במכשירי **iOS (Safari)**: לחץ על לחצן **שיתוף (Share)** ← בחר **"הוסף למסך הבית"**.
+
+</div>
+
+---
+
+<a id="lang-fa"></a>
+<div dir="rtl">
+
+# Diavasma 📖 (فارسی)
+
+> پناهگاهی آرام و کاملاً آفلاین برای مطالعه، یادگیری و سازماندهی کتاب‌ها و مقالات — بدون تبلیغات، بدون ردیابی و بدون وابستگی به سرورهای خارجی.
+
+## ✨ ویژگی‌های برجسته
+
+- **📚 پشتیبانی از چند قالب متنی و دسته‌بندی:** مطالعه آسان و آفلاین فایل‌های EPUB، اسناد PDF (موتور بازآرایی محلی هوشمند با اصلاح شکستگی خطوط و حافظه صفحه‌بندی پایدار در IndexedDB)، فایل‌های Markdown (`.md`) و متنی ساده (`.txt`). سازماندهی در دسته‌ها با پنجره افزودن سریع.
+- **🌐 دریافت مقالات از نشانی وب و قوانین اختصاصی استخراج:** استخراج هوشمند متن مقالات بدون تبلیغات، تعریف قوانین CSS اختصاصی برای هر سایت (با پشتیبانی از برون‌بری و درون‌ریزی JSON)، جای‌گذاری مستقیم سورس HTML (`Ctrl+U`)، و دانلود خودکار آیکون سایت‌ها.
+- **⚡ برنامه وب پیش‌رونده (PWA) صددرصد آفلاین:** کارکرد کامل و مستقل بدون اینترنت. قابلیت نصب آسان روی دستگاه‌های Android، iOS، Windows و macOS با ذخیره‌سازی محلی مطمئن توسط Service Worker.
+- **🎨 ۶ پوسته چشم‌نواز و قلم‌های محلی:** پوسته‌های کاغذی، گرم، مریم‌گلی، خاکستری، شب و سیاه مطلق AMOLED. امکان نصب فونت‌های دلخواه (`.ttf`, `.otf`, `.woff`, `.woff2`)، تنظیم چینش متن (راست، وسط، تراز دو طرفه، چپ)، و نمایش تک‌صفحه‌ای یا دوصفحه‌ای.
+- **🎧 موسیقی و صداهای آرامش‌بخش محیطی:** پخش‌کننده صوتی داخلی (لیست پخش پایدار در IndexedDB، پخش تصادفی، تکرار) همراه با ۶ صدای محیطی آرام‌بخش (باران، شومینه، امواج، جنگل، کافه و نویز عمیق) با قابلیت پخش هنگام خاموش بودن صفحه.
+- **🗣️ تبدیل متن به گفتار (TTS) و یادداشت‌برداری:** خواندن صوتی متن با برجسته‌سازی هماهنگ جملات و ادامه پخش در پس‌زمینه. علامت‌گذاری با ۳ رنگ، یادداشت‌برداری و برون‌بری به Markdown، ترجمه واژگان، و ساخت کارت‌های زیبای نقل‌قول.
+- **⏱️ زمان‌سنج پومودورو و آمار عادات مطالعه:** زمان‌سنج تمرکز به همراه محافظ صفحه متحرک در زمان استراحت، پیگیری روزانه عادات مطالعه با نمودار حرارتی سالانه شبیه GitHub، و کارت‌های آماری قابل اشتراک‌گذاری.
+- **🔄 پشتیبان‌گیری و بازیابی کامل محلی (JSON):** برون‌بری و بازگردانی تمام کتابخانه (همراه با متن کامل در IndexedDB)، یادداشت‌ها، آمار، قوانین وب و تنظیمات در قالب یک فایل سبک و قابل حمل `.json`.
+- **🌍 ۲۲ زبان و پشتیبانی کامل از راست‌به‌چپ (RTL):** ترجمه دقیق و روان به ۲۲ زبان، با پشتیبانی ساختاری و جهت‌گیری راست‌به‌چپ (RTL) برای زبان‌های فارسی، عربی و عبری.
+
+## 🚀 نصب به عنوان برنامه (PWA)
+
+1. برنامه را در یک مرورگر مدرن (Chrome, Edge, Safari, Brave, Firefox) باز کنید.
+2. روی آیکون **"نصب برنامه"** در نوار نشانی کلیک کنید، یا از منوی مرورگر **(⋯) ← نصب Diavasma** را انتخاب کنید.
+3. در **iOS (Safari)**: دکمه **هم‌رسانی (Share)** را بزنید ← گزینه **"Add to Home Screen"** را انتخاب نمایید.
+
+</div>

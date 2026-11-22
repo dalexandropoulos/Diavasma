@@ -1003,7 +1003,10 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--progress-pie) calc(var(--pct, 0) * 1%), var(--accent-soft) 0);
+      background: var(--accent-soft);
+      background-clip: padding-box;
+      overflow: hidden;
+      isolation: isolate;
       color: var(--ink);
       border: 1px solid var(--line);
       font-size: 13px;
@@ -1017,7 +1020,23 @@
     }
 
     .track-num.is-complete {
-      background: conic-gradient(from 0deg, var(--progress-pie-full) 100%, var(--accent-soft) 0);
+      background: var(--progress-pie-full);
+      border-color: rgba(58, 178, 102, 0.55);
+    }
+
+    .track-num-pie {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+
+    .track-num-label {
+      position: relative;
+      z-index: 1;
+      line-height: 1;
     }
 
     .track-favicon-wrap {
@@ -2138,12 +2157,23 @@
     }
 
     .lang-btn {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 0 8px;
+      justify-content: center;
+      width: auto;
+      min-width: 60px;
+      padding: 0 12px;
+      gap: 6px;
       font-weight: 600;
       font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .lang-btn {
+        width: auto;
+        min-width: 56px;
+        padding: 0 10px;
+      }
     }
 
     .lang-badge {
@@ -4071,4 +4101,139 @@
       height: 6px;
       cursor: pointer;
       accent-color: var(--accent);
+    }
+
+    /* --- RTL Layout Support (ar, he, fa) --- */
+
+    /* 1. Drawers */
+    [dir="rtl"] .drawer {
+      right: auto;
+      left: 12px;
+      transform: translateX(calc(-100% - 40px));
+    }
+    [dir="rtl"] .drawer:not(.open) {
+      transform: translateX(calc(-100% - 40px));
+    }
+    [dir="rtl"] .drawer.open {
+      transform: translateX(0);
+    }
+
+    @media (max-width: 600px) {
+      [dir="rtl"] .drawer {
+        left: 8px;
+        right: 8px;
+      }
+      [dir="rtl"] .drawer:not(.open) {
+        transform: translateX(calc(-100% - 40px));
+      }
+    }
+
+    /* 2. Dropdowns & Popovers */
+    [dir="rtl"] .lang-dropdown,
+    [dir="rtl"] .more-dropdown,
+    [dir="rtl"] .track-action-menu {
+      right: auto;
+      left: 0;
+    }
+
+    [dir="rtl"] .group-name-popover {
+      left: auto;
+      right: 0;
+    }
+
+    [dir="rtl"] .more-menu-item,
+    [dir="rtl"] .lang-opt,
+    [dir="rtl"] .track-menu-btn,
+    [dir="rtl"] .group-name-btn {
+      text-align: right;
+    }
+
+    /* 3. Cards, Borders & Buttons */
+    [dir="rtl"] .continue-card {
+      border-left: 1px solid var(--line);
+      border-right: 4px solid var(--accent);
+    }
+
+    [dir="rtl"] .continue-progress-text {
+      text-align: left;
+    }
+
+    [dir="rtl"] .note-quote {
+      border-left: none;
+      padding-left: 0;
+      border-right: 3px solid var(--accent);
+      padding-right: 9px;
+    }
+
+    [dir="rtl"] .about-close-btn {
+      right: auto;
+      left: 14px;
+    }
+
+    [dir="rtl"] .pwa-install-banner {
+      right: auto;
+      left: 24px;
+    }
+
+    [dir="rtl"] .track-row:hover {
+      transform: translateX(-2px);
+    }
+
+    [dir="rtl"] .playlist-item-num {
+      text-align: left;
+    }
+
+    [dir="rtl"] .music-vol-val {
+      text-align: left;
+    }
+
+    [dir="rtl"] .translate-privacy-note {
+      text-align: left !important;
+    }
+
+    /* 4. Welcome Overlay Scrim & Card */
+    [dir="rtl"] .welcome-content-container {
+      justify-content: flex-start;
+    }
+
+    [dir="rtl"] .welcome-card {
+      align-items: flex-start;
+      text-align: right;
+    }
+
+    @media (max-width: 768px), (orientation: portrait) and (max-width: 900px) {
+      [dir="rtl"] .welcome-content-container {
+        justify-content: center;
+      }
+      [dir="rtl"] .welcome-card {
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    [dir="rtl"] .app[data-theme="paper"] .welcome-scrim,
+    [dir="rtl"] .app[data-theme="warm"] .welcome-scrim,
+    [dir="rtl"] .app[data-theme="sage"] .welcome-scrim {
+      background: linear-gradient(270deg, rgba(248, 245, 238, 0.04) 0%, rgba(248, 245, 238, 0.25) 45%, rgba(248, 245, 238, 0.72) 100%);
+    }
+
+    [dir="rtl"] .app[data-theme="slate"] .welcome-scrim,
+    [dir="rtl"] .app[data-theme="night"] .welcome-scrim,
+    [dir="rtl"] .app[data-theme="amoled"] .welcome-scrim {
+      background: linear-gradient(270deg, rgba(12, 14, 18, 0.08) 0%, rgba(12, 14, 18, 0.32) 42%, rgba(12, 14, 18, 0.8) 100%);
+    }
+
+    /* 5. Reading Stage Natural Direction & Flow */
+    #bookStage[dir="rtl"] .page-content,
+    #scrollStage[dir="rtl"] .page-content,
+    #pageMeasurer[dir="rtl"] {
+      direction: rtl;
+      text-align: start;
+    }
+
+    #bookStage[dir="ltr"] .page-content,
+    #scrollStage[dir="ltr"] .page-content,
+    #pageMeasurer[dir="ltr"] {
+      direction: ltr;
+      text-align: start;
     }
