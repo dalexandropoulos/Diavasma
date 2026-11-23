@@ -16,3 +16,9 @@ node_modules/
 test_*.py
 dump*.html
 edge_profile*/
+
+# Workspace Harness & Workflow Documentation
+[Hh]arness.py
+*.md
+!README.md
+
