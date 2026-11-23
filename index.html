@@ -10,7 +10,7 @@
   <link rel="icon" type="image/svg+xml" href="./assets/icons/icon.svg" />
   <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#23272f" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Diavasma" />
   <!-- Self-hosted 100% Offline Fonts -->
@@ -618,15 +618,13 @@
       <label class="field">
         <span data-i18n="font_family">Γραμματοσειρά</span>
         <select id="fontSelect">
-          <optgroup label="Google Fonts" data-i18n-label="google_fonts">
-            <option value="Literata" data-i18n="font_opt_literata">Literata (Βιβλίου / Google Books)</option>
-            <option value="Newsreader">Newsreader (Editorial)</option>
-            <option value="Source Serif 4" data-i18n="font_opt_sourceserif">Source Serif 4 (Κλασική)</option>
-            <option value="Lora" data-i18n="font_opt_lora">Lora (Απαλή Serif)</option>
-            <option value="Merriweather" data-i18n="font_opt_merriweather">Merriweather (Υψηλής ευκρίνειας)</option>
-            <option value="Atkinson Hyperlegible Next" data-i18n="font_opt_atkinson">Atkinson Hyperlegible (Ξεκούραστη)</option>
-            <option value="Inter" data-i18n="font_opt_inter">Inter (Καθαρή Sans-Serif)</option>
-            <option value="Georgia" data-i18n="font_opt_georgia">Georgia (Συστήματος)</option>
+          <optgroup label="Ενσωματωμένες (100% Offline)" data-i18n-label="bundled_fonts">
+            <option value="Literata" data-i18n="font_opt_literata">Literata (Βιβλίου)</option>
+            <option value="Atkinson Hyperlegible Next" data-i18n="font_opt_atkinson">Atkinson Hyperlegible (Υψηλής ευκρίνειας)</option>
+          </optgroup>
+          <optgroup label="Γραμματοσειρές Συστήματος" data-i18n-label="system_fonts">
+            <option value="Georgia" data-i18n="font_opt_georgia">Georgia (Serif)</option>
+            <option value="System Sans" data-i18n="font_opt_system_sans">System Sans-Serif</option>
           </optgroup>
           <optgroup label="Ανεβασμένες Γραμματοσειρές" id="uploadedFontsOptgroup" data-i18n-label="uploaded_fonts"
             hidden></optgroup>

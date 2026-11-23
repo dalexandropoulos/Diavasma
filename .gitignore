@@ -1,0 +1,18 @@
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+.vscode/
+.idea/
+
+# Python & Node
+__pycache__/
+*.pyc
+node_modules/
+
+# Test / Audit artifacts & local profiles
+*_audit*.py
+test_*.py
+dump*.html
+edge_profile*/

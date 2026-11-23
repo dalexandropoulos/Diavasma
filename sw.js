@@ -1,5 +1,5 @@
-/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v39) */
-const CACHE_NAME = "diavasma-shell-v39";
+/* Diavasma Service Worker - Offline Shell & Resilient Pre-caching (v40) */
+const CACHE_NAME = "diavasma-shell-v40";
 
 const PRECACHE_URLS = [
   "./",
@@ -12,6 +12,33 @@ const PRECACHE_URLS = [
   "./libs/pdf.min.js",
   "./libs/pdf.worker.min.js",
   "./fonts/fonts.css",
+  "./fonts/AtkinsonHyperlegibleNext-latin-italic-400-0.woff2",
+  "./fonts/AtkinsonHyperlegibleNext-latin-italic-400-1.woff2",
+  "./fonts/AtkinsonHyperlegibleNext-latin-normal-400-2.woff2",
+  "./fonts/AtkinsonHyperlegibleNext-latin-normal-400-3.woff2",
+  "./fonts/AtkinsonHyperlegibleNext-latin-normal-600-4.woff2",
+  "./fonts/AtkinsonHyperlegibleNext-sub5-normal-600-5.woff2",
+  "./fonts/Literata-greek-italic-400-7.woff2",
+  "./fonts/Literata-greek-italic-400-8.woff2",
+  "./fonts/Literata-greek-normal-400-14.woff2",
+  "./fonts/Literata-greek-normal-400-15.woff2",
+  "./fonts/Literata-greek-normal-600-21.woff2",
+  "./fonts/Literata-greek-normal-600-22.woff2",
+  "./fonts/Literata-latin-italic-400-10.woff2",
+  "./fonts/Literata-latin-italic-400-11.woff2",
+  "./fonts/Literata-latin-normal-400-17.woff2",
+  "./fonts/Literata-latin-normal-400-18.woff2",
+  "./fonts/Literata-latin-normal-600-24.woff2",
+  "./fonts/Literata-latin-normal-600-25.woff2",
+  "./fonts/Literata-sub12-italic-400-12.woff2",
+  "./fonts/Literata-sub13-normal-400-13.woff2",
+  "./fonts/Literata-sub16-normal-400-16.woff2",
+  "./fonts/Literata-sub19-normal-400-19.woff2",
+  "./fonts/Literata-sub20-normal-600-20.woff2",
+  "./fonts/Literata-sub23-normal-600-23.woff2",
+  "./fonts/Literata-sub26-normal-600-26.woff2",
+  "./fonts/Literata-sub6-italic-400-6.woff2",
+  "./fonts/Literata-sub9-italic-400-9.woff2",
   "./assets/icons/icon.svg",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",

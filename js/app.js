@@ -1603,9 +1603,17 @@
       if (["none", "all", "one"].includes(incoming.audioLoopMode)) prefs.audioLoopMode = incoming.audioLoopMode;
       if (typeof incoming.lang === "string" && typeof I18N !== "undefined" && I18N[incoming.lang]) prefs.lang = incoming.lang;
 
-      const BUILTIN_FONTS = ["Literata", "Newsreader", "Source Serif 4", "Lora", "Merriweather", "Atkinson Hyperlegible Next", "Inter", "Georgia"];
-      if (typeof incoming.font === "string" && (BUILTIN_FONTS.includes(incoming.font) || /^UserFont_\d+$/.test(incoming.font))) {
-        prefs.font = incoming.font;
+      const BUILTIN_FONTS = ["Literata", "Atkinson Hyperlegible Next", "Georgia", "System Sans"];
+      if (typeof incoming.font === "string") {
+        if (["Newsreader", "Source Serif 4", "Lora", "Merriweather"].includes(incoming.font)) {
+          prefs.font = "Literata";
+        } else if (incoming.font === "Inter") {
+          prefs.font = "System Sans";
+        } else if (BUILTIN_FONTS.includes(incoming.font) || /^UserFont_\d+$/.test(incoming.font)) {
+          prefs.font = incoming.font;
+        } else {
+          prefs.font = "Literata";
+        }
       } else if (incoming.font !== undefined) {
         prefs.font = "Literata";
       }
@@ -6140,12 +6148,19 @@
       app.style.removeProperty("--ink");
       app.style.removeProperty("--glass");
 
-      const sansFonts = ["Inter", "Atkinson Hyperlegible Next"];
+      if (["Newsreader", "Source Serif 4", "Lora", "Merriweather"].includes(prefs.font)) {
+        prefs.font = "Literata";
+      } else if (prefs.font === "Inter") {
+        prefs.font = "System Sans";
+      }
+
       let fontStack;
       if (prefs.font && prefs.font.startsWith("UserFont_")) {
         fontStack = `"${prefs.font}", Georgia, serif`;
-      } else if (sansFonts.includes(prefs.font)) {
-        fontStack = `"${prefs.font}", -apple-system, BlinkMacSystemFont, sans-serif`;
+      } else if (prefs.font === "System Sans") {
+        fontStack = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      } else if (prefs.font === "Atkinson Hyperlegible Next") {
+        fontStack = '"Atkinson Hyperlegible Next", -apple-system, BlinkMacSystemFont, sans-serif';
       } else {
         fontStack = `"${prefs.font || "Literata"}", Georgia, serif`;
       }
@@ -8554,15 +8569,22 @@
         const incWatermark = $("#quoteIncWatermarkChk") ? $("#quoteIncWatermarkChk").checked : true;
 
         // Typography inheritance from user reading preferences (prefs)
-        const activeFont = (typeof prefs !== "undefined" && prefs.font) ? prefs.font : "Literata";
-        const sansFonts = ["Inter", "Atkinson Hyperlegible Next"];
+        let activeFont = (typeof prefs !== "undefined" && prefs.font) ? prefs.font : "Literata";
+        if (["Newsreader", "Source Serif 4", "Lora", "Merriweather"].includes(activeFont)) {
+          activeFont = "Literata";
+        } else if (activeFont === "Inter") {
+          activeFont = "System Sans";
+        }
+
         let fontStack;
         if (activeFont.startsWith("UserFont_")) {
           fontStack = `"${activeFont}", Georgia, serif`;
-        } else if (sansFonts.includes(activeFont)) {
-          fontStack = `"${activeFont}", -apple-system, BlinkMacSystemFont, sans-serif`;
+        } else if (activeFont === "System Sans") {
+          fontStack = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        } else if (activeFont === "Atkinson Hyperlegible Next") {
+          fontStack = '"Atkinson Hyperlegible Next", -apple-system, BlinkMacSystemFont, sans-serif';
         } else {
-          fontStack = `"${activeFont}", Georgia, serif`;
+          fontStack = `"${activeFont || "Literata"}", Georgia, serif`;
         }
 
         const activeAlign = (typeof prefs !== "undefined" && prefs.align) ? prefs.align : "left";
