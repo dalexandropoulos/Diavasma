@@ -28,10 +28,32 @@
       "purpose": "any"
     },
     {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "./assets/icons/icon.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./assets/images/DesktopL.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Diavasma Desktop Reading Room"
+    },
+    {
+      "src": "./assets/images/MobileL.jpg",
+      "sizes": "540x720",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Diavasma Mobile Reading Room"
     }
   ],
   "shortcuts": [

@@ -2838,6 +2838,58 @@
       background: var(--sheet);
     }
 
+    /* Unified Article (URL) & Text Compartment Styles */
+    .unified-import-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .unified-status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .unified-mode-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--sheet);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      transition: all 0.15s ease;
+    }
+
+    .unified-mode-badge.is-url {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .unified-mode-badge.is-text {
+      color: var(--ink);
+    }
+
+    .unified-rule-hint {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .unified-textarea {
+      height: 155px;
+      min-height: 120px;
+    }
+
     /* --- Custom Scraper Rules Page --- */
     .scraper-grid {
       display: grid;
@@ -3230,7 +3282,8 @@
       animation: zoomIn 0.2s var(--ease-spring);
     }
     .import-modal-card {
-      width: min(640px, calc(100vw - 24px));
+      max-width: 820px;
+      width: min(820px, calc(100vw - 24px));
       max-height: 90dvh;
       overflow-y: auto;
       display: flex;

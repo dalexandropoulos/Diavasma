@@ -10,6 +10,10 @@
     var ov = document.getElementById("welcomeOverlay");
     var theme = (p && p.theme) ? p.theme : "paper";
     if (appEl) appEl.dataset.theme = theme;
+    var themeBgMap = { paper: "#ede9df", warm: "#e5d4bc", sage: "#dce4da", slate: "#1b1e24", night: "#121312", amoled: "#000000" };
+    var bgHex = themeBgMap[theme] || "#ede9df";
+    var metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) metaTheme.setAttribute("content", bgHex);
     var hasShare = /[?&](share_url|share_text|share_title)=/i.test(window.location.search);
     if (hasShare || (p && p.showWelcome === false)) {
       if (ov) ov.hidden = true;

@@ -1058,11 +1058,8 @@
         }
       }
 
-      const pasteInput = $("#pasteInput");
-      const countHint = $("#wordCountHint");
-      if (countHint) {
-        const words = pasteInput && pasteInput.value ? pasteInput.value.trim().split(/\s+/).filter(Boolean).length : 0;
-        countHint.textContent = `${words} ${t("lbl_words") || "λέξεις"}`;
+      if (typeof updateUnifiedImportState === "function") {
+        updateUnifiedImportState();
       }
 
       if (typeof updateHubUI === "function") updateHubUI();
@@ -3936,13 +3933,17 @@
         }
 
         const fallbackTitle = (opts && opts.fallbackTitle) ? String(opts.fallbackTitle).trim() : "";
-        const finalTitle = extractedTitle || fallbackTitle || parsedUrl.hostname.replace(/^www\./, "");
+        const overrideTitle = (opts && opts.overrideTitle) ? String(opts.overrideTitle).trim() : "";
+        const finalTitle = overrideTitle || extractedTitle || fallbackTitle || parsedUrl.hostname.replace(/^www\./, "");
         const selectedGrp = (opts && opts.groupId) || $("#targetGroupSelect")?.value || (groups.some((g) => g.id === "grp-articles") ? "grp-articles" : groups[0].id);
 
         if (!isFromShare) {
-          $("#urlImportInput").value = "";
+          const uContent = $("#unifiedContentInput");
+          if (uContent) uContent.value = "";
+          const uTitle = $("#unifiedTitleInput");
+          if (uTitle) uTitle.value = "";
           if ($("#rawHtmlUrlInput")) $("#rawHtmlUrlInput").value = "";
-          $("#urlRuleMatchHint").hidden = true;
+          if (typeof updateUnifiedImportState === "function") updateUnifiedImportState();
         }
 
         const siteDomain = parsedUrl.hostname.replace(/^www\./i, "");
@@ -4268,7 +4269,7 @@
         sel.value = activeGroupFilter;
       } else if (pane === "paneFile" && groups.some((g) => g.id === "grp-books")) {
         sel.value = "grp-books";
-      } else if ((pane === "paneUrl" || pane === "panePaste") && groups.some((g) => g.id === "grp-articles")) {
+      } else if (pane === "paneContent" && groups.some((g) => g.id === "grp-articles")) {
         sel.value = "grp-articles";
       } else {
         sel.value = groups[0]?.id || "grp-books";
@@ -4391,14 +4392,14 @@
 
         const playGrpBtn = card.querySelector(".play-group-btn");
         if (playGrpBtn && items.length) {
-          playGrpBtn.addEventListener("click", () => {
+          playGrpBtn.addEventListener("click", async () => {
             const first = items[0];
             if (!first) return;
             if (typeof BackgroundAudioManager !== "undefined") {
               BackgroundAudioManager.playKeepAliveSync();
             }
-            openBook(first.title, first.text, first.charOffset || 0, first.bookmarkOffset || 0, first.id, first.highlights || [], first.audio || null, first.noise || null, first.groupId, first.kind, false, first.toc || []);
-            setTimeout(() => speakCurrentSpread(first.charOffset || 0), 320);
+            await openBook(first.title, first.text, first.charOffset || 0, first.bookmarkOffset || 0, first.id, first.highlights || [], first.audio || null, first.noise || null, first.groupId, first.kind, false, first.toc || []);
+            speakCurrentSpread(first.charOffset || 0);
           });
         }
 
@@ -5757,7 +5758,15 @@
       if (isScroll) {
         $("#scrollContent").innerHTML = renderPageSliceHtml({ text: bookText, start: 0, end: bookText.length });
         $("#pageCounter").textContent = t("page_scroll_mode") || "Κύλιση";
-        $("#progressFill").style.width = "100%";
+        const initRatio = bookText.length > 1 ? Math.min(1, Math.max(0, charOffset / (bookText.length - 1))) : 0;
+        $("#progressFill").style.width = `${Math.round(initRatio * 100)}%`;
+        requestAnimationFrame(() => {
+          const st = $("#scrollStage");
+          if (st) {
+            const maxS = Math.max(0, st.scrollHeight - st.clientHeight);
+            st.scrollTop = Math.round(initRatio * maxS);
+          }
+        });
         if (activeTtsRange) {
           const activeEl = $("#scrollContent .tts-active");
           if (activeEl) activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -5919,6 +5928,130 @@
       setActiveView("library");
     }
 
+    /* --- Unified Link vs Text Detection & State --- */
+    function detectUrlFromInput(raw) {
+      const trimmed = String(raw || "").trim();
+      if (!trimmed || /[\r\n\s]/.test(trimmed)) return null;
+      const isHttp = /^https?:\/\//i.test(trimmed);
+      const isDomainLike = /^(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+(?:[\/:?#][^\s]*)?$/i.test(trimmed);
+      if (!isHttp && !isDomainLike) return null;
+      try {
+        const testUrl = new URL(isHttp ? trimmed : "https://" + trimmed);
+        if (testUrl.hostname && testUrl.hostname.includes(".") && !/\s/.test(testUrl.hostname)) {
+          return testUrl.href;
+        }
+      } catch (_) {}
+      return null;
+    }
+
+    function updateUnifiedImportState() {
+      const input = $("#unifiedContentInput");
+      const raw = input ? input.value : "";
+      const trimmed = raw.trim();
+      const detectedUrl = detectUrlFromInput(raw);
+      const badge = $("#unifiedInputModeBadge");
+      const hint = $("#urlRuleMatchHint");
+
+      if (detectedUrl) {
+        if (badge) {
+          badge.classList.add("is-url");
+          badge.classList.remove("is-text");
+          badge.textContent = `🔗 ${t("badge_mode_url") || "Άρθρο URL"}`;
+        }
+        if (hint) {
+          try {
+            const u = new URL(detectedUrl);
+            const rule = findMatchingScraperRule(u);
+            if (rule) {
+              hint.textContent = (t("hint_rule_matched") || "✓ Εντοπίστηκε custom mapping για {domain}").replace("{domain}", rule.domain);
+              hint.hidden = false;
+            } else {
+              hint.hidden = true;
+            }
+          } catch (_) {
+            hint.hidden = true;
+          }
+        }
+      } else if (trimmed.length > 0) {
+        if (badge) {
+          badge.classList.remove("is-url");
+          badge.classList.add("is-text");
+          const words = trimmed.split(/\s+/).filter(Boolean).length;
+          badge.textContent = `📝 ${t("badge_mode_text") || "Κείμενο / Markdown"} · ${words} ${t("lbl_words") || "λέξεις"}`;
+        }
+        if (hint) hint.hidden = true;
+      } else {
+        if (badge) {
+          badge.classList.remove("is-url", "is-text");
+          badge.textContent = t("badge_mode_empty") || "URL ή Κείμενο";
+        }
+        if (hint) hint.hidden = true;
+      }
+    }
+
+    /* --- Unified Importer Handler (URL or Text/Markdown) --- */
+    async function handleUnifiedImport(saveOnlyToGroup = false) {
+      const raw = ($("#unifiedContentInput")?.value || "");
+      const customTitle = ($("#unifiedTitleInput")?.value || "").trim();
+      const manualHtml = ($("#rawHtmlUrlInput") && !$("#rawHtmlUrlBox")?.hidden) ? $("#rawHtmlUrlInput").value.trim() : "";
+      const detectedUrl = detectUrlFromInput(raw);
+
+      if (detectedUrl || manualHtml) {
+        return importArticleFromUrl(saveOnlyToGroup, {
+          url: detectedUrl || "",
+          fallbackTitle: customTitle,
+          overrideTitle: customTitle
+        });
+      }
+
+      // Otherwise text / markdown
+      if (!raw.trim()) {
+        showToast(t("toast_paste_empty") || "Επικόλλησε πρώτα ένα URL ή κείμενο.");
+        return;
+      }
+
+      const parsed = parseMarkdownAndToc(raw);
+      const firstLine = (parsed.text || "").split("\n")[0].trim();
+      const title = customTitle || ((firstLine && firstLine.length < 90) ? firstLine : (t("lbl_pasted_article") || "Επικολλημένο άρθρο"));
+      const selectedGrp = $("#targetGroupSelect")?.value || (groups.some((g) => g.id === "grp-articles") ? "grp-articles" : groups[0].id);
+
+      if (saveOnlyToGroup) {
+        const words = (parsed.text || "").trim().split(/\s+/).filter(Boolean).length;
+        const readMinutes = Math.max(1, Math.round(words / 200));
+        const newEntry = {
+          id: "book-" + Date.now(),
+          groupId: selectedGrp,
+          order: getGroupItems(selectedGrp).length,
+          kind: "Άρθρο",
+          title: title,
+          wordCount: words,
+          readMinutes: readMinutes,
+          text: parsed.text,
+          toc: parsed.toc,
+          charOffset: 0,
+          bookmarkOffset: 0,
+          highlights: [],
+          audio: null,
+          noise: null,
+          progress: 0,
+          updatedAt: Date.now()
+        };
+        library.push(newEntry);
+        saveLibraryState();
+        if ($("#unifiedContentInput")) $("#unifiedContentInput").value = "";
+        if ($("#unifiedTitleInput")) $("#unifiedTitleInput").value = "";
+        updateUnifiedImportState();
+        const grp = groups.find((g) => g.id === selectedGrp);
+        showToast((t("toast_saved_to_group") || "Αποθηκεύτηκε στην ομάδα «{name}».").replace("{name}", grp ? grp.name : ""));
+        closeImportModal();
+      } else {
+        if ($("#unifiedContentInput")) $("#unifiedContentInput").value = "";
+        if ($("#unifiedTitleInput")) $("#unifiedTitleInput").value = "";
+        updateUnifiedImportState();
+        openBook(title, parsed.text, 0, 0, null, [], null, null, selectedGrp, "Άρθρο", false, parsed.toc);
+      }
+    }
+
     /* --- Contextual Import Modal Controls --- */
     function setImportPane(targetId) {
       document.querySelectorAll("#importModal .mode-tab").forEach((t) => {
@@ -5926,14 +6059,19 @@
         t.classList.toggle("active", active);
         t.setAttribute("aria-selected", String(active));
       });
-      ["paneFile", "paneUrl", "panePaste"].forEach((id) => {
+      ["paneFile", "paneContent"].forEach((id) => {
         const el = $("#" + id);
         if (el) el.hidden = (id !== targetId);
       });
-      if (targetId === "paneUrl") setTimeout(() => $("#urlImportInput")?.focus(), 60);
-      else if (targetId === "panePaste") setTimeout(() => $("#pasteInput")?.focus(), 60);
+      if (targetId === "paneContent") {
+        setTimeout(() => {
+          $("#unifiedContentInput")?.focus();
+          updateUnifiedImportState();
+        }, 60);
+      } else if (targetId === "paneFile") {
+        setTimeout(() => $("#pickFileBtn")?.focus(), 60);
+      }
     }
-    
 
     function openImportModal(groupId) {
       const modal = $("#importModal");
@@ -5966,25 +6104,23 @@
       const titleEl = $("#importModalTitle");
       const modeTabsContainer = modal.querySelector(".mode-tabs");
       const tabFile = modal.querySelector('.mode-tab[data-pane="paneFile"]');
-      const tabUrl = modal.querySelector('.mode-tab[data-pane="paneUrl"]');
-      const tabPaste = modal.querySelector('.mode-tab[data-pane="panePaste"]');
+      const tabContent = modal.querySelector('.mode-tab[data-pane="paneContent"]');
 
       if (activeGrpId === "grp-articles") {
-        // Articles: paneUrl & panePaste (paneUrl default)
+        // Articles: 0 tabs, straight to unified paneContent
         if (titleEl) titleEl.textContent = t("import_modal_articles_title") || "Προσθήκη Άρθρου / Κειμένου";
-        if (modeTabsContainer) modeTabsContainer.hidden = false;
-        if (tabFile) tabFile.hidden = true;
-        if (tabUrl) tabUrl.hidden = false;
-        if (tabPaste) tabPaste.hidden = false;
-        setImportPane("paneUrl");
-        setTimeout(() => $("#urlImportInput")?.focus(), 60);
+        if (modeTabsContainer) modeTabsContainer.hidden = true;
+        setImportPane("paneContent");
+        setTimeout(() => {
+          $("#unifiedContentInput")?.focus();
+          updateUnifiedImportState();
+        }, 60);
       } else {
-        // Custom group: all 3 tabs
+        // Custom group: 2 tabs (paneFile and paneContent), paneFile default
         if (titleEl) titleEl.textContent = `${t("import_modal_group_title") || "Προσθήκη στην Ομάδα"} «${grpName}»`;
         if (modeTabsContainer) modeTabsContainer.hidden = false;
         if (tabFile) tabFile.hidden = false;
-        if (tabUrl) tabUrl.hidden = false;
-        if (tabPaste) tabPaste.hidden = false;
+        if (tabContent) tabContent.hidden = false;
         setImportPane("paneFile");
         setTimeout(() => $("#pickFileBtn")?.focus(), 60);
       }
@@ -6229,6 +6365,10 @@
       app.style.removeProperty("--bg");
       app.style.removeProperty("--ink");
       app.style.removeProperty("--glass");
+
+      const themeBgMap = { paper: "#ede9df", warm: "#e5d4bc", sage: "#dce4da", slate: "#1b1e24", night: "#121312", amoled: "#000000" };
+      const bgHex = themeBgMap[prefs.theme] || "#ede9df";
+      document.querySelector('meta[name="theme-color"]')?.setAttribute("content", bgHex);
 
       applyMarginVars();
 
@@ -6634,7 +6774,7 @@
       return queue;
     }
 
-    function advanceToNextItemInSameGroup() {
+    async function advanceToNextItemInSameGroup() {
       const groupItems = getGroupItems(currentGroupId);
       const idxInGroup = groupItems.findIndex((b) => b.id === currentBookId);
       const grpObj = groups.find((g) => g.id === currentGroupId);
@@ -6648,7 +6788,7 @@
           ? { active: true, type: prefs.noiseType, volume: Number(prefs.noiseVol) || 0.28 }
           : (nextItem.noise || bookNoise);
 
-        openBook(
+        await openBook(
           nextItem.title,
           nextItem.text,
           0,
@@ -6663,11 +6803,7 @@
           nextItem.toc || []
         );
         showToast((t("toast_next_in_group") || "Επόμενο στην ομάδα: {title}").replace("{title}", nextItem.title));
-        if (document.hidden) {
-          speakCurrentSpread(0);
-        } else {
-          setTimeout(() => speakCurrentSpread(0), 180);
-        }
+        speakCurrentSpread(0);
       } else {
         if (typeof closeImportModal === "function") closeImportModal();
         stopTts();
@@ -7427,28 +7563,17 @@
       });
     });
 
-    // URL Importer & Live Rule Match Indicator
-    $("#importUrlBtn")?.addEventListener("click", () => importArticleFromUrl(false));
-    $("#saveUrlToGroupBtn")?.addEventListener("click", () => importArticleFromUrl(true));
-    $("#urlImportInput")?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") importArticleFromUrl(false);
-    });
-    $("#urlImportInput")?.addEventListener("input", () => {
-      const hint = $("#urlRuleMatchHint");
-      let val = $("#urlImportInput").value.trim();
-      if (!val) { hint.hidden = true; return; }
-      try {
-        if (!/^https?:\/\//i.test(val)) val = "https://" + val;
-        const u = new URL(val);
-        const rule = findMatchingScraperRule(u);
-        if (rule) {
-          hint.textContent = (t("hint_rule_matched") || "✓ Εντοπίστηκε custom mapping για {domain}").replace("{domain}", rule.domain);
-          hint.hidden = false;
-        } else {
-          hint.hidden = true;
-        }
-      } catch (_) {
-        hint.hidden = true;
+    // Unified Importer Event Handlers & Live Detection
+    $("#openUnifiedBtn")?.addEventListener("click", () => handleUnifiedImport(false));
+    $("#saveUnifiedToGroupBtn")?.addEventListener("click", () => handleUnifiedImport(true));
+    $("#unifiedContentInput")?.addEventListener("input", updateUnifiedImportState);
+    $("#unifiedContentInput")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        handleUnifiedImport(false);
+      } else if (e.key === "Enter" && !e.shiftKey && detectUrlFromInput(e.target.value)) {
+        e.preventDefault();
+        handleUnifiedImport(false);
       }
     });
 
@@ -7547,61 +7672,6 @@
       saveGroups();
       renderLibraryHub();
       showToast((t("toast_group_created") || "Δημιουργήθηκε η ομάδα «{name}».").replace("{name}", newGrp.name));
-    });
-
-    /* toggleComposerBtn retired */
-
-    function extractComposerArticle() {
-      const raw = $("#pasteInput").value;
-      const parsed = parseMarkdownAndToc(raw);
-      if (!parsed.text) return null;
-      const customTitle = $("#pasteTitleInput").value.trim();
-      const firstLine = parsed.text.split("\n")[0];
-      const title = customTitle || ((firstLine && firstLine.length < 90) ? firstLine : (t("lbl_pasted_article") || "Επικολλημένο άρθρο"));
-      const groupId = $("#targetGroupSelect").value || groups[0].id;
-      return { title, text: parsed.text, toc: parsed.toc, groupId };
-    }
-
-    $("#saveToGroupBtn")?.addEventListener("click", () => {
-      const item = extractComposerArticle();
-      if (!item) return showToast(t("toast_paste_empty") || "Επικόλλησε πρώτα το κείμενο.");
-      const words = (item.text || "").trim().split(/\s+/).filter(Boolean).length;
-      const readMinutes = Math.max(1, Math.round(words / 200));
-      const newEntry = {
-        id: "book-" + Date.now(),
-        groupId: item.groupId,
-        order: getGroupItems(item.groupId).length,
-        kind: "Άρθρο",
-        title: item.title,
-        wordCount: words,
-        readMinutes: readMinutes,
-        text: item.text,
-        toc: item.toc,
-        charOffset: 0,
-        bookmarkOffset: 0,
-        highlights: [],
-        audio: null,
-        noise: null,
-        progress: 0,
-        updatedAt: Date.now()
-      };
-      library.push(newEntry);
-      saveLibraryState();
-      $("#pasteInput").value = "";
-      $("#pasteTitleInput").value = "";
-      $("#wordCountHint").textContent = `0 ${t("lbl_words") || "λέξεις"}`;
-      const grp = groups.find((g) => g.id === item.groupId);
-      showToast((t("toast_saved_to_group") || "Αποθηκεύτηκε στην ομάδα «{name}».").replace("{name}", grp ? grp.name : ""));
-      closeImportModal();
-    });
-
-    $("#openPasteBtn")?.addEventListener("click", () => {
-      const item = extractComposerArticle();
-      if (!item) return showToast(t("toast_no_text_found") || "Δεν βρέθηκε κείμενο.");
-      $("#pasteInput").value = "";
-      $("#pasteTitleInput").value = "";
-      $("#wordCountHint").textContent = `0 ${t("lbl_words") || "λέξεις"}`;
-      openBook(item.title, item.text, 0, 0, null, [], null, null, item.groupId, "Άρθρο", false, item.toc);
     });
 
     // Export Notes as Markdown
@@ -7713,11 +7783,7 @@
       }
     });
 
-    $("#pasteInput")?.addEventListener("input", (e) => {
-      const words = e.target.value.trim().split(/\s+/).filter(Boolean).length;
-      const hintEl = $("#wordCountHint");
-      if (hintEl) hintEl.textContent = `${words} ${t("lbl_words") || "λέξεις"}`;
-    });
+
 
     // Drag & Drop
     window.addEventListener("dragover", (e) => { e.preventDefault(); $("#dropZone")?.classList.add("dragover"); });
@@ -7778,6 +7844,27 @@
         app.classList.toggle("reveal-dock", show);
       }
     });
+
+    let lastScrollSyncTime = 0;
+    function syncScrollModeProgress() {
+      const el = $("#scrollStage");
+      if (!el || prefs.mode !== "scroll" || $("#readingView")?.hidden || !bookText || bookText.length === 0) return;
+      const maxScroll = Math.max(1, el.scrollHeight - el.clientHeight);
+      const ratio = Math.min(1, Math.max(0, el.scrollTop / maxScroll));
+      charOffset = Math.round(ratio * Math.max(0, bookText.length - 1));
+      const prog = $("#progressFill");
+      if (prog) prog.style.width = `${Math.round(ratio * 100)}%`;
+      syncTocSelection();
+      saveReadingProgressLightweight(false);
+    }
+
+    $("#scrollStage")?.addEventListener("scroll", () => {
+      const now = performance.now();
+      if (now - lastScrollSyncTime > 60) {
+        lastScrollSyncTime = now;
+        syncScrollModeProgress();
+      }
+    }, { passive: true });
 
     $("#scrollStage")?.addEventListener("click", (e) => {
       if (prefs.mode !== "scroll") return;
@@ -9763,12 +9850,10 @@
       if (extractedUrl) {
         if (prefs.strictOffline) {
           openImportModal(articlesGrpId);
-          const tabBtn = document.querySelector('#importModal .mode-tab[data-pane="paneUrl"]');
-          if (tabBtn) tabBtn.click();
-          const urlInput = $("#urlImportInput");
-          if (urlInput) {
-            urlInput.value = extractedUrl;
-            urlInput.dispatchEvent(new Event("input", { bubbles: true }));
+          const uInput = $("#unifiedContentInput");
+          if (uInput) {
+            uInput.value = extractedUrl;
+            updateUnifiedImportState();
           }
           const rawBox = $("#rawHtmlUrlBox");
           if (rawBox) rawBox.hidden = false;
@@ -9803,12 +9888,10 @@
           showToast(t("toast_share_imported") || "Το άρθρο προστέθηκε στα Άρθρα!");
         } else {
           openImportModal(articlesGrpId);
-          const tabBtn = document.querySelector('#importModal .mode-tab[data-pane="paneUrl"]');
-          if (tabBtn) tabBtn.click();
-          const urlInput = $("#urlImportInput");
-          if (urlInput) {
-            urlInput.value = extractedUrl;
-            urlInput.dispatchEvent(new Event("input", { bubbles: true }));
+          const uInput = $("#unifiedContentInput");
+          if (uInput) {
+            uInput.value = extractedUrl;
+            updateUnifiedImportState();
           }
           showToast(t("toast_share_import_fallback") || "Αδυναμία αυτόματης λήψης — το URL συμπληρώθηκε για χειροκίνητη εισαγωγή.");
         }
