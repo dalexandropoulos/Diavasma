@@ -2040,6 +2040,10 @@
     .margin-btn {
       font-size: 11.5px;
       padding: 0 4px;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .custom-margins-panel {
@@ -4283,12 +4287,10 @@
     #scrollStage[dir="rtl"] .page-content,
     #pageMeasurer[dir="rtl"] {
       direction: rtl;
-      text-align: start;
     }
 
     #bookStage[dir="ltr"] .page-content,
     #scrollStage[dir="ltr"] .page-content,
     #pageMeasurer[dir="ltr"] {
       direction: ltr;
-      text-align: start;
     }

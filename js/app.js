@@ -7303,48 +7303,84 @@
     document.querySelectorAll(".margin-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const val = btn.dataset.val;
-        prefs.marginPreset = val;
-        applyPrefs(true);
+        if (val === "custom") {
+          const customPanel = $("#customMarginsPanel");
+          if (prefs.marginPreset === "custom") {
+            const willBeHidden = customPanel ? !customPanel.hidden : false;
+            if (customPanel) customPanel.hidden = willBeHidden;
+            $("#customMarginsBtn")?.setAttribute("aria-expanded", String(!willBeHidden));
+            return;
+          }
+          prefs.marginPreset = "custom";
+        } else {
+          prefs.marginPreset = val;
+          const conf = MARGIN_PRESETS[val] || MARGIN_PRESETS.normal;
+          prefs.marginOuter = conf.outer;
+          prefs.marginX = conf.x;
+          prefs.marginY = conf.y;
+          const customPanel = $("#customMarginsPanel");
+          if (customPanel) customPanel.hidden = true;
+          $("#customMarginsBtn")?.setAttribute("aria-expanded", "false");
+        }
+        applyMarginVars();
+        savePrefs();
+        needsRepaginate = true;
+        const isSettingsOpen = Boolean($("#drawer")?.classList.contains("open"));
+        if (isSettingsOpen) {
+          pendingSettingsRecalc = true;
+        } else if (bookText && !$("#readingView").hidden) {
+          recalcAfterLayoutSettle();
+        }
       });
     });
 
-    function handleMarginInputChange() {
-      const outerVal = Math.max(0, Math.min(80, Math.round(Number($("#marginOuterInput")?.value) || 0)));
-      const xVal = Math.max(8, Math.min(120, Math.round(Number($("#marginXInput")?.value) || 28)));
-      const yVal = Math.max(8, Math.min(100, Math.round(Number($("#marginYInput")?.value) || 22)));
+    function handleMarginInputChange(e, isCommitted = false) {
+      const outerEl = $("#marginOuterInput");
+      const xEl = $("#marginXInput");
+      const yEl = $("#marginYInput");
+
+      const rawOuter = outerEl ? outerEl.value.trim() : "";
+      const rawX = xEl ? xEl.value.trim() : "";
+      const rawY = yEl ? yEl.value.trim() : "";
+
+      if (!isCommitted && (rawOuter === "" || rawX === "" || rawY === "")) {
+        return;
+      }
+
+      const outerVal = Math.max(0, Math.min(100, Math.round(Number(rawOuter) || 0)));
+      const xVal = Math.max(8, Math.min(120, Math.round(Number(rawX) || 28)));
+      const yVal = Math.max(8, Math.min(100, Math.round(Number(rawY) || 22)));
+
       prefs.marginPreset = "custom";
       prefs.marginOuter = outerVal;
       prefs.marginX = xVal;
       prefs.marginY = yVal;
+
+      if (isCommitted) {
+        if (outerEl && document.activeElement !== outerEl) outerEl.value = String(outerVal);
+        if (xEl && document.activeElement !== xEl) xEl.value = String(xVal);
+        if (yEl && document.activeElement !== yEl) yEl.value = String(yVal);
+      }
+
       applyMarginVars();
-      if (bookText && !$("#readingView").hidden) {
-        needsRepaginate = true;
+      savePrefs();
+
+      needsRepaginate = true;
+      const isSettingsOpen = Boolean($("#drawer")?.classList.contains("open"));
+      if (isSettingsOpen) {
         pendingSettingsRecalc = true;
+      } else if (bookText && !$("#readingView").hidden) {
+        recalcAfterLayoutSettle();
       }
     }
 
-    $("#marginOuterInput")?.addEventListener("input", handleMarginInputChange);
-    $("#marginXInput")?.addEventListener("input", handleMarginInputChange);
-    $("#marginYInput")?.addEventListener("input", handleMarginInputChange);
+    $("#marginOuterInput")?.addEventListener("input", (e) => handleMarginInputChange(e, false));
+    $("#marginXInput")?.addEventListener("input", (e) => handleMarginInputChange(e, false));
+    $("#marginYInput")?.addEventListener("input", (e) => handleMarginInputChange(e, false));
 
-    $("#marginOuterInput")?.addEventListener("change", () => {
-      savePrefs();
-      if (!$("#drawer")?.classList.contains("open") && bookText && !$("#readingView").hidden) {
-        recalcAfterLayoutSettle();
-      }
-    });
-    $("#marginXInput")?.addEventListener("change", () => {
-      savePrefs();
-      if (!$("#drawer")?.classList.contains("open") && bookText && !$("#readingView").hidden) {
-        recalcAfterLayoutSettle();
-      }
-    });
-    $("#marginYInput")?.addEventListener("change", () => {
-      savePrefs();
-      if (!$("#drawer")?.classList.contains("open") && bookText && !$("#readingView").hidden) {
-        recalcAfterLayoutSettle();
-      }
-    });
+    $("#marginOuterInput")?.addEventListener("change", (e) => handleMarginInputChange(e, true));
+    $("#marginXInput")?.addEventListener("change", (e) => handleMarginInputChange(e, true));
+    $("#marginYInput")?.addEventListener("change", (e) => handleMarginInputChange(e, true));
 
     // Font Upload (+ Button & Hidden File Input) & Audio Dropzone
     $("#addFontBtn")?.addEventListener("click", () => {
