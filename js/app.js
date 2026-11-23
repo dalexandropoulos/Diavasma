@@ -6269,11 +6269,13 @@
       document.querySelectorAll(".align-btn").forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.val === prefs.align);
       });
+      const activeLayout = prefs.mode === "scroll" ? "scroll" : (String(prefs.spread) === "2" ? "2" : "1");
       document.querySelectorAll(".spread-btn").forEach((btn) => {
-        btn.classList.toggle("active", String(btn.dataset.val) === String(prefs.spread));
+        btn.classList.toggle("active", String(btn.dataset.val) === activeLayout);
       });
 
-      $("#modeSelect").value = prefs.mode;
+      const modeSelectEl = $("#modeSelect");
+      if (modeSelectEl) modeSelectEl.value = prefs.mode;
       $("#keepAwakeChk").checked = Boolean(prefs.keepAwake);
       if ($("#bgPlaybackChk")) $("#bgPlaybackChk").checked = (prefs.backgroundPlayback !== false);
       if ($("#strictOfflineChk")) $("#strictOfflineChk").checked = Boolean(prefs.strictOffline);
@@ -6290,6 +6292,7 @@
       savePrefs();
       WakeLockManager.sync();
       FireflyEngine.evaluate();
+      syncReadingStageLayout();
 
       if (recalculatePages) {
         needsRepaginate = true;
@@ -7291,12 +7294,33 @@
     document.querySelectorAll(".align-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         prefs.align = btn.dataset.val;
-        applyPrefs(true);
+        const app = $("#app");
+        if (app) app.style.setProperty("--reader-align", prefs.align);
+        document.querySelectorAll(".align-btn").forEach((b) => {
+          b.classList.toggle("active", b.dataset.val === prefs.align);
+        });
+        savePrefs();
+        needsRepaginate = true;
+        const isSettingsOpen = Boolean($("#drawer")?.classList.contains("open"));
+        if (isSettingsOpen) {
+          pendingSettingsRecalc = true;
+        } else if (bookText && !$("#readingView").hidden) {
+          recalcAfterLayoutSettle();
+        }
       });
     });
     document.querySelectorAll(".spread-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        prefs.spread = btn.dataset.val;
+        const val = btn.dataset.val;
+        if (val === "scroll") {
+          prefs.mode = "scroll";
+        } else if (val === "2") {
+          prefs.mode = "paged";
+          prefs.spread = "2";
+        } else {
+          prefs.mode = "paged";
+          prefs.spread = "1";
+        }
         applyPrefs(true);
       });
     });
@@ -7894,10 +7918,6 @@
       if (!$("#drawer")?.classList.contains("open") && bookText && !$("#readingView").hidden) {
         recalcAfterLayoutSettle();
       }
-    });
-    $("#modeSelect")?.addEventListener("change", (e) => {
-      prefs.mode = e.target.value;
-      applyPrefs(true);
     });
     $("#keepAwakeChk")?.addEventListener("change", (e) => {
       prefs.keepAwake = e.target.checked;

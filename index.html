@@ -586,19 +586,35 @@
 
         <div class="segmented-control" role="group" aria-label="Διάταξη" data-i18n-aria="spread_title">
           <button type="button" class="seg-btn spread-btn active" data-val="1" title="1 Σελίδα" aria-label="1 Σελίδα"
-            data-i18n-title="spread_1">
+            data-i18n-title="spread_1" data-i18n-aria="spread_1">
             <svg viewBox="0 0 24 24">
-              <rect x="5" y="4" width="14" height="16" rx="2" />
-              <line x1="8" y1="8" x2="16" y2="8" />
-              <line x1="8" y1="12" x2="16" y2="12" />
-              <line x1="8" y1="16" x2="13" y2="16" />
+              <rect x="5" y="3" width="14" height="18" rx="2" />
+              <line x1="8.5" y1="8" x2="15.5" y2="8" />
+              <line x1="8.5" y1="12" x2="15.5" y2="12" />
+              <line x1="8.5" y1="16" x2="13" y2="16" />
             </svg>
           </button>
           <button type="button" class="seg-btn spread-btn" data-val="2" title="2 Σελίδες" aria-label="2 Σελίδες"
-            data-i18n-title="spread_2">
+            data-i18n-title="spread_2" data-i18n-aria="spread_2">
             <svg viewBox="0 0 24 24">
-              <rect x="3" y="4" width="8.5" height="16" rx="1.5" />
-              <rect x="12.5" y="4" width="8.5" height="16" rx="1.5" />
+              <rect x="2.5" y="4" width="8.5" height="16" rx="1.5" />
+              <rect x="13" y="4" width="8.5" height="16" rx="1.5" />
+              <line x1="5" y1="8.5" x2="8.5" y2="8.5" />
+              <line x1="5" y1="12.5" x2="8.5" y2="12.5" />
+              <line x1="15.5" y1="8.5" x2="19" y2="8.5" />
+              <line x1="15.5" y1="12.5" x2="19" y2="12.5" />
+            </svg>
+          </button>
+          <button type="button" class="seg-btn spread-btn" data-val="scroll" title="Συνεχής κύλιση" aria-label="Συνεχής κύλιση"
+            data-i18n-title="mode_scroll" data-i18n-aria="mode_scroll">
+            <svg viewBox="0 0 24 24">
+              <rect x="3.5" y="3" width="11.5" height="18" rx="2" />
+              <line x1="6.5" y1="8" x2="12" y2="8" />
+              <line x1="6.5" y1="12" x2="12" y2="12" />
+              <line x1="6.5" y1="16" x2="10" y2="16" />
+              <polyline points="17.5 8 19.5 6 21.5 8" />
+              <line x1="19.5" y1="6" x2="19.5" y2="18" />
+              <polyline points="17.5 16 19.5 18 21.5 16" />
             </svg>
           </button>
         </div>
@@ -632,14 +648,6 @@
           </label>
         </div>
       </div>
-
-      <label class="field" style="margin-top:14px">
-        <span data-i18n="reading_mode">Τρόπος ανάγνωσης</span>
-        <select id="modeSelect">
-          <option value="paged" data-i18n="mode_paged">Ξεφύλλισμα (Χωρίς Scroll)</option>
-          <option value="scroll" data-i18n="mode_scroll">Συνεχής κύλιση</option>
-        </select>
-      </label>
 
       <!-- Fonts & Typography -->
       <div class="section-tag" data-i18n="fonts_heading">Τυπογραφία &amp; Γραμματοσειρές</div>

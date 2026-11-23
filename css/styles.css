@@ -2933,6 +2933,10 @@
         display: none;
       }
 
+      .spread-btn[data-val="2"] {
+        display: none;
+      }
+
       .brand-title {
         max-width: 34vw;
       }
