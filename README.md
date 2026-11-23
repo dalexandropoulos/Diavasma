@@ -1,139 +1,101 @@
-<a id="languages"></a>
+<div id="languages" align="center">
 
-# Diavasma 📖
+# Δ Diavasma
 
+**A quiet room for reading.**
 
-> A quiet, 100% offline reading sanctuary, study space, and organizer for books & articles — no ads, no tracking, zero server dependencies.
-
-
-> Ένας ήσυχος, 100% offline χώρος ανάγνωσης, συγκέντρωσης και οργάνωσης βιβλίων & άρθρων — χωρίς διαφημίσεις, χωρίς παρακολούθηση (tracking), χωρίς εξαρτήσεις από servers.
-
-
----
-
-### 🌍 Languages / Γλώσσες / 语言 / Langues / Sprachen / भाषाएँ / 言語 / Idiomas / Языки / Lingue / 언어 / Języki / Diller / Bahasa / 繁體中文 / Мови / Talen / Ngôn ngữ / العربية / עברית / فارسی
+[![Open Diavasma](https://img.shields.io/badge/Open_Diavasma-Read_Now-8c5a32?style=for-the-badge)](https://dalexandropoulos.github.io/Diavasma/)
 
 [🇬🇧 English](#lang-en) · [🇬🇷 Ελληνικά](#lang-el) · [🇪🇸 Español](#lang-es) · [🇨🇳 简体中文](#lang-zh) · [🇫🇷 Français](#lang-fr) · [🇩🇪 Deutsch](#lang-de) · [🇵🇹 Português](#lang-pt) · [🇯🇵 日本語](#lang-ja) · [🇷🇺 Русский](#lang-ru) · [🇸🇦 العربية](#lang-ar) · [🇮🇳 हिन्दी](#lang-hi) · [🇮🇩 Bahasa Indonesia](#lang-id) · [🇰🇷 한국어](#lang-ko) · [🇮🇹 Italiano](#lang-it) · [🇹🇷 Türkçe](#lang-tr) · [🇵🇱 Polski](#lang-pl) · [🇹🇼 繁體中文](#lang-zh-tw) · [🇻🇳 Tiếng Việt](#lang-vi) · [🇮🇷 فارسی](#lang-fa) · [🇳🇱 Nederlands](#lang-nl) · [🇺🇦 Українська](#lang-uk) · [🇮🇱 עברית](#lang-he)
 
----
+</div>
 
 <p align="center">
-  <img src="./assets/demo.gif" alt="Diavasma — 100% Offline Reading Sanctuary Demo" width="850" />
+  <img src="./assets/demo.gif" alt="Diavasma — A quiet, distraction-free reading room" width="850" />
 </p>
 <p align="center">
-  <em>Switching to Dark Mode, importing an article from URL, and reading distraction-free in Fullscreen — 100% offline, zero tracking.</em>
+  <em>No accounts. No feeds. No noise. Just you and the page.</em>
 </p>
 
 ---
-
 
 <a id="lang-en"></a>
-# Diavasma 📖 (English)
 
-> A quiet, 100% offline reading sanctuary, study space, and organizer for books & articles — no ads, no tracking, zero server dependencies.
+## 🇬🇧 English
 
-## ✨ Key Features
+Reading on a screen usually feels like reading in a crowded hallway — pop-ups, cookie banners, sidebars, notifications, and an endless scroll that never lets your eyes settle.
 
-- **📚 Multi-Format Support & Organization:** Native offline reading for EPUB, PDF (offline reflow engine with smart line break cleanup & persistent IndexedDB pagination cache), Markdown (`.md`) and plain text (`.txt`). Organize items into groups (Books, Articles, custom collections) with an instant contextual `+` import modal.
-- **🌐 Articles from URL & Custom Selectors:** Smart article extraction from web links, site-specific custom CSS scraper rules (with JSON import/export), raw HTML source pasting (`Ctrl+U`), and automated offline site icon (favicon) grabbing.
-- **⚡ 100% Offline PWA (Progressive Web App):** Fully functional without an internet connection. Installable as a standalone app on Android, iOS, Windows, and macOS via modern web browsers, featuring robust Service Worker precaching and a zero-flash welcome screen (Light/Dark, Desktop/Mobile).
-- **🎨 6 Curated Themes & Self-Hosted Typography:** Paper, Warm, Sage, Slate, Night, and AMOLED themes. Includes 100% offline bundled typefaces (`Literata`, `Atkinson Hyperlegible Next`), system fonts (`Georgia`, `System Sans`), support for custom font uploads (`.ttf`, `.otf`, `.woff`, `.woff2`), text alignment (Left, Center, Right, Justify), customizable line height, and 1 or 2 page spread view.
-- **🎧 Music & Ambient Soundscapes:** Built-in Winamp-style mini audio player (persistent IndexedDB playlist, shuffle, 3-state loop, seek bar, and mobile volume control) alongside 6 procedural Web Audio soundscapes (Rain, Fireplace, Ocean Waves, Forest & Wind, Library & Vinyl, Deep Noise) with lock-screen background playback support.
-- **🗣️ Text-to-Speech (TTS) & Notes:** Voice narration with sentence-level highlight synchronization and background audio playback. Highlight text in 3 distinct colors, take notes, export to Markdown, translate selected words instantly, and create adaptive Quote Share Cards that inherit reader typography.
-- **⏱️ Pomodoro & Reading Habit Stats:** Focus timer with an animated hourglass screensaver during breaks, local reading habit tracker with a GitHub-style activity heatmap, and exportable Stats Share Cards.
-- **🔄 Full Local Backup & Restore (JSON):** Complete export and restoration of all library books (with full text from IndexedDB), notes, highlights, reading stats, custom scraper rules, and reader preferences in a single portable `.json` file.
-- **✨ Sanctuary Reading Upgrades:** Interactive Highlight Popover (`#highlightPopover`) for instant note editing, color switching, and Quote Cards without accidental page turns; "Continue Reading" card (`#continueReadingCard`) with 1-tap resume; clean 3-dots item action menu (`⋯`); and Web Share Target API integration to auto-import shared links directly into Articles.
-- **🌍 22 Languages (with full RTL):** Comprehensive, native UI localization in 22 languages: English, Greek, Chinese (Simplified), Traditional Chinese, Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Ukrainian, Vietnamese, Arabic, Hebrew, and Persian (with complete Right-to-Left RTL support).
+**Diavasma** is built to feel like closing the door to a quiet room.
 
-## 🚀 Installation as an App (PWA)
+You open it, and whatever you were reading is already waiting on the page you left off. No sign-in screen. No algorithm suggesting what to read next. Just paper-like typography, breathing margins, and silence.
 
-1. Open `index.html` (or your GitHub Pages deployment URL) in a modern browser (Chrome, Edge, Safari, Brave, Firefox).
-2. Click the **"Install App"** icon in the address bar, or open the browser menu **(⋯) → Install Diavasma**.
-3. On **iOS (Safari)**: Tap the **Share** button → select **"Add to Home Screen"**.
+### What it feels like to use
 
-## 🌐 Hosting on GitHub Pages
+* **Pages, not endless feeds.** Books and long articles break cleanly into real pages you turn with a tap, a swipe, or a key — single page on your phone, an open two-page spread on your desk. When you want everything else to disappear, one tap drops you into Fullscreen.
+* **Light that matches the hour.** Warm paper in the morning, soft sage in the afternoon, slate or deep night after dark, and true pitch-black AMOLED when the lights are off. Sit still in dark fullscreen long enough, and soft fireflies drift gently in the margins.
+* **Your own reading atmosphere.** Put on distant rain, a crackling fireplace, ocean waves, or your own quiet playlist. Each book remembers the sound you chose for it.
+* **A slower way to keep what matters.** Highlight a sentence that stays with you, jot down a brief thought in the margin, or turn a passage into a clean quote card to share with a friend. Export your notes to Markdown whenever you want them in your own archive.
+* **Room to rest your eyes.** Start a gentle Pomodoro session; when it's time to pause, a quiet falling hourglass takes over the screen until you're ready to return.
+* **Listen when your hands are busy.** Let a chapter or a saved queue of articles read itself aloud while you walk or cook, tracking your place line by line.
+* **Real quiet means being alone with the text.** Everything lives on your device — your library, your highlights, your habits. Nothing tracks you, nothing phones home, and with Strict Offline Mode even optional online helpers stay completely silent.
 
-To host your own private or public instance on GitHub Pages, upload all the repository files:
+### Open it like a book
 
-- `index.html` (main application shell & reader interface)
-- `manifest.json` (PWA configuration & metadata)
-- `sw.js` (Service Worker for offline precaching & caching strategy)
-- `css/` (`styles.css` - complete responsive stylesheet)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - bootstrap, 10-language localization & core logic)
-- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - self-hosted offline PDF engine)
-- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - app icons)
-- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - welcome screen artwork)
-- `fonts/` (self-hosted WOFF2 web fonts & `fonts.css`)
-- `README.md` (project documentation)
+1. Visit **[dalexandropoulos.github.io/Diavasma](https://dalexandropoulos.github.io/Diavasma/)**.
+2. Drop in an **EPUB, PDF, Markdown, TXT**, or paste an **article URL**.
+3. **Install it on your phone or computer** (Browser menu → *Add to Home Screen* / *Install App*) so it opens directly without browser tabs — and works on flights, trains, and anywhere without signal.
 
-1. Create a new repository on GitHub.
-2. Push or upload all listed files to your repository.
-3. Go to repository **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**, choose the `main` (or `master`) branch and `/ (root)` folder, then click **Save**.
-5. Within minutes, your reading room will be live and installable worldwide at `https://<username>.github.io/<repository-name>/`.
+<details>
+<summary>Under the hood & self-hosting (for the curious)</summary>
 
-## 🔒 Privacy First
+* **Formats:** EPUB, PDF, Markdown, TXT, and web articles (with optional custom CSS rules per site).
+* **Languages:** 22 interface languages, including full Right-to-Left (RTL) support for Arabic, Hebrew, and Persian.
+* **Offline & Ownership:** 100% client-side PWA using IndexedDB, local bundled fonts (`Literata`, `Atkinson Hyperlegible Next`) plus custom font uploads, and one-click full JSON backup/restore.
+* **Self-hosting:** Static files only (`index.html`, `manifest.json`, `sw.js`, `css/`, `js/`, `libs/`, `assets/`, `fonts/`). Host on GitHub Pages or any static server with zero build step.
 
-- **100% Local Data & Strict Offline Mode:** Diavasma does not collect, store, or transmit any personal information, browsing history, or book content to external servers. All library items, annotations, notes, and reading statistics remain strictly on your device inside `localStorage` and `IndexedDB`. Features an optional **Strict Offline Mode** that disables all external network requests (translation, scraping proxies), plus a complete "Clear All Local Data" option for shared devices.
-- **Self-Hosted Fonts & Assets:** All typography, sound generators, and reader engines (including PDF.js) are self-hosted within the app. Zero network requests are made to third-party CDNs like Google Fonts, preserving your IP address and client identity.
-- **Notice on URL Fetching:** The "Fetch from URL" feature relies on public CORS proxies to bypass browser cross-origin boundaries when fetching remote web pages. For 100% guaranteed offline privacy without transmitting URL queries across the network, use **"Paste HTML (Ctrl+U)"** or import local files (`.epub`, `.pdf`, `.txt`, `.md`).
+</details>
 
-[↑ Back to languages](#languages)
+<p align="right"><a href="#languages">↑ Back to languages</a></p>
 
 ---
 
 <a id="lang-el"></a>
-# Diavasma 📖 (Ελληνικά)
 
-> Ένας ήσυχος, 100% offline χώρος ανάγνωσης, συγκέντρωσης και οργάνωσης βιβλίων & άρθρων — χωρίς διαφημίσεις, χωρίς παρακολούθηση (tracking), χωρίς εξαρτήσεις από servers.
+## 🇬🇷 Ελληνικά
 
-## ✨ Κύρια Χαρακτηριστικά (Features)
+Το διάβασμα στην οθόνη συνήθως μοιάζει με διάβασμα σε έναν θορυβώδη διάδρομο — αναδυόμενα παράθυρα, banners, πλευρικές μπάρες και μια ατελείωτη κύλιση που δεν αφήνει το μάτι να ηρεμήσει.
 
-- **📚 Υποστήριξη Πολλαπλών Μορφών & Οργάνωση:** Αυτόνομη offline ανάγνωση για EPUB, PDF (offline reflow engine με έξυπνο καθαρισμό αλλαγών γραμμής & μόνιμη IndexedDB pagination cache), Markdown (`.md`) και απλό κείμενο (`.txt`). Οργάνωση σε ομάδες (Βιβλία, Άρθρα, προσαρμοσμένες ομάδες) με άμεσο contextual `+` import modal.
-- **🌐 Άρθρα από URL & Custom Selectors:** Έξυπνη εξαγωγή άρθρων από συνδέσμους, εξειδικευμένοι κανόνες CSS scraper ανά ιστοσελίδα (με δυνατότητα εξαγωγής/εισαγωγής JSON), υποστήριξη επικόλλησης πηγαίου κώδικα HTML (`Ctrl+U`) και αυτόματο offline grab του favicon του site.
-- **⚡ 100% Offline PWA (Progressive Web App):** Πλήρως λειτουργικό χωρίς σύνδεση στο διαδίκτυο. Εγκαθίσταται ως αυτόνομη εφαρμογή σε Android, iOS, Windows και macOS μέσω του browser, με ανθεκτικό Service Worker precaching και zero-flash οθόνη καλωσορίσματος (Light/Dark, Desktop/Mobile).
-- **🎨 6 Επιμελημένα Θέματα & Self-hosted Τυπογραφία:** Χαρτί (Paper), Θερμό (Warm), Φασκόμηλο (Sage), Σχιστόλιθος (Slate), Νύχτα (Night) και AMOLED. Περιλαμβάνει 100% offline ενσωματωμένες γραμματοσειρές (`Literata`, `Atkinson Hyperlegible Next`), γραμματοσειρές συστήματος (`Georgia`, `System Sans`), ανέβασμα custom fonts (`.ttf`, `.otf`, `.woff`, `.woff2`), στοίχιση (Αριστερά, Κέντρο, Δεξιά, Πλήρης), διάστιχο και προβολή 1 ή 2 σελίδων.
-- **🎧 Μουσική & Ηχοτοπία:** Ενσωματωμένος Winamp-style mini audio player (μόνιμη λίστα κομματιών στην IndexedDB, shuffle, 3-state loop, μπάρα πλοήγησης και έλεγχος έντασης στα κινητά) μαζί με 6 procedural Web Audio ηχοτοπία (Βροχή, Τζάκι, Κύματα θάλασσας, Δάσος & άνεμος, Βιβλιοθήκη & βινύλιο, Βαθύς θόρυβος) με δυνατότητα αναπαραγωγής στο παρασκήνιο με κλειστή οθόνη.
-- **🗣️ Εκφώνηση (TTS) & Σημειώσεις:** Φωνητική ανάγνωση με ζωντανή επισήμανση πρότασης και background playback. Υπογραμμίσεις σε 3 χρώματα, σημειώσεις, εξαγωγή σε Markdown, άμεση μετάφραση επιλεγμένου κειμένου και δημιουργία Quote Share Cards που κληρονομούν την τυπογραφία του αναγνωστηρίου.
-- **⏱️ Pomodoro & Στατιστικά Ανάγνωσης:** Χρονόμετρο εστίασης με δυναμικό screensaver κλεψύδρας κατά τα διαλείμματα, τοπικό habit tracker με activity heatmap τύπου GitHub και εξαγώγιμες Stats Share Cards.
-- **🔄 Πλήρες Τοπικό Backup & Restore (JSON):** Πλήρης εξαγωγή και επαναφορά ολόκληρου του αναγνωστηρίου (βιβλία με το πλήρες κείμενό τους από το IndexedDB, σημειώσεις, επισημάνσεις, στατιστικά ανάγνωσης, κανόνες scraper και ρυθμίσεις) σε ένα ενιαίο αρχείο `.json`.
-- **✨ Αναβαθμίσεις Sanctuary Reading:** Διαδραστικό Highlight Popover (`#highlightPopover`) για άμεση επεξεργασία σημείωσης, αλλαγή χρώματος και Quote Cards χωρίς άσκοπο γύρισμα σελίδας, κάρτα «Συνέχιση Ανάγνωσης» (`#continueReadingCard`) με άμεσο 1-tap άνοιγμα, καθαρό μενού επιλογών 3 τελειών (`⋯`) στη Βιβλιοθήκη και ενσωμάτωση Web Share Target API για αυτόματη προσθήκη κοινοποιημένων συνδέσμων στα Άρθρα.
-- **🌍 22 Γλώσσες (με πλήρες RTL):** Πλήρες περιβάλλον χρήσης μεταφρασμένο σε 22 γλώσσες: Αγγλικά, Ελληνικά, Κινεζικά (Απλοποιημένα & Παραδοσιακά), Ολλανδικά, Γαλλικά, Γερμανικά, Χίντι, Ινδονησιακά, Ιταλικά, Ιαπωνικά, Κορεατικά, Πολωνικά, Πορτογαλικά, Ρωσικά, Ισπανικά, Τουρκικά, Ουκρανικά, Βιετναμέζικα, Αραβικά, Εβραϊκά και Περσικά (με πλήρη υποστήριξη Right-to-Left).
+Το **Diavasma** φτιάχτηκε για να δίνει την αίσθηση ότι κλείνεις την πόρτα πίσω σου και μένεις σε ένα ήσυχο δωμάτιο.
 
-## 🚀 Εγκατάσταση ως Εφαρμογή (PWA)
+Το ανοίγεις, και ό,τι διάβαζες σε περιμένει ακριβώς στη σελίδα που το άφησες. Χωρίς λογαριασμούς. Χωρίς αλγόριθμους που σου λένε τι να διαβάσεις μετά. Μόνο καθαρή τυπογραφία, περιθώρια που αναπνέουν και ησυχία.
 
-1. Ανοίξτε το `index.html` (ή το URL σας στο GitHub Pages) σε έναν σύγχρονο browser (Chrome, Edge, Safari, Brave, Firefox).
-2. Πατήστε το εικονίδιο **«Εγκατάσταση εφαρμογής»** στη γραμμή διευθύνσεων ή από το μενού του browser **(⋯) → Εγκατάσταση Diavasma**.
-3. Στο **iOS (Safari)**: Πατήστε το κουμπί **Κοινοποίηση (Share)** → επιλέξτε **«Προσθήκη στην οθόνη αφετηρίας» (Add to Home Screen)**.
+### Η αίσθηση της χρήσης
 
-## 🌐 Φιλοξενία στο GitHub Pages
+* **Σελίδες, όχι ατελείωτο scroll.** Βιβλία και μεγάλα άρθρα μοιράζονται καθαρά σε πραγματικές σελίδες που γυρίζουν με ένα άγγιγμα ή ένα πλήκτρο — μονή σελίδα στο κινητό, ανοιχτό δισέλιδο στον υπολογιστή. Όταν θες να χαθούν όλα τα υπόλοιπα, με ένα πάτημα μένει μόνο το κείμενο σε πλήρη οθόνη.
+* **Φως που ακολουθεί την ώρα της ημέρας.** Χαρτί το πρωί, απαλό φασκόμηλο το απόγευμα, βαθύ σκούρο το βράδυ και απόλυτο μαύρο AMOLED όταν σβήσουν τα φώτα. Αν μείνεις ακίνητος στο σκοτάδι σε πλήρη οθόνη, διακριτικές πυγολαμπίδες εμφανίζονται απαλά στα περιθώρια.
+* **Η δική σου ατμόσφαιρα.** Βάλε βροχή στο τζάμι, τζάκι, κύματα ή τη δική σου ήρεμη μουσική. Κάθε βιβλίο θυμάται τον ήχο με τον οποίο το συνόδευσες.
+* **Ένας πιο ήρεμος τρόπος να κρατάς όσα σου μένουν.** Υπογράμμισε μια φράση που σε άγγιξε, κράτα μια σύντομη σκέψη ή φτιάξε μια καθαρή κάρτα αποσπάσματος για να τη μοιραστείς. Όποτε θελήσεις, εξάγεις τις σημειώσεις σου σε Markdown.
+* **Χρόνος για να ξεκουράζονται τα μάτια.** Άνοιξε ένα ήπιο Pomodoro· όταν έρθει η ώρα του διαλείμματος, μια σιωπηλή κλεψύδρα γεμίζει την οθόνη μέχρι να νιώσεις έτοιμος να επιστρέψεις.
+* **Ακρόαση όταν δεν μπορείς να κοιτάς την οθόνη.** Άφησε ένα κεφάλαιο ή μια λίστα άρθρων να διαβαστεί φωναχτά, ακολουθώντας τη θέση σου πρόταση-πρόταση.
+* **Πραγματική ησυχία σημαίνει να είσαι μόνος με το κείμενο.** Όλα μένουν στη συσκευή σου — η βιβλιοθήκη, οι σημειώσεις, οι συνήθειές σου. Τίποτα δεν σε παρακολουθεί, και με την Αυστηρή Λειτουργία Offline κλείνει και η παραμικρή εξωτερική σύνδεση.
 
-Για να φιλοξενήσετε τη δική σας προσωπική ή δημόσια εγκατάσταση στο GitHub Pages, ανεβάστε όλα τα αρχεία του φακέλου:
+### Άνοιξέ το σαν βιβλίο
 
-- `index.html` (κύριο κέλυφος εφαρμογής & διεπαφή ανάγνωσης)
-- `manifest.json` (ρυθμίσεις & μεταδεδομένα PWA)
-- `sw.js` (Service Worker για ανθεκτική offline λειτουργία & precaching)
-- `css/` (`styles.css` - πλήρες responsive stylesheet)
-- `js/` (`boot.js`, `i18n.js`, `app.js` - εκκίνηση, λεξικό 19 γλωσσών & βασική λογική)
-- `libs/` (`pdf.min.js`, `pdf.worker.min.js` - τοπική μηχανή απόδοσης PDF)
-- `assets/icons/` (`icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` - εικονίδια εφαρμογής)
-- `assets/images/` (`DesktopD.png`, `DesktopL.png`, `MobileD.jpg`, `MobileL.jpg` - εικαστικά οθόνης καλωσορίσματος)
-- `fonts/` (τοπικές γραμματοσειρές WOFF2 & `fonts.css`)
-- `README.md` (τεκμηρίωση του έργου)
+1. Μπες στο **[dalexandropoulos.github.io/Diavasma](https://dalexandropoulos.github.io/Diavasma/)**.
+2. Ρίξε μέσα ένα **EPUB, PDF, Markdown, TXT** ή επικόλλησε το **URL ενός άρθρου**.
+3. **Εγκατάστησέ το στο κινητό ή στον υπολογιστή** (Μενού browser → *Προσθήκη στην αρχική οθόνη* / *Εγκατάσταση*) ώστε να ανοίγει αυτόνομα χωρίς καρτέλες — και να δουλεύει σε πτήσεις, ταξίδια και παντού χωρίς σήμα.
 
-1. Δημιουργήστε ένα νέο αποθετήριο (repository) στο GitHub.
-2. Ανεβάστε όλα τα παραπάνω αρχεία στο αποθετήριό σας.
-3. Μεταβείτε στις ρυθμίσεις του αποθετηρίου (**Settings → Pages**).
-4. Στην ενότητα **Build and deployment**, επιλέξτε **Deploy from a branch**, διαλέξτε το branch `main` (ή `master`) και τον φάκελο `/ (root)`, και πατήστε **Save**.
-5. Μέσα σε λίγα λεπτά, η εφαρμογή σας θα είναι διαθέσιμη παγκοσμίως και έτοιμη για εγκατάσταση στο `https://<username>.github.io/<repository-name>/`.
+<details>
+<summary>Τεχνικές λεπτομέρειες & self-hosting (για όσους θέλουν να δουν πίσω από την κουρτίνα)</summary>
 
-## 🔒 Ιδιωτικότητα (Privacy First)
+* **Μορφές:** EPUB, PDF, Markdown, TXT και άρθρα web (με προαιρετικούς custom κανόνες CSS ανά site).
+* **Γλώσσες:** 22 γλώσσες interface, με πλήρη υποστήριξη RTL για Αραβικά, Εβραϊκά και Περσικά.
+* **Offline & Ιδιοκτησία:** 100% client-side PWA με IndexedDB, τοπικές γραμματοσειρές (`Literata`, `Atkinson Hyperlegible Next`), υποστήριξη custom fonts και πλήρες backup/επαναφορά σε ένα JSON αρχείο.
+* **Self-hosting:** Μόνο στατικά αρχεία (`index.html`, `manifest.json`, `sw.js`, `css/`, `js/`, `libs/`, `assets/`, `fonts/`), έτοιμο για GitHub Pages χωρίς build step.
 
-- **100% Τοπικά Δεδομένα & Strict Offline Mode:** Το Diavasma δεν συλλέγει, δεν αποθηκεύει και δεν διαβιβάζει κανένα προσωπικό δεδομένο, ιστορικό ανάγνωσης ή περιεχόμενο αρχείων σε εξωτερικούς διακομιστές. Όλα τα βιβλία, τα κείμενα, οι σημειώσεις και τα στατιστικά παραμένουν αποκλειστικά στη συσκευή σας (`localStorage` & `IndexedDB`). Περιλαμβάνει επιλογή **Strict Offline Mode** για πλήρη αποκλεισμό εξωτερικών δικτυακών αιτημάτων, καθώς και επιλογή «Εκκαθάριση Όλων των Δεδομένων» για κοινόχρηστες συσκευές.
-- **Τοπικές Γραμματοσειρές & Βιβλιοθήκες:** Όλη η τυπογραφία, οι γεννήτριες ήχου και οι μηχανές ανάγνωσης (συμπεριλαμβανομένου του PDF engine) είναι self-hosted. Δεν πραγματοποιείται καμία δικτυακή κλήση σε εξωτερικά CDN όπως το Google Fonts, προστατεύοντας πλήρως την IP διεύθυνση και το απόρρητό σας.
-- **Σημείωση για Εξωτερικά URLs:** Η λειτουργία «Λήψη από URL» επικοινωνεί αναγκαστικά με δημόσια CORS proxies για την παράκαμψη των περιορισμών cross-origin των browsers κατά τη λήψη απομακρυσμένων σελίδων. Για απόλυτη, 100% ιδιωτικότητα χωρίς καμία δικτυακή κίνηση, συνιστάται η απευθείας **«Επικόλληση HTML (Ctrl+U)»** ή η εισαγωγή τοπικών αρχείων (`.epub`, `.pdf`, `.txt`, `.md`).
+</details>
 
-[↑ Επιστροφή στις γλώσσες](#languages)
+<p align="right"><a href="#languages">↑ Επιστροφή στις γλώσσες</a></p>
 
 ---
 
