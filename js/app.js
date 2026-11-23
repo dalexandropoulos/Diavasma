@@ -58,6 +58,10 @@
       noiseVol: 0.28,
       workMin: 25,
       breakMin: 5,
+      marginPreset: "normal",
+      marginOuter: 14,
+      marginX: 28,
+      marginY: 22,
       showWelcome: true,
       audioShuffle: false,
       audioLoopMode: "none",
@@ -1625,6 +1629,10 @@
       if (incoming.noiseVol !== undefined) prefs.noiseVol = Number(clampNum(incoming.noiseVol, 0, 1, prefs.noiseVol).toFixed(2));
       if (incoming.workMin !== undefined) prefs.workMin = Math.round(clampNum(incoming.workMin, 1, 120, prefs.workMin));
       if (incoming.breakMin !== undefined) prefs.breakMin = Math.round(clampNum(incoming.breakMin, 1, 60, prefs.breakMin));
+      if (["narrow", "normal", "wide", "custom"].includes(incoming.marginPreset)) prefs.marginPreset = incoming.marginPreset;
+      if (incoming.marginOuter !== undefined) prefs.marginOuter = Math.round(clampNum(incoming.marginOuter, 0, 80, prefs.marginOuter));
+      if (incoming.marginX !== undefined) prefs.marginX = Math.round(clampNum(incoming.marginX, 8, 120, prefs.marginX));
+      if (incoming.marginY !== undefined) prefs.marginY = Math.round(clampNum(incoming.marginY, 8, 100, prefs.marginY));
       if (incoming.lastTrackIdx !== undefined) prefs.lastTrackIdx = Math.max(0, Math.round(Number(incoming.lastTrackIdx) || 0));
 
       if (typeof incoming.keepAwake === "boolean") prefs.keepAwake = incoming.keepAwake;
@@ -1698,6 +1706,10 @@
           ttsVoice: prefs.ttsVoice,
           workMin: prefs.workMin,
           breakMin: prefs.breakMin,
+          marginPreset: prefs.marginPreset || "normal",
+          marginOuter: prefs.marginOuter !== undefined ? prefs.marginOuter : 14,
+          marginX: prefs.marginX !== undefined ? prefs.marginX : 28,
+          marginY: prefs.marginY !== undefined ? prefs.marginY : 22,
           backgroundPlayback: prefs.backgroundPlayback !== false,
           audioVol: prefs.audioVol,
           audioShuffle: Boolean(prefs.audioShuffle),
@@ -5251,9 +5263,11 @@
         const sheet = $("#pageA");
         const contentEl = $("#contentA");
         const w = contentEl ? Math.round(contentEl.getBoundingClientRect().width) : 0;
-        const h = sheet ? Math.round(sheet.clientHeight) : 0;
+        const padTop = sheet ? (parseFloat(getComputedStyle(sheet).paddingTop) || 0) : 0;
+        const padBottom = sheet ? (parseFloat(getComputedStyle(sheet).paddingBottom) || 0) : 0;
+        const innerH = sheet ? Math.round(sheet.clientHeight - padTop - padBottom) : 0;
         const spread = pagesPerView();
-        return `${bookId || "active"}_${w}x${h}_${prefs.font}_${prefs.size}_${prefs.lineHeight}_${prefs.align}_${spread}`;
+        return `${bookId || "active"}_${w}x${innerH}_${prefs.font}_${prefs.size}_${prefs.lineHeight}_${prefs.align}_${spread}_${prefs.marginPreset || "normal"}_${prefs.marginOuter}_${prefs.marginX}_${prefs.marginY}`;
       },
       get(bookId) {
         const key = this.getKey(bookId);
@@ -5494,14 +5508,16 @@
 
       const padTop = parseFloat(sheetStyle.paddingTop) || 0;
       const padBottom = parseFloat(sheetStyle.paddingBottom) || 0;
-      const availHeight = Math.max(120, sheet.clientHeight - padTop - padBottom - 8);
-      const contentWidth = contentEl.getBoundingClientRect().width;
+      const availHeight = Math.max(100, Math.floor(sheet.clientHeight - padTop - padBottom - 4));
+      const contentWidth = Math.floor(contentEl.getBoundingClientRect().width);
 
-      if (contentWidth < 50 || availHeight < 80) {
+      if (contentWidth < 50 || availHeight < 60) {
         return [{ text: text, start: 0, end: text.length }];
       }
 
       measurer.style.width = `${contentWidth}px`;
+      measurer.style.padding = "0";
+      measurer.style.border = "0";
       measurer.style.fontFamily = contentStyle.fontFamily;
       measurer.style.fontSize = contentStyle.fontSize;
       measurer.style.lineHeight = contentStyle.lineHeight;
@@ -5543,7 +5559,7 @@
         if (remaining <= estChunk * 1.5) {
           const tail = text.slice(cursor, len).replace(/\s+$/, "");
           measurer.textContent = tail;
-          if (measurer.offsetHeight <= availHeight) {
+          if (measurer.getBoundingClientRect().height <= availHeight) {
             if (tail) result.push({ text: tail, start: cursor, end: cursor + tail.length });
             break;
           }
@@ -5554,7 +5570,7 @@
 
         measurer.textContent = text.slice(cursor, hi);
         let step = Math.max(400, Math.floor(estChunk * 0.5));
-        while (measurer.offsetHeight <= availHeight && hi < len) {
+        while (measurer.getBoundingClientRect().height <= availHeight && hi < len) {
           lo = hi;
           hi = Math.min(len, hi + step);
           step = Math.floor(step * 1.4);
@@ -5564,7 +5580,7 @@
         while (lo < hi) {
           const mid = (lo + hi + 1) >> 1;
           measurer.textContent = text.slice(cursor, mid);
-          if (measurer.offsetHeight <= availHeight) lo = mid;
+          if (measurer.getBoundingClientRect().height <= availHeight) lo = mid;
           else hi = mid - 1;
         }
 
@@ -5987,6 +6003,20 @@
     }
     
 
+    function syncReadingStageLayout() {
+      const isScroll = (prefs.mode === "scroll");
+      const bookStage = $("#bookStage");
+      const scrollStage = $("#scrollStage");
+      if (bookStage) bookStage.hidden = isScroll;
+      if (scrollStage) scrollStage.hidden = !isScroll;
+      if (!isScroll) {
+        const perView = pagesPerView();
+        if (bookStage) bookStage.classList.toggle("two", perView === 2);
+        const pageB = $("#pageB");
+        if (pageB) pageB.hidden = (perView !== 2);
+      }
+    }
+
     /* --- Fullscreen & Typography Layout Settle (Waits for Fonts + Frame Paint) --- */
     async function waitForActiveFontLoad() {
       if (!document.fonts) return;
@@ -6002,6 +6032,7 @@
 
     async function recalcAfterLayoutSettle() {
       if (!bookText || $("#readingView").hidden) return;
+      syncReadingStageLayout();
       if (prefs.mode === "scroll") {
         renderPages(false, true);
         buildOutline();
@@ -6139,6 +6170,57 @@
     /* --- Apply & Persist All Settings (Defer Heavy Pagination Until Drawer Closes) --- */
     /* isHexDark removed */
 
+    const MARGIN_PRESETS = {
+      narrow: { outer: 6, x: 16, y: 14, maxW: "100%", contentMaxW: "none" },
+      normal: { outer: 14, x: 28, y: 22, maxW: "1360px", contentMaxW: "none" },
+      wide: { outer: 32, x: 48, y: 34, maxW: "1140px", contentMaxW: "68ch" }
+    };
+
+    function applyMarginVars() {
+      const app = $("#app");
+      if (!app) return;
+      const presetKey = prefs.marginPreset || "normal";
+      let outer, x, y, maxW, contentMaxW;
+
+      if (presetKey === "custom") {
+        outer = Number.isFinite(prefs.marginOuter) ? prefs.marginOuter : 14;
+        x = Number.isFinite(prefs.marginX) ? prefs.marginX : 28;
+        y = Number.isFinite(prefs.marginY) ? prefs.marginY : 22;
+        maxW = "100%";
+        contentMaxW = "none";
+      } else {
+        const conf = MARGIN_PRESETS[presetKey] || MARGIN_PRESETS.normal;
+        outer = conf.outer;
+        x = conf.x;
+        y = conf.y;
+        maxW = conf.maxW;
+        contentMaxW = conf.contentMaxW;
+      }
+
+      app.style.setProperty("--margin-outer", `${outer}px`);
+      app.style.setProperty("--margin-x", `${x}px`);
+      app.style.setProperty("--margin-y", `${y}px`);
+      app.style.setProperty("--book-max-w", maxW);
+      app.style.setProperty("--content-max-w", contentMaxW);
+
+      document.querySelectorAll(".margin-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.val === presetKey);
+      });
+
+      const customPanel = $("#customMarginsPanel");
+      const customBtn = $("#customMarginsBtn");
+      const isCustom = (presetKey === "custom");
+      if (customPanel) customPanel.hidden = !isCustom;
+      if (customBtn) customBtn.setAttribute("aria-expanded", String(isCustom));
+
+      const outerInput = $("#marginOuterInput");
+      const xInput = $("#marginXInput");
+      const yInput = $("#marginYInput");
+      if (outerInput && document.activeElement !== outerInput) outerInput.value = String(outer);
+      if (xInput && document.activeElement !== xInput) xInput.value = String(x);
+      if (yInput && document.activeElement !== yInput) yInput.value = String(y);
+    }
+
     function applyPrefs(recalculatePages = true) {
       const app = $("#app");
       app.dataset.theme = prefs.theme || "paper";
@@ -6147,6 +6229,8 @@
       app.style.removeProperty("--bg");
       app.style.removeProperty("--ink");
       app.style.removeProperty("--glass");
+
+      applyMarginVars();
 
       if (["Newsreader", "Source Serif 4", "Lora", "Merriweather"].includes(prefs.font)) {
         prefs.font = "Literata";
@@ -7203,7 +7287,7 @@
     });
 
 
-    // Segmented Controls (Alignment & Spread)
+    // Segmented Controls (Alignment, Spread & Margins)
     document.querySelectorAll(".align-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         prefs.align = btn.dataset.val;
@@ -7216,9 +7300,62 @@
         applyPrefs(true);
       });
     });
+    document.querySelectorAll(".margin-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const val = btn.dataset.val;
+        prefs.marginPreset = val;
+        applyPrefs(true);
+      });
+    });
 
-    // Drag and Drop Zones for Fonts & Audio
-    setupDropzone("#fontDropzone", "#fontFileInput", handleFontFiles);
+    function handleMarginInputChange() {
+      const outerVal = Math.max(0, Math.min(80, Math.round(Number($("#marginOuterInput")?.value) || 0)));
+      const xVal = Math.max(8, Math.min(120, Math.round(Number($("#marginXInput")?.value) || 28)));
+      const yVal = Math.max(8, Math.min(100, Math.round(Number($("#marginYInput")?.value) || 22)));
+      prefs.marginPreset = "custom";
+      prefs.marginOuter = outerVal;
+      prefs.marginX = xVal;
+      prefs.marginY = yVal;
+      applyMarginVars();
+      if (bookText && !$("#readingView").hidden) {
+        needsRepaginate = true;
+        pendingSettingsRecalc = true;
+      }
+    }
+
+    $("#marginOuterInput")?.addEventListener("input", handleMarginInputChange);
+    $("#marginXInput")?.addEventListener("input", handleMarginInputChange);
+    $("#marginYInput")?.addEventListener("input", handleMarginInputChange);
+
+    $("#marginOuterInput")?.addEventListener("change", () => {
+      savePrefs();
+      if (!$("#drawer")?.classList.contains("open") && bookText && !$("#readingView").hidden) {
+        recalcAfterLayoutSettle();
+      }
+    });
+    $("#marginXInput")?.addEventListener("change", () => {
+      savePrefs();
+      if (!$("#drawer")?.classList.contains("open") && bookText && !$("#readingView").hidden) {
+        recalcAfterLayoutSettle();
+      }
+    });
+    $("#marginYInput")?.addEventListener("change", () => {
+      savePrefs();
+      if (!$("#drawer")?.classList.contains("open") && bookText && !$("#readingView").hidden) {
+        recalcAfterLayoutSettle();
+      }
+    });
+
+    // Font Upload (+ Button & Hidden File Input) & Audio Dropzone
+    $("#addFontBtn")?.addEventListener("click", () => {
+      $("#fontFileInput")?.click();
+    });
+    $("#fontFileInput")?.addEventListener("change", (e) => {
+      if (e.target.files && e.target.files.length) {
+        handleFontFiles(e.target.files);
+        e.target.value = "";
+      }
+    });
     setupDropzone("#audioDropzone", "#audioFilesInput", addAudioFilesToPlaylist);
 
     // Compartmentalized 3-Mode Importer Tabs
@@ -7637,8 +7774,6 @@
 
     // TTS Controls
     $("#ttsToggleBtn")?.addEventListener("click", toggleTts);
-    $("#drawerTtsPlayBtn")?.addEventListener("click", toggleTts);
-    $("#drawerTtsStopBtn")?.addEventListener("click", stopTts);
     $("#ttsVoiceSelect")?.addEventListener("change", (e) => {
       prefs.ttsVoice = e.target.value;
       savePrefs();

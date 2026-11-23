@@ -345,7 +345,7 @@
         <article class="page-sheet" id="pageA">
           <div class="page-content" id="contentA"></div>
         </article>
-        <article class="page-sheet" id="pageB">
+        <article class="page-sheet" id="pageB" hidden>
           <div class="page-content" id="contentB"></div>
         </article>
       </div>
@@ -605,6 +605,34 @@
 
       </div>
 
+      <div class="field-head" style="margin-top:12px;margin-bottom:4px;font-size:12px;color:var(--muted)">
+        <span data-i18n="margins_heading">Περιθώρια</span>
+      </div>
+      <div class="layout-controls-row" style="margin-bottom:0">
+        <div class="segmented-control" role="group" aria-label="Περιθώρια" data-i18n-aria="margins_heading" style="width:100%">
+          <button type="button" class="seg-btn margin-btn" data-val="narrow" data-i18n="margin_narrow">Στενά</button>
+          <button type="button" class="seg-btn margin-btn active" data-val="normal" data-i18n="margin_normal">Κανονικά</button>
+          <button type="button" class="seg-btn margin-btn" data-val="wide" data-i18n="margin_wide">Άνετα</button>
+          <button type="button" class="seg-btn margin-btn" id="customMarginsBtn" data-val="custom" data-i18n="margin_custom" aria-expanded="false">Custom</button>
+        </div>
+      </div>
+      <div class="custom-margins-panel" id="customMarginsPanel" hidden>
+        <div class="margins-num-grid">
+          <label class="field">
+            <span data-i18n="margin_outer_short" style="font-size:11px;color:var(--muted)">Εξωτερικό (px)</span>
+            <input type="number" id="marginOuterInput" min="0" max="100" step="2" value="14" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span data-i18n="margin_x_short" style="font-size:11px;color:var(--muted)">Πλάγια (px)</span>
+            <input type="number" id="marginXInput" min="8" max="120" step="2" value="28" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span data-i18n="margin_y_short" style="font-size:11px;color:var(--muted)">Πάνω/Κάτω (px)</span>
+            <input type="number" id="marginYInput" min="8" max="100" step="2" value="22" inputmode="numeric" />
+          </label>
+        </div>
+      </div>
+
       <label class="field" style="margin-top:14px">
         <span data-i18n="reading_mode">Τρόπος ανάγνωσης</span>
         <select id="modeSelect">
@@ -615,38 +643,29 @@
 
       <!-- Fonts & Typography -->
       <div class="section-tag" data-i18n="fonts_heading">Τυπογραφία &amp; Γραμματοσειρές</div>
-      <label class="field">
+      <div class="field">
         <span data-i18n="font_family">Γραμματοσειρά</span>
-        <select id="fontSelect">
-          <optgroup label="Ενσωματωμένες (100% Offline)" data-i18n-label="bundled_fonts">
-            <option value="Literata" data-i18n="font_opt_literata">Literata (Βιβλίου)</option>
-            <option value="Atkinson Hyperlegible Next" data-i18n="font_opt_atkinson">Atkinson Hyperlegible (Υψηλής ευκρίνειας)</option>
-          </optgroup>
-          <optgroup label="Γραμματοσειρές Συστήματος" data-i18n-label="system_fonts">
-            <option value="Georgia" data-i18n="font_opt_georgia">Georgia (Serif)</option>
-            <option value="System Sans" data-i18n="font_opt_system_sans">System Sans-Serif</option>
-          </optgroup>
-          <optgroup label="Ανεβασμένες Γραμματοσειρές" id="uploadedFontsOptgroup" data-i18n-label="uploaded_fonts"
-            hidden></optgroup>
-        </select>
-      </label>
-
-      <!-- Drag & Drop Zone for Custom Fonts -->
-      <div class="dropzone" id="fontDropzone" tabindex="0" role="button" aria-label="Φόρτωση γραμματοσειράς">
-        <input type="file" id="fontFileInput" accept=".woff,.woff2,.ttf,.otf,font/*" multiple hidden />
-        <div class="dropzone-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="17 8 12 3 7 8" />
-            <line x1="12" y1="3" x2="12" y2="15" />
-          </svg>
+        <div class="font-select-row">
+          <select id="fontSelect">
+            <optgroup label="Ενσωματωμένες (100% Offline)" data-i18n-label="bundled_fonts">
+              <option value="Literata" data-i18n="font_opt_literata">Literata (Βιβλίου)</option>
+              <option value="Atkinson Hyperlegible Next" data-i18n="font_opt_atkinson">Atkinson Hyperlegible (Υψηλής ευκρίνειας)</option>
+            </optgroup>
+            <optgroup label="Γραμματοσειρές Συστήματος" data-i18n-label="system_fonts">
+              <option value="Georgia" data-i18n="font_opt_georgia">Georgia (Serif)</option>
+              <option value="System Sans" data-i18n="font_opt_system_sans">System Sans-Serif</option>
+            </optgroup>
+            <optgroup label="Ανεβασμένες Γραμματοσειρές" id="uploadedFontsOptgroup" data-i18n-label="uploaded_fonts"
+              hidden></optgroup>
+          </select>
+          <button type="button" class="btn icon-only font-add-btn" id="addFontBtn" title="Προσθήκη Γραμματοσειράς" data-i18n-title="dropzone_fonts_title" aria-label="Προσθήκη Γραμματοσειράς" data-i18n-aria="dropzone_fonts_title">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <input type="file" id="fontFileInput" accept=".woff,.woff2,.ttf,.otf,font/*" multiple hidden />
         </div>
-
-        <div class="dropzone-text">
-          <strong data-i18n="dropzone_fonts_title">Προσθήκη Γραμματοσειράς</strong>
-          <span data-i18n="dropzone_fonts_sub">Σύρετε αρχεία (.ttf, .otf, .woff2) ή κάντε κλικ</span>
-        </div>
-
       </div>
 
       <div class="fonts-box" id="fontsBox" hidden></div>
@@ -679,10 +698,6 @@
             id="ttsRateValue">1.00x</strong></div>
         <input type="range" id="ttsRateRange" min="0.6" max="1.8" step="0.05" value="1.0" />
       </label>
-      <div class="row-2">
-        <button class="btn primary" id="drawerTtsPlayBtn" data-i18n="tts_play_pause">Έναρξη / Παύση</button>
-        <button class="btn" id="drawerTtsStopBtn" data-i18n="tts_stop">Διακοπή</button>
-      </div>
 
       <!-- Backup, Reset & Info Section -->
       

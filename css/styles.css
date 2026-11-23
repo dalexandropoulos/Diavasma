@@ -22,6 +22,11 @@
       --reader-size: 20px;
       --reader-lh: 1.72;
       --reader-align: left;
+      --book-max-w: 1360px;
+      --margin-outer: 14px;
+      --margin-x: 28px;
+      --margin-y: 22px;
+      --content-max-w: none;
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
@@ -249,7 +254,7 @@
     }
 
     .app.zen .reading {
-      padding: 6px clamp(6px, 2vw, 20px) calc(8px + var(--safe-bottom));
+      padding: 4px min(var(--margin-outer), 8px) calc(6px + var(--safe-bottom));
     }
 
     .brand {
@@ -1270,14 +1275,14 @@
       min-height: 0;
       display: flex;
       flex-direction: column;
-      padding: 2px clamp(10px, 3vw, 28px) calc(66px + var(--safe-bottom));
+      padding: 4px var(--margin-outer) calc(62px + var(--safe-bottom));
       position: relative;
     }
 
     .book-stage {
       flex: 1;
       min-height: 0;
-      width: min(1160px, 100%);
+      width: min(var(--book-max-w), 100%);
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr;
@@ -1300,7 +1305,7 @@
       top: 0;
       bottom: 0;
       left: 50%;
-      width: 36px;
+      width: 26px;
       transform: translateX(-50%);
       pointer-events: none;
       background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.025) 38%, rgba(0, 0, 0, 0.07) 50%, rgba(0, 0, 0, 0.025) 62%, transparent 100%);
@@ -1316,7 +1321,7 @@
       min-width: 0;
       min-height: 0;
       height: 100%;
-      padding: clamp(18px, 3.8vw, 46px) clamp(18px, 4vw, 52px);
+      padding: var(--margin-y) var(--margin-x);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -1349,7 +1354,8 @@
       line-height: var(--reader-lh);
       text-align: var(--reader-align);
       color: var(--ink);
-      max-width: 66ch;
+      max-width: var(--content-max-w);
+      max-height: 100%;
       width: 100%;
       margin: 0 auto;
       -webkit-user-select: text;
@@ -1416,7 +1422,7 @@
     .scroll-stage {
       flex: 1;
       min-height: 0;
-      width: min(860px, 100%);
+      width: min(var(--book-max-w), 100%);
       margin: 0 auto;
       border-radius: 16px;
       background: var(--sheet);
@@ -1424,7 +1430,7 @@
       box-shadow: var(--shadow-sheet);
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      padding: clamp(22px, 5vw, 64px) clamp(18px, 5vw, 64px) 84px;
+      padding: var(--margin-y) var(--margin-x) 84px;
     }
 
     /* --- Floating Bottom Dock (Transparent & Proximity-Revealed in Fullscreen) --- */
@@ -2029,6 +2035,55 @@
       border-color: var(--line);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
       font-weight: 600;
+    }
+
+    .margin-btn {
+      font-size: 11.5px;
+      padding: 0 4px;
+    }
+
+    .custom-margins-panel {
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+    }
+
+    .margins-num-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .margins-num-grid .field {
+      margin: 0;
+      gap: 4px;
+    }
+
+    .margins-num-grid input[type="number"] {
+      height: 34px;
+      text-align: center;
+      padding: 0 6px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .font-select-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .font-select-row select {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .font-add-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      flex-shrink: 0;
     }
 
     /* Modern Drag and Drop Zone with Icon */
@@ -2967,7 +3022,7 @@
       /* Mobile track rows remain horizontal with compact 3-dots action menu */
 
       .reading {
-        padding: 2px 8px calc(62px + var(--safe-bottom));
+        padding: 2px min(var(--margin-outer), 16px) calc(60px + var(--safe-bottom));
       }
 
       .app.zen .reading {
@@ -2981,7 +3036,7 @@
       }
 
       .page-sheet {
-        padding: 16px 16px;
+        padding: min(var(--margin-y), 40px) min(var(--margin-x), 36px);
       }
 
 
